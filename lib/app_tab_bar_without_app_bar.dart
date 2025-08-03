@@ -54,9 +54,10 @@ class AppTabBarWithDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        initialIndex: initialIndex ?? 0,
-        length: tabScreens.length,
-        child: Builder(builder: (BuildContext context) {
+      initialIndex: initialIndex ?? 0,
+      length: tabScreens.length,
+      child: Builder(
+        builder: (BuildContext context) {
           if (getIndex != null) {
             final index = DefaultTabController.of(context).index;
             getIndex?.call(index);
@@ -65,7 +66,8 @@ class AppTabBarWithDivider extends StatelessWidget {
             drawer: drawer,
             appBar: PreferredSize(
               preferredSize: Size.fromHeight(
-                  preferredSize ?? kToolbarHeight + (appBarHeight ?? 0)),
+                preferredSize ?? kToolbarHeight + (appBarHeight ?? 0),
+              ),
               child: Container(
                 color: backgroundColor ?? Theme.of(context).primaryColor,
                 child: SafeArea(
@@ -84,10 +86,10 @@ class AppTabBarWithDivider extends StatelessWidget {
                 ),
               ),
             ),
-            body: TabBarView(
-              children: tabScreens,
-            ),
+            body: TabBarView(children: tabScreens),
           );
-        }));
+        },
+      ),
+    );
   }
 }

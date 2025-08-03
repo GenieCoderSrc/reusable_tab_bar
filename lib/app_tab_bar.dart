@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:app_style/app_style.dart';
 import 'package:reusable_tab_bar/view_models/tab_bar_cubit.dart';
 
 class AppTabBar extends StatelessWidget {
@@ -25,6 +24,7 @@ class AppTabBar extends StatelessWidget {
     this.actionsList,
     this.bottomWidget,
     this.bottomTitleTxt,
+    this.bottomTitleTxtColor,
     this.centerTitle,
     this.automaticallyImplyLeading = true,
     this.fabButtons,
@@ -52,19 +52,22 @@ class AppTabBar extends StatelessWidget {
   final bool automaticallyImplyLeading;
 
   final List<Widget>? actionsList;
-
   final Widget? bottomWidget;
+
   final String? bottomTitleTxt;
+  final Color? bottomTitleTxtColor;
 
   final List<Widget>? fabButtons; // FABs for Each Tab
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return DefaultTabController(
-        // initialIndex: initialIndex ?? 0,
-        initialIndex: context.read<TabBarCubit>().state.activeTabIndex,
-        length: tabScreens.length,
-        child: Builder(builder: (BuildContext context) {
+      // initialIndex: initialIndex ?? 0,
+      initialIndex: context.read<TabBarCubit>().state.activeTabIndex,
+      length: tabScreens.length,
+      child: Builder(
+        builder: (BuildContext context) {
           // final currentIndex = DefaultTabController.of(context).index;
           // debugPrint('AppTabBar | build | currentIndex: $currentIndex');
           // if (getIndex != null) {
@@ -76,7 +79,8 @@ class AppTabBar extends StatelessWidget {
               // To get currentIndex of current tab use tabController.currentIndex
               final int currentIndex = tabController.index;
               debugPrint(
-                  'AppTabBar | addListener | currentIndex: $currentIndex');
+                'AppTabBar | addListener | currentIndex: $currentIndex',
+              );
               context.read<TabBarCubit>().setActiveTabIndex(currentIndex);
             }
           });
@@ -96,7 +100,8 @@ class AppTabBar extends StatelessWidget {
               // flexibleSpace: titleWidget ?? Text(titleTxt ?? ""),
               bottom: PreferredSize(
                 preferredSize: Size.fromHeight(
-                    preferredSize ?? kToolbarHeight + (appBarHeight ?? 0)),
+                  preferredSize ?? kToolbarHeight + (appBarHeight ?? 0),
+                ),
                 child: Column(
                   children: [
                     if (bottomWidget != null)
@@ -109,7 +114,10 @@ class AppTabBar extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
                         child: Text(
                           bottomTitleTxt ?? "",
-                          style: AppTxtStyles.kTitleWhite,
+                          style: theme.textTheme.titleSmall?.copyWith(
+                            color: bottomTitleTxtColor ?? Colors.white,
+                            // style: AppTxtStyles.kTitleWhite,
+                          ),
                         ),
                       ),
                     TabBar(
@@ -156,19 +164,20 @@ class AppTabBar extends StatelessWidget {
             //     ),
             //   ),
             // ),
-            body: TabBarView(
-              children: tabScreens,
-            ),
-            floatingActionButton: fabButtons != null
-                ? BlocBuilder<TabBarCubit, TabBarState>(
-                    builder: (context, tabState) {
-                      // Return the FAB corresponding to the active tab index
-                      return fabButtons?[tabState.activeTabIndex] ??
-                          const SizedBox.shrink();
-                    },
-                  )
-                : null,
+            body: TabBarView(children: tabScreens),
+            floatingActionButton:
+                fabButtons != null
+                    ? BlocBuilder<TabBarCubit, TabBarState>(
+                      builder: (context, tabState) {
+                        // Return the FAB corresponding to the active tab index
+                        return fabButtons?[tabState.activeTabIndex] ??
+                            const SizedBox.shrink();
+                      },
+                    )
+                    : null,
           );
-        }));
+        },
+      ),
+    );
   }
 }

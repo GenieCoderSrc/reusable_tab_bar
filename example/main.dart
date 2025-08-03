@@ -12,9 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider<TabBarCubit>(create: (_) => TabBarCubit()),
-      ],
+      providers: [BlocProvider<TabBarCubit>(create: (_) => TabBarCubit())],
       child: MaterialApp(
         title: 'Reusable Tab Bar Example',
         theme: ThemeData(primarySwatch: Colors.blue),

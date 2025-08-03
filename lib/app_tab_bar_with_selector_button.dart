@@ -24,41 +24,44 @@ class AppTabBarWithSelectorButton extends StatelessWidget {
     return DefaultTabController(
       initialIndex: context.read<TabBarCubit>().state.activeTabIndex,
       length: tabBarViews.length,
-      child: Builder(builder: (BuildContext context) {
-        final TabController tabController = DefaultTabController.of(context);
-        tabController.addListener(() {
-          if (!tabController.indexIsChanging) {
-            // To get index of current tab use tabController.index
-            final int index = tabController.index;
-            debugPrint('AppTabBarExceptHeader | addListener | index: $index');
-            context.read<TabBarCubit>().setActiveTabIndex(index);
-          }
-        });
+      child: Builder(
+        builder: (BuildContext context) {
+          final TabController tabController = DefaultTabController.of(context);
+          tabController.addListener(() {
+            if (!tabController.indexIsChanging) {
+              // To get index of current tab use tabController.index
+              final int index = tabController.index;
+              debugPrint('AppTabBarExceptHeader | addListener | index: $index');
+              context.read<TabBarCubit>().setActiveTabIndex(index);
+            }
+          });
 
-        return Scaffold(
-          appBar: appBar,
-          drawer: drawer,
-          body: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  children:
-                      List.generate(selectorButtons.length * 2 - 1, (index) {
-                    if (index.isEven) {
-                      return selectorButtons[index ~/ 2];
-                    } else {
-                      return const SizedBox(width: 12);
-                    }
-                  }),
+          return Scaffold(
+            appBar: appBar,
+            drawer: drawer,
+            body: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    children: List.generate(selectorButtons.length * 2 - 1, (
+                      index,
+                    ) {
+                      if (index.isEven) {
+                        return selectorButtons[index ~/ 2];
+                      } else {
+                        return const SizedBox(width: 12);
+                      }
+                    }),
+                  ),
                 ),
-              ),
-              Expanded(child: TabBarView(children: tabBarViews)),
-            ],
-          ),
-          floatingActionButton: floatingActionButton,
-        );
-      }),
+                Expanded(child: TabBarView(children: tabBarViews)),
+              ],
+            ),
+            floatingActionButton: floatingActionButton,
+          );
+        },
+      ),
     );
   }
 }
