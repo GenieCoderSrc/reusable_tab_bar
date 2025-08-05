@@ -165,16 +165,15 @@ class AppTabBar extends StatelessWidget {
             //   ),
             // ),
             body: TabBarView(children: tabScreens),
-            floatingActionButton:
-                fabButtons != null
-                    ? BlocBuilder<TabBarCubit, TabBarState>(
-                      builder: (context, tabState) {
-                        // Return the FAB corresponding to the active tab index
-                        return fabButtons?[tabState.activeTabIndex] ??
-                            const SizedBox.shrink();
-                      },
-                    )
-                    : null,
+            floatingActionButton: fabButtons != null
+                ? BlocBuilder<TabBarCubit, TabBarState>(
+                    builder: (context, tabState) {
+                      // Return the FAB corresponding to the active tab index
+                      return fabButtons?[tabState.activeTabIndex] ??
+                          const SizedBox.shrink();
+                    },
+                  )
+                : null,
           );
         },
       ),
