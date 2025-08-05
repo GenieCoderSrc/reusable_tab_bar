@@ -14,8 +14,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  app_style:
-    path: ../app_style
+  app_style: ^0.0.4
 
 
   bloc: ^9.0.0
