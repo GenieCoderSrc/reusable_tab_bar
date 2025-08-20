@@ -1,7 +1,18 @@
-
 # Changelog
 
-## 1.0.0
+All notable changes to this project will be documented in this file.
+
+## 0.0.2
+
+### Aug 22, 2025
+
+### ✨ Updated
+
+- Removed `app_style` dependency.
+- Removed `flutter_lints` dependency.
+- Updated Dart sdk to 3.9.0
+
+## 0.0.1
 
 - Initial release of `reusable_tab_bar`.
 - Provides:

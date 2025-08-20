@@ -1,20 +1,18 @@
 name: reusable_tab_bar
 description: "A Flutter package for reusable and customizable tab bars with state management support using ChangeNotifier and Bloc. Includes flexible options for app bar, tab styling, and more."
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/GenieCoderSrc/reusable_tab_bar
 repository: https://github.com/GenieCoderSrc/reusable_tab_bar
 issue_tracker: https://github.com/GenieCoderSrc/reusable_tab_bar/issues
 
 
 environment:
-  sdk: ^3.8.1
-  flutter: ">=1.17.0"
+  sdk: ^3.9.0
+  flutter: ">=3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-
-  app_style: ^0.0.4
 
 
   bloc: ^9.0.0
@@ -25,7 +23,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^6.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
