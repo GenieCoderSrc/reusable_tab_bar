@@ -64,7 +64,7 @@ class AppTabBar extends StatelessWidget {
     final theme = Theme.of(context);
     return DefaultTabController(
       // initialIndex: initialIndex ?? 0,
-      initialIndex: context.read<TabBarCubit>().state.activeTabIndex,
+      initialIndex: context.read<TabBarCubit>().state.index,
       length: tabScreens.length,
       child: Builder(
         builder: (BuildContext context) {
@@ -81,7 +81,7 @@ class AppTabBar extends StatelessWidget {
               debugPrint(
                 'AppTabBar | addListener | currentIndex: $currentIndex',
               );
-              context.read<TabBarCubit>().setActiveTabIndex(currentIndex);
+              context.read<TabBarCubit>().selectTab(currentIndex);
             }
           });
           return Scaffold(
@@ -125,6 +125,7 @@ class AppTabBar extends StatelessWidget {
                       labelColor: selectedLabelColor,
                       unselectedLabelColor: unselectedLabelColor,
                       indicatorWeight: indicatorWeight ?? 2.0,
+
                       tabs: tabHeaders,
                     ),
                     // SingleChildScrollView(
@@ -169,7 +170,7 @@ class AppTabBar extends StatelessWidget {
                 ? BlocBuilder<TabBarCubit, TabBarState>(
                     builder: (context, tabState) {
                       // Return the FAB corresponding to the active tab index
-                      return fabButtons?[tabState.activeTabIndex] ??
+                      return fabButtons?[tabState.index] ??
                           const SizedBox.shrink();
                     },
                   )

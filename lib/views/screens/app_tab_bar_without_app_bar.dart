@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:reusable_tab_bar/view_models/tab_bar_cubit.dart';
 
 class AppTabBarWithDivider extends StatelessWidget {
   const AppTabBarWithDivider({
@@ -24,6 +26,7 @@ class AppTabBarWithDivider extends StatelessWidget {
     this.bottomTitleTxt,
     this.centerTitle,
     this.appBar,
+    this.fabButtons,
   });
 
   final List<Widget> tabScreens;
@@ -50,6 +53,7 @@ class AppTabBarWithDivider extends StatelessWidget {
   final Widget? bottomWidget;
   final String? bottomTitleTxt;
   final Widget? appBar;
+  final List<Widget>? fabButtons; // FABs for Each Tab
 
   @override
   Widget build(BuildContext context) {
@@ -87,6 +91,15 @@ class AppTabBarWithDivider extends StatelessWidget {
               ),
             ),
             body: TabBarView(children: tabScreens),
+            floatingActionButton: fabButtons != null
+                ? BlocBuilder<TabBarCubit, TabBarState>(
+                    builder: (context, tabState) {
+                      // Return the FAB corresponding to the active tab index
+                      return fabButtons?[tabState.index] ??
+                          const SizedBox.shrink();
+                    },
+                  )
+                : null,
           );
         },
       ),

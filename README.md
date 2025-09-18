@@ -1,116 +1,105 @@
 # Reusable Tab Bar
 
-A flexible, customizable Flutter widget package that makes it easy to build advanced `TabBar` interfaces with `Bloc`, `Cubit`, and `ChangeNotifier` support.
+**Reusable Tab Bar** is a production-ready Flutter package that provides highly customizable and flexible tab bar screens with multiple layouts, animation support, and per-tab FABs. It follows **SOLID principles**, **DRY**, and **composition over inheritance**, enabling developers to create consistent, responsive, and animated tab bars in their Flutter apps.
 
 ## Features
 
-- Easily create tabbed interfaces with custom tab headers and tab screens.
-- Built-in support for `ChangeNotifier` and `Bloc/Cubit` state management.
-- Customize `AppBar` titles, colors, heights, and actions.
-- Add floating action buttons (FABs) specific to each tab.
-- Support for `Drawer` and extra `bottom widgets` below tabs.
-- Lightweight and efficient tab state management with automatic index tracking.
+* Supports multiple layouts: `standard`, `sliver`, `bottom`, `side`, `modal`
+* Animated tab transitions (scale, underline, text style)
+* Per-tab FAB support
+* Custom tab types: text, icon, icon + text, Lottie, image, custom shapes, arbitrary widgets
+* Fully styled `StyledTabBar` with visual styles (`filled`, `outlined`, `blurred`, `elevated`, etc.)
+* Wrapper support for additional card, padding, alignment, or decorations around tabs
+* Accessibility and semantics support for screen readers
+* Responsive design for phones and tablets
+* Uses Cubit (`TabBarCubit`) for tab index state management
 
-## Getting Started
+## Installation
 
-### Installation
-
-Add to your `pubspec.yaml`:
+Add the package to your `pubspec.yaml`:
 
 ```yaml
-reusable_tab_bar: latest
+dependencies:
+  reusable_tab_bar:
+    git:
+      url: https://github.com/GenieCoderSrc/reusable_tab_bar
 ```
 
-Then run:
+## Usage
 
-```bash
-flutter pub get
-```
-
-### Usage
+### Standard Tab Bar
 
 ```dart
-import 'package:reusable_tab_bar/reusable_tab_bar.dart';
-
-// Inside your widget tree
-AppTabBar(
-  tabScreens: [
-    ScreenOne(),
-    ScreenTwo(),
-    ScreenThree(),
+ReusableTabBarScreen(
+  layout: TabBarLayout.standard,
+  tabItems: [
+    TabItemModel(label: 'Home', icon: Icons.home),
+    TabItemModel(label: 'Profile', icon: Icons.person),
   ],
-  tabHeaders: [
-    Tab(text: 'One'),
-    Tab(text: 'Two'),
-    Tab(text: 'Three'),
-  ],
-  titleTxt: 'My Tabbed App',
-  centerTitle: true,
-  drawer: MyDrawer(),
+  pages: [HomePage(), ProfilePage()],
   fabButtons: [
     FloatingActionButton(onPressed: () {}),
     FloatingActionButton(onPressed: () {}),
-    FloatingActionButton(onPressed: () {}),
   ],
-)
+  visualStyle: TabBarVisualStyle.filled,
+);
 ```
 
-Or use with a selector-style button header:
+### Sliver Tab Bar
 
 ```dart
-AppTabBarWithSelectorButton(
-  tabBarViews: [
-    ScreenOne(),
-    ScreenTwo(),
-    ScreenThree(),
-  ],
-  selectorButtons: [
-    ElevatedButton(onPressed: () {}, child: Text('One')),
-    ElevatedButton(onPressed: () {}, child: Text('Two')),
-    ElevatedButton(onPressed: () {}, child: Text('Three')),
-  ],
-)
+ReusableTabBarScreen(
+  layout: TabBarLayout.sliver,
+  sliverType: SliverTabBarType.floating,
+  tabItems: tabItems,
+  pages: pages,
+);
 ```
 
-### State Management
+### Bottom / Side / Modal Tabs
 
-- `TapBarProvider` (with `ChangeNotifier`) for basic reactive tab changes.
-- `TabBarCubit` and `TabBarState` (with `Bloc`) for more advanced state handling.
+All layouts use the same `ReusableTabBarScreen` API. Just change `layout` to the desired `TabBarLayout` value.
 
-Tab changes automatically sync with UI elements using these providers.
+## Custom Tabs
 
-## Customization Options
+```dart
+TabItemModel(
+  type: TabType.lottie,
+  lottieAsset: 'assets/animations/tab_animation.json',
+  label: 'Animated',
+);
+```
 
-| Property | Description |
-|:---------|:------------|
-| `tabScreens` | List of widgets for each tab's content |
-| `tabHeaders` | List of widgets for each tab's header |
-| `fabButtons` | Floating action buttons specific to each tab |
-| `titleTxt`, `titleWidget` | Title for the AppBar |
-| `centerTitle` | Center the title text |
-| `backgroundColor` | Background color of AppBar |
-| `indicatorColor`, `indicatorWeight` | Tab indicator customization |
-| `selectedLabelColor`, `unselectedLabelColor` | Label color customization |
-| `drawer` | Add a navigation drawer |
-| `actionsList` | Add AppBar actions |
-| `bottomWidget`, `bottomTitleTxt` | Optional bottom widgets below tabs |
+## Tab Animations
 
-## Example
+Animated tabs scale icons and change text style when selected. This is handled automatically via `AnimatedTabWrapper`.
 
-For a complete example, check the `/example` folder.
+## Wrappers
 
-## Roadmap
-- [ ] Dark mode support.
-- [ ] More animation options.
-- [ ] Custom tab controller injection.
+You can wrap the tab bar with a card or custom decoration:
 
-## Contributing
+```dart
+ReusableTabBarScreen(
+  tabBarUseCard: true,
+  tabBarCardColor: Colors.white,
+  tabBarCardElevation: 4,
+  tabBarCardShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+);
+```
 
-Contributions are welcome! Please open issues or submit pull requests.
+## State Management
+
+`TabBarCubit` handles the currently selected tab index. You can provide your own Cubit instance if needed:
+
+```dart
+final myCubit = TabBarCubit();
+
+ReusableTabBarScreen(
+  tabBarCubit: myCubit,
+);
+```
+Made with ❤️ using SOLID principles and composable widgets for clean and maintainable UI components.
 
 ## License
 
-[MIT License](LICENSE)
-
----
-
+© MIT License. Developed with ❤️ by [Shohidul Islam](https://github.com/ShohidulProgrammer)

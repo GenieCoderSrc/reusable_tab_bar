@@ -1,10 +1,10 @@
 part of 'tab_bar_cubit.dart';
 
 class TabBarState extends Equatable {
-  final int activeTabIndex;
+  final int index;
 
-  const TabBarState({required this.activeTabIndex});
+  const TabBarState({required this.index});
 
   @override
-  List<Object?> get props => [activeTabIndex];
+  List<Object?> get props => [index];
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'view_models/tab_bar_cubit.dart';
+import '../../view_models/tab_bar_cubit.dart';
 
 class AppTabBarWithSelectorButton extends StatelessWidget {
   const AppTabBarWithSelectorButton({
@@ -22,7 +22,7 @@ class AppTabBarWithSelectorButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      initialIndex: context.read<TabBarCubit>().state.activeTabIndex,
+      initialIndex: context.read<TabBarCubit>().state.index,
       length: tabBarViews.length,
       child: Builder(
         builder: (BuildContext context) {
@@ -32,7 +32,7 @@ class AppTabBarWithSelectorButton extends StatelessWidget {
               // To get index of current tab use tabController.index
               final int index = tabController.index;
               debugPrint('AppTabBarExceptHeader | addListener | index: $index');
-              context.read<TabBarCubit>().setActiveTabIndex(index);
+              context.read<TabBarCubit>().selectTab(index);
             }
           });
 

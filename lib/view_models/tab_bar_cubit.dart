@@ -5,11 +5,11 @@ import 'package:flutter/foundation.dart';
 part 'tab_bar_state.dart';
 
 class TabBarCubit extends Cubit<TabBarState> {
-  TabBarCubit() : super(const TabBarState(activeTabIndex: 0));
+  TabBarCubit() : super(const TabBarState(index: 0));
 
-  void setActiveTabIndex(int index) {
+  void selectTab(int index) {
     debugPrint('TabBarCubit | Current Index: $index');
-    emit(TabBarState(activeTabIndex: index));
+    emit(TabBarState(index: index));
   }
 }
 
