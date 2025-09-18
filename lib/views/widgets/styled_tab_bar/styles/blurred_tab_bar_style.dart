@@ -17,7 +17,6 @@ class BlurredTabBarStyle implements TabBarStyleStrategy {
     Color? labelColor,
     Color? unselectedLabelColor,
     Decoration? indicatorDecoration,
-    
   }) {
     final radius = borderRadius ?? 12;
 

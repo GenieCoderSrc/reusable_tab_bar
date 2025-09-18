@@ -29,7 +29,6 @@ class BottomTabBarScreen extends BaseTabBarScreen {
     super.tabBarWrapperPadding,
     super.tabBarAlignment,
     super.tabBarDecoration,
-
   });
 
   @override

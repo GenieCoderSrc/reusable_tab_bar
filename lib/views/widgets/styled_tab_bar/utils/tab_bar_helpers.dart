@@ -49,6 +49,5 @@ Decoration resolveIndicator({
   return BoxDecoration(
     color: indicatorColor,
     borderRadius: BorderRadius.circular(borderRadius),
-
   );
 }

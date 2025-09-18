@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 /// Only used internally for custom painter type

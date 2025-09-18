@@ -38,16 +38,15 @@ class IconTextTab extends BaseTab {
     return Tab(
       child: vertical
           ? Column(
-        mainAxisSize: MainAxisSize.min,
-        spacing: spacing,
-        children: children,
-      )
+              mainAxisSize: MainAxisSize.min,
+              spacing: spacing,
+              children: children,
+            )
           : Row(
-        mainAxisSize: MainAxisSize.min,
-        spacing: spacing,
-        children: children,
-      ),
+              mainAxisSize: MainAxisSize.min,
+              spacing: spacing,
+              children: children,
+            ),
     );
   }
 }
-

@@ -15,7 +15,6 @@ class SimpleTabBarStyle implements TabBarStyleStrategy {
     Color? labelColor,
     Color? unselectedLabelColor,
     Decoration? indicatorDecoration,
-
   }) {
     return Padding(
       padding: padding ?? EdgeInsets.zero,

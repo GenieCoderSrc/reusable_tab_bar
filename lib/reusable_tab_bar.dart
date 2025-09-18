@@ -9,7 +9,6 @@ export 'views/screens/app_tab_bar_with_selector_button.dart';
 export 'views/screens/app_tab_bar_without_app_bar.dart';
 export 'views/screens/reusable_tab_bar.dart';
 
-
 export 'views/widgets/collapsible_tab_bar.dart';
 export 'views/widgets/floating_tab_bar.dart';
 export 'views/widgets/overlay_tab_bar.dart';

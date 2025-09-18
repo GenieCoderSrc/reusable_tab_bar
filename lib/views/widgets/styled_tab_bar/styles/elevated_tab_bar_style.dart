@@ -14,7 +14,6 @@ class ElevatedTabBarStyle implements TabBarStyleStrategy {
     Color? labelColor,
     Color? unselectedLabelColor,
     Decoration? indicatorDecoration,
-    
   }) {
     final radius = borderRadius ?? 12;
 
@@ -27,7 +26,8 @@ class ElevatedTabBarStyle implements TabBarStyleStrategy {
         child: TabBar(
           controller: controller,
           tabs: tabs,
-          indicator: indicatorDecoration ??
+          indicator:
+              indicatorDecoration ??
               BoxDecoration(
                 color: indicatorColor ?? Colors.blue,
                 borderRadius: BorderRadius.circular(radius),

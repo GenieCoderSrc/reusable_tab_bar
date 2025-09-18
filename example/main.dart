@@ -28,8 +28,16 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final tabItems = [
       TabItemModel(label: 'Home', icon: Icons.home, type: TabType.iconThenText),
-      TabItemModel(label: 'Search', icon: Icons.search, type: TabType.iconThenText),
-      TabItemModel(label: 'Profile', icon: Icons.person, type: TabType.iconThenText),
+      TabItemModel(
+        label: 'Search',
+        icon: Icons.search,
+        type: TabType.iconThenText,
+      ),
+      TabItemModel(
+        label: 'Profile',
+        icon: Icons.person,
+        type: TabType.iconThenText,
+      ),
     ];
 
     final pages = [
