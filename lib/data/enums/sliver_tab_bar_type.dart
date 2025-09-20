@@ -2,4 +2,5 @@
 enum SliverTabBarType {
   sticky, // pinned at top
   floating, // floats & can snap
+  collapsible,
 }

@@ -5,6 +5,7 @@ import 'base_tab.dart';
 
 class LottieTab extends BaseTab {
   final String? lottieAsset;
+  final String? lottieUrl;
   final double size;
   final double spacing;
   final bool vertical;
@@ -12,7 +13,8 @@ class LottieTab extends BaseTab {
   const LottieTab({
     super.key,
     super.label,
-    required this.lottieAsset,
+    this.lottieAsset,
+    this.lottieUrl,
     this.size = 36,
     this.spacing = 6,
     this.vertical = true,
@@ -23,6 +25,8 @@ class LottieTab extends BaseTab {
     final children = <Widget>[
       if (lottieAsset != null)
         Lottie.asset(lottieAsset!, width: size, height: size),
+      if (lottieUrl != null)
+        Lottie.network(lottieUrl!, width: size, height: size, animate: true, reverse: true),
       if (label != null) Text(label!),
     ];
 

@@ -21,12 +21,14 @@ class StyledTabBar extends StatelessWidget implements PreferredSizeWidget {
     this.borderRadius,
     this.padding,
     this.elevation,
+    this.animate,
   });
 
   final List<TabItemModel> tabItems;
   final TabController controller;
   final TabBarVisualStyle visualStyle;
   final Color? backgroundColor;
+  final bool? animate;
 
   final Color? labelColor;
   final Color? unselectedLabelColor;
@@ -78,7 +80,7 @@ class StyledTabBar extends StatelessWidget implements PreferredSizeWidget {
     final tabs = TabBuilder.buildAnimatedTabs(
       tabItems: tabItems,
       controller: controller,
-      animate: true,
+      animate: animate,
     );
 
     // Select the style strategy

@@ -23,8 +23,14 @@ class IconTextTab extends BaseTab {
 
   @override
   Widget build(BuildContext context) {
-    if (icon == null && label != null) return Text(label!);
-    if (label == null && icon != null) return Icon(icon, size: iconSize);
+    if (icon == null && label != null) return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text(label!),
+    );
+    if (label == null && icon != null) return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Icon(icon, size: iconSize),
+    );
 
     final children = <Widget>[
       if (icon != null) Icon(icon, size: iconSize),
@@ -35,18 +41,21 @@ class IconTextTab extends BaseTab {
       children.insert(0, children.removeAt(1));
     }
 
-    return Tab(
-      child: vertical
-          ? Column(
-              mainAxisSize: MainAxisSize.min,
-              spacing: spacing,
-              children: children,
-            )
-          : Row(
-              mainAxisSize: MainAxisSize.min,
-              spacing: spacing,
-              children: children,
-            ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Tab(
+        child: vertical
+            ? Column(
+                mainAxisSize: MainAxisSize.min,
+                spacing: spacing,
+                children: children,
+              )
+            : Row(
+                mainAxisSize: MainAxisSize.min,
+                spacing: spacing,
+                children: children,
+              ),
+      ),
     );
   }
 }

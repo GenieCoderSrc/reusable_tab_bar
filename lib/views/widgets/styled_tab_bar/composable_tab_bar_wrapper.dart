@@ -92,6 +92,7 @@ class ComposableTabBarWrapper extends StatelessWidget {
       tabBar = Card(
         color: cardColor,
         elevation: cardElevation ?? 2,
+        margin: wrapperPadding,
         shape:
             cardShape ??
             RoundedRectangleBorder(

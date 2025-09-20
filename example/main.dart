@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reusable_tab_bar/data/enums/tab_type.dart';
 import 'package:reusable_tab_bar/data/models/tab_item_model.dart';
 import 'package:reusable_tab_bar/reusable_tab_bar.dart';

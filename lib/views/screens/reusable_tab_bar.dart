@@ -20,12 +20,13 @@ class ReusableTabBarScreen extends StatelessWidget {
   final List<TabItemModel> tabItems;
   final List<Widget> pages;
   final TabBarVisualStyle visualStyle;
+  final bool? animate;
   final int? initialIndex;
   final void Function(int)? getIndex;
   final TabBarCubit? tabBarCubit;
 
   // AppBar / Scaffold options
-  final double? preferredSize;
+  final double? appBarBottomHeight;
   final double? appBarHeight;
   final Widget? drawer;
   final String? titleTxt;
@@ -69,10 +70,11 @@ class ReusableTabBarScreen extends StatelessWidget {
     required this.tabItems,
     required this.pages,
     this.visualStyle = TabBarVisualStyle.filled,
+    this.animate,
     this.initialIndex,
     this.getIndex,
     this.tabBarCubit,
-    this.preferredSize,
+    this.appBarBottomHeight,
     this.appBarHeight,
     this.drawer,
     this.titleTxt,
@@ -111,10 +113,12 @@ class ReusableTabBarScreen extends StatelessWidget {
           tabItems: tabItems,
           pages: pages,
           visualStyle: visualStyle,
+          animate: animate,
           initialIndex: initialIndex,
           getIndex: getIndex,
           tabBarCubit: tabBarCubit,
           appBarHeight: appBarHeight,
+          appBarBottomHeight: appBarBottomHeight,
           titleTxt: titleTxt,
           titleWidget: titleWidget,
           centerTitle: centerTitle,
@@ -141,6 +145,7 @@ class ReusableTabBarScreen extends StatelessWidget {
           tabItems: tabItems,
           pages: pages,
           visualStyle: visualStyle,
+          animate: animate,
           initialIndex: initialIndex,
           getIndex: getIndex,
           tabBarCubit: tabBarCubit,
@@ -160,6 +165,7 @@ class ReusableTabBarScreen extends StatelessWidget {
           tabBarWrapperPadding: tabBarWrapperPadding,
           tabBarAlignment: tabBarAlignment,
           tabBarDecoration: tabBarDecoration,
+          appBarBottomHeight: appBarBottomHeight,
         );
 
       case TabBarLayout.bottom:
@@ -167,6 +173,7 @@ class ReusableTabBarScreen extends StatelessWidget {
           tabItems: tabItems,
           pages: pages,
           visualStyle: visualStyle,
+          animate: animate,
           initialIndex: initialIndex,
           getIndex: getIndex,
           tabBarCubit: tabBarCubit,
@@ -192,6 +199,7 @@ class ReusableTabBarScreen extends StatelessWidget {
           tabItems: tabItems,
           pages: pages,
           visualStyle: visualStyle,
+          animate: animate,
           initialIndex: initialIndex,
           getIndex: getIndex,
           tabBarCubit: tabBarCubit,
@@ -218,6 +226,7 @@ class ReusableTabBarScreen extends StatelessWidget {
           tabItems: tabItems,
           pages: pages,
           visualStyle: visualStyle,
+          animate: animate,
           initialIndex: initialIndex,
           getIndex: getIndex,
           tabBarCubit: tabBarCubit,
@@ -271,6 +280,7 @@ class ReusableTabBarScreen extends StatelessWidget {
 //   final List<Tab> tabs;
 //   final List<Widget> views;
 //   final TabBarVisualStyle visualStyle;
+// final bool? animate;
 //
 //   final String? appBarTitle;
 //   final bool isPinned;
@@ -291,6 +301,7 @@ class ReusableTabBarScreen extends StatelessWidget {
 //       tabs: tabs,
 //       controller: controller,
 //       visualStyle: visualStyle,
+//       animate: animate,
 //       backgroundColor: backgroundColor,
 //       indicatorColor: indicatorColor,
 //       borderRadius: borderRadius,

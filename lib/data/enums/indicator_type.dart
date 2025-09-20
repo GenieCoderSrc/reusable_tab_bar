@@ -1,11 +1,11 @@
 enum IndicatorType {
   underline,
-  rounded,
   gradient,
+  rounded,
   dot,
   bubble,
-  topLine,
   rectangle,
+  topLine,
   customPainter,
   custom,
 }

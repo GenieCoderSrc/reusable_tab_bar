@@ -9,6 +9,7 @@ class BottomTabBarScreen extends BaseTabBarScreen {
     required super.tabItems,
     required super.pages,
     super.visualStyle,
+    super.animate,
     super.initialIndex,
     super.getIndex,
     super.tabBarCubit,
@@ -21,6 +22,7 @@ class BottomTabBarScreen extends BaseTabBarScreen {
     super.elevation,
     super.indicatorColor,
     super.indicator,
+    super.hideTopAppBar = true,
     // Optional wrapper
     super.tabBarUseCard,
     super.tabBarCardColor,
@@ -65,6 +67,7 @@ class BottomTabBarScreen extends BaseTabBarScreen {
 //   final List<TabItemModel> tabItems;
 //   final List<Widget> pages;
 //   final TabBarVisualStyle visualStyle;
+// final bool? animate;
 //   final int? initialIndex;
 //   final void Function(int)? getIndex;
 //   final TabBarCubit? tabBarCubit;
@@ -81,7 +84,8 @@ class BottomTabBarScreen extends BaseTabBarScreen {
 //     required this.tabItems,
 //     required this.pages,
 //     this.visualStyle = TabBarVisualStyle.filled,
-//     this.initialIndex,
+  //  this.animate,
+    // this.initialIndex,
 //     this.getIndex,
 //     this.tabBarCubit,
 //     this.tabBarUseCard = false,
@@ -140,6 +144,7 @@ class BottomTabBarScreen extends BaseTabBarScreen {
 //   final List<TabItemModel> tabItems;
 //   final List<Widget> pages;
 //   final TabBarVisualStyle visualStyle;
+// final bool? animate;
 //   final int? initialIndex;
 //   final void Function(int)? getIndex;
 //
@@ -148,7 +153,8 @@ class BottomTabBarScreen extends BaseTabBarScreen {
 //     required this.tabItems,
 //     required this.pages,
 //     this.visualStyle = TabBarVisualStyle.filled,
-//     this.initialIndex,
+  //  this.animate,
+    // this.initialIndex,
 //     this.getIndex,
 //   });
 //
@@ -205,6 +211,7 @@ class BottomTabBarScreen extends BaseTabBarScreen {
 //   final List<Widget> views;
 //   final TabController controller;
 //   final TabBarVisualStyle visualStyle;
+// final bool? animate;
 //   final String? title;
 //   final Color? backgroundColor;
 //   final Color? indicatorColor;

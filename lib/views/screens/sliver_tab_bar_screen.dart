@@ -1,41 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:reusable_tab_bar/data/enums/sliver_tab_bar_type.dart';
-import 'package:reusable_tab_bar/views/widgets/styled_tab_bar/composable_tab_bar_wrapper.dart';
+import 'package:reusable_tab_bar/type_def/type_def.dart';
 
 import 'base_tab_bar_screen.dart';
 
 class SliverTabBarScreen extends BaseTabBarScreen {
   final SliverTabBarType sliverType;
 
+  /// Pages for each tab
+  final List<Widget> pages;
+
+  /// Optional tab bar widget builder (only TabController required)
+  final TabControllerBuilder? tabBarBuilder;
+
   const SliverTabBarScreen({
     super.key,
-    required super.tabItems,
-    required super.pages,
+    required super.numberOfTabs,
+    required this.pages,
+    this.tabBarBuilder,
     this.sliverType = SliverTabBarType.sticky,
-    super.visualStyle,
     super.initialIndex,
     super.getIndex,
     super.tabBarCubit,
-    super.appBarHeight,
-    super.titleTxt,
-    super.titleWidget,
-    super.centerTitle,
+    super.drawer,
     super.fabButtons,
-    super.tabBarUseCard,
-    super.tabBarCardColor,
-    super.tabBarCardElevation,
-    super.tabBarCardShape,
-    super.tabBarWrapperPadding,
-    super.tabBarAlignment,
-    super.tabBarDecoration,
-    super.backgroundColor,
-    super.labelColor,
-    super.unselectedLabelColor,
-    super.borderRadius,
-    super.padding,
-    super.elevation,
-    super.indicatorColor,
-    super.indicator,
   });
 
   @override
@@ -46,29 +34,14 @@ class SliverTabBarScreen extends BaseTabBarScreen {
           pinned: sliverType == SliverTabBarType.sticky,
           floating: sliverType == SliverTabBarType.floating,
           snap: sliverType == SliverTabBarType.floating,
-          title: titleWidget ?? (titleTxt != null ? Text(titleTxt!) : null),
-          bottom: tabItems.isNotEmpty
+          expandedHeight: 250,
+          flexibleSpace: FlexibleSpaceBar(
+            title: Text(''), // Optional: Add title or leave empty
+          ),
+          bottom: tabBarBuilder != null
               ? PreferredSize(
                   preferredSize: const Size.fromHeight(kToolbarHeight),
-                  child: ComposableTabBarWrapper(
-                    tabItems: tabItems,
-                    controller: controller,
-                    visualStyle: visualStyle,
-                    labelColor: labelColor,
-                    unselectedLabelColor: unselectedLabelColor,
-                    backgroundColor: backgroundColor,
-                    indicator: indicator,
-                    borderRadius: borderRadius,
-                    padding: padding,
-                    elevation: elevation,
-                    useCard: tabBarUseCard,
-                    cardColor: tabBarCardColor,
-                    cardElevation: tabBarCardElevation,
-                    cardShape: tabBarCardShape,
-                    wrapperPadding: tabBarWrapperPadding,
-                    alignment: tabBarAlignment,
-                    decoration: tabBarDecoration,
-                  ),
+                  child: tabBarBuilder!(controller),
                 )
               : null,
         ),
@@ -78,6 +51,88 @@ class SliverTabBarScreen extends BaseTabBarScreen {
   }
 }
 
+// class SliverTabBarScreen extends BaseTabBarScreen {
+//   final SliverTabBarType sliverType;
+//
+//   const SliverTabBarScreen({
+//     super.key,
+//     required super.tabItems,
+//     required super.pages,
+//     this.sliverType = SliverTabBarType.sticky,
+//     super.visualStyle,
+//     super.animate,
+//     super.initialIndex,
+//     super.getIndex,
+//     super.tabBarCubit,
+//     super.appBarHeight,
+//     super.appBarBottomHeight,
+//     super.titleTxt,
+//     super.titleWidget,
+//     super.centerTitle,
+//     super.fabButtons,
+//     super.tabBarUseCard,
+//     super.tabBarCardColor,
+//     super.tabBarCardElevation,
+//     super.tabBarCardShape,
+//     super.tabBarWrapperPadding,
+//     super.tabBarAlignment,
+//     super.tabBarDecoration,
+//     super.backgroundColor,
+//     super.labelColor,
+//     super.unselectedLabelColor,
+//     super.borderRadius,
+//     super.padding,
+//     super.elevation,
+//     super.indicatorColor,
+//     super.indicator,
+//     super.hideTopAppBar = true,
+//   });
+//
+//   @override
+//   Widget buildBody(BuildContext context, TabController controller) {
+//     return CustomScrollView(
+//       slivers: [
+//         SliverAppBar(
+//           // actions: apa,
+//           toolbarHeight: super.appBarBottomHeight ?? 250,
+//           pinned: sliverType == SliverTabBarType.sticky,
+//           floating: sliverType == SliverTabBarType.floating,
+//           snap: sliverType == SliverTabBarType.floating,
+//           title: titleWidget ?? (titleTxt != null ? Text(titleTxt!) : null),
+//
+//           bottom: tabItems.isNotEmpty
+//               ? PreferredSize(
+//                   preferredSize: Size.fromHeight(
+//                     super.appBarBottomHeight ?? kToolbarHeight,
+//                   ),
+//                   child: ComposableTabBarWrapper(
+//                     tabItems: tabItems,
+//                     controller: controller,
+//                     visualStyle: visualStyle,
+//                     labelColor: labelColor,
+//                     unselectedLabelColor: unselectedLabelColor,
+//                     backgroundColor: backgroundColor,
+//                     indicator: indicator,
+//                     borderRadius: borderRadius,
+//                     padding: padding,
+//                     elevation: elevation,
+//                     useCard: tabBarUseCard,
+//                     cardColor: tabBarCardColor,
+//                     cardElevation: tabBarCardElevation,
+//                     cardShape: tabBarCardShape,
+//                     wrapperPadding: tabBarWrapperPadding,
+//                     alignment: tabBarAlignment,
+//                     decoration: tabBarDecoration,
+//                   ),
+//                 )
+//               : null,
+//         ),
+//         SliverFillRemaining(child: TabBarView(children: pages)),
+//       ],
+//     );
+//   }
+// }
+
 // /// Sliver tab bar screen with pinned/floating behavior and reusable tab bar wrapper.
 // class SliverTabBarScreen extends StatelessWidget {
 //   final List<TabItemModel> tabItems;
@@ -85,6 +140,7 @@ class SliverTabBarScreen extends BaseTabBarScreen {
 //
 //   // TabBar core
 //   final TabBarVisualStyle visualStyle;
+// final bool? animate;
 //   final int? initialIndex;
 //   final void Function(int)? getIndex;
 //   final TabBarCubit? tabBarCubit;
@@ -125,7 +181,8 @@ class SliverTabBarScreen extends BaseTabBarScreen {
 //     required this.tabItems,
 //     required this.pages,
 //     this.visualStyle = TabBarVisualStyle.filled,
-//     this.initialIndex,
+//  this.animate,
+// this.initialIndex,
 //     this.getIndex,
 //     this.tabBarCubit,
 //     this.appBarHeight,

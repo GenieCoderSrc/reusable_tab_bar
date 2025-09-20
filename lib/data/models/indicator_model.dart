@@ -6,19 +6,24 @@ class IndicatorModel {
   final Color? color;
   final double? thickness;
   final double? radius;
+  final BoxShape? shape;
   final double? verticalPadding;
   final Gradient? gradient;
   final Decoration? customDecoration;
-  final CustomPainter? customPainter;
+
+  /// Builder for a custom painter. Provides the size and textDirection.
+  final CustomPainter Function(Size size, TextDirection? direction)? customPainterBuilder;
 
   const IndicatorModel({
     this.type = IndicatorType.underline,
     this.color,
     this.thickness = 2,
     this.radius,
+    this.shape,
     this.verticalPadding,
     this.gradient,
     this.customDecoration,
-    this.customPainter,
+    this.customPainterBuilder,
   });
 }
+

@@ -8,6 +8,7 @@ class TabItemModel {
   final String? label;
   final IconData? icon;
   final String? lottieAsset;
+  final String? lottieUrl;
   final String? imagePath;
   final ImageProvider? image;
   final Widget? customWidget;
@@ -19,6 +20,7 @@ class TabItemModel {
     this.label,
     this.icon,
     this.lottieAsset,
+    this.lottieUrl,
     this.imagePath,
     this.image,
     this.customWidget,

@@ -9,6 +9,7 @@ class ModalTabBarScreen extends BaseTabBarScreen {
     required super.tabItems,
     required super.pages,
     super.visualStyle,
+    super.animate,
     super.initialIndex,
     super.getIndex,
     super.tabBarCubit,
@@ -28,6 +29,7 @@ class ModalTabBarScreen extends BaseTabBarScreen {
     super.elevation,
     super.indicatorColor,
     super.indicator,
+    super.hideTopAppBar = true,
   });
 
   void show(BuildContext context) {
@@ -76,6 +78,7 @@ class ModalTabBarScreen extends BaseTabBarScreen {
 //   final List<TabItemModel> tabItems;
 //   final List<Widget> pages;
 //   final TabBarVisualStyle visualStyle;
+// final bool? animate;
 //   final int? initialIndex;
 //   final void Function(int)? getIndex;
 //   final TabBarCubit? tabBarCubit;
@@ -85,7 +88,8 @@ class ModalTabBarScreen extends BaseTabBarScreen {
 //     required this.tabItems,
 //     required this.pages,
 //     this.visualStyle = TabBarVisualStyle.filled,
-//     this.initialIndex,
+  //  this.animate,
+    // this.initialIndex,
 //     this.getIndex,
 //     this.tabBarCubit,
 //   });
@@ -136,6 +140,7 @@ class ModalTabBarScreen extends BaseTabBarScreen {
 //   final List<TabItemModel> tabItems;
 //   final List<Widget> pages;
 //   final TabBarVisualStyle visualStyle;
+// final bool? animate;
 //   final int? initialIndex;
 //   final void Function(int)? getIndex;
 //
@@ -144,7 +149,8 @@ class ModalTabBarScreen extends BaseTabBarScreen {
 //     required this.tabItems,
 //     required this.pages,
 //     this.visualStyle = TabBarVisualStyle.filled,
-//     this.initialIndex,
+  //  this.animate,
+    // this.initialIndex,
 //     this.getIndex,
 //   });
 //
@@ -221,6 +227,7 @@ class ModalTabBarScreen extends BaseTabBarScreen {
 //   final List<Widget> views;
 //   final TabController controller;
 //   final TabBarVisualStyle visualStyle;
+// final bool? animate;
 //   final double modalHeight;
 //   final Color? backgroundColor;
 //   final Color? indicatorColor;

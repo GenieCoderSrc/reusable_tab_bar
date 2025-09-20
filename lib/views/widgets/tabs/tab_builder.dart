@@ -10,7 +10,7 @@ class TabBuilder {
   static List<Widget> buildAnimatedTabs({
     required List<TabItemModel> tabItems,
     required TabController controller,
-    bool animate = true,
+    bool? animate,
   }) {
     return List.generate(tabItems.length, (index) {
       final model = tabItems[index];
@@ -18,7 +18,7 @@ class TabBuilder {
 
       final tab = TabFactory.create(model);
 
-      return animate
+      return animate ?? false
           ? AnimatedTabWrapper(selected: isSelected, child: tab)
           : tab;
     });

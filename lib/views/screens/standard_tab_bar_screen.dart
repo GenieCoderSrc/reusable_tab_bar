@@ -1,43 +1,259 @@
 import 'package:flutter/material.dart';
+import 'package:reusable_tab_bar/type_def/type_def.dart';
 
 import 'base_tab_bar_screen.dart';
 
 class StandardTabBarScreen extends BaseTabBarScreen {
-  const StandardTabBarScreen({
+  final List<Widget> pages;
+  final TabControllerBuilder? tabBarBuilder;
+
+  // AppBar
+  final double? appBarHeight;
+  final double? appBarBottomHeight;
+  final String? titleTxt;
+  final Widget? titleWidget;
+  final bool? centerTitle;
+
+  // AppBar Leading
+  final Widget? leadingWidget;
+  final double? leadingWidth;
+  final bool automaticallyImplyLeading;
+
+  final List<Widget>? actionsList;
+
+  final Widget? bottomWidget;
+  final String? bottomTitleTxt;
+  final Color? bottomTitleTxtColor;
+
+  StandardTabBarScreen({
     super.key,
-    required super.tabItems,
-    required super.pages,
-    super.visualStyle,
+    required this.pages,
     super.initialIndex,
     super.getIndex,
     super.tabBarCubit,
-    super.appBarHeight,
-    super.titleTxt,
-    super.titleWidget,
-    super.centerTitle,
+    super.drawer,
     super.fabButtons,
-    super.tabBarUseCard,
-    super.tabBarCardColor,
-    super.tabBarCardElevation,
-    super.tabBarCardShape,
-    super.tabBarWrapperPadding,
-    super.tabBarAlignment,
-    super.tabBarDecoration,
-    super.backgroundColor,
-    super.labelColor,
-    super.unselectedLabelColor,
-    super.borderRadius,
-    super.padding,
-    super.elevation,
-    super.indicatorColor,
-    super.indicator,
-  });
+    this.appBarHeight,
+    this.titleTxt,
+    this.titleWidget,
+    this.centerTitle,
+    this.actionsList,
+    this.tabBarBuilder,
+    this.appBarBottomHeight,
+    this.leadingWidget,
+    this.leadingWidth,
+    this.automaticallyImplyLeading = true,
+    this.bottomWidget,
+    this.bottomTitleTxt,
+    this.bottomTitleTxtColor,
+  }) : super(numberOfTabs: pages.length);
 
   @override
   Widget buildBody(BuildContext context, TabController controller) {
     return TabBarView(children: pages);
   }
+
+  @override
+  TabAppBarBuilder? get appBarBuilder =>
+      (context, controller) => _buildAppBar(context, controller);
+
+  PreferredSizeWidget? _buildAppBar(
+    BuildContext context,
+    TabController controller,
+  ) {
+    if (titleTxt == null && titleWidget == null && tabBarBuilder == null) {
+      return null;
+    }
+
+    final theme = Theme.of(context);
+
+    return AppBar(
+      toolbarHeight: appBarHeight,
+      centerTitle: centerTitle,
+      title: titleWidget ?? (titleTxt != null ? Text(titleTxt!) : null),
+      automaticallyImplyLeading: automaticallyImplyLeading,
+      leading: leadingWidget,
+      leadingWidth: leadingWidth,
+      actions: actionsList,
+      bottom:
+          tabBarBuilder != null ||
+              bottomWidget != null ||
+              bottomTitleTxt != null
+          ? PreferredSize(
+              preferredSize: Size.fromHeight(
+                appBarBottomHeight ?? kToolbarHeight + (appBarHeight ?? 0),
+              ),
+              child: Column(
+                children: [
+                  if (bottomWidget != null)
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: bottomWidget!,
+                    ),
+                  if (bottomTitleTxt != null)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      child: Text(
+                        bottomTitleTxt ?? "",
+                        style: theme.textTheme.titleSmall?.copyWith(
+                          color: bottomTitleTxtColor ?? Colors.white,
+                          // style: AppTxtStyles.kTitleWhite,
+                        ),
+                      ),
+                    ),
+                  if (tabBarBuilder != null) tabBarBuilder!(controller),
+                ],
+              ),
+            )
+          : null,
+    );
+  }
 }
+
+// class StandardTabBarScreen extends StatelessWidget {
+//   // TabBar
+//   final List<Widget> pages;
+//   final int? initialIndex;
+//   final void Function(int)? getIndex;
+//   final TabBarCubit? tabBarCubit;
+//   final Widget Function(TabController)? tabBarBuilder;
+//
+//   // AppBar
+//   final double? appBarHeight;
+//   final double? appBarBottomHeight;
+//   final String? titleTxt;
+//   final Widget? titleWidget;
+//   final bool? centerTitle;
+//
+//   // AppBar Leading
+//   final Widget? leadingWidget;
+//   final double? leadingWidth;
+//   final bool automaticallyImplyLeading;
+//
+//   // AppBar Action
+//   final List<Widget>? actionsList;
+//
+//   final Widget? bottomWidget;
+//   final String? bottomTitleTxt;
+//   final Color? bottomTitleTxtColor;
+//
+//   // Drawer
+//   final Widget? drawer;
+//
+//   // FAB
+//   final List<Widget>? fabButtons;
+//
+//   const StandardTabBarScreen({
+//     super.key,
+//     required this.pages,
+//     this.tabBarBuilder,
+//     this.appBarHeight,
+//     this.titleTxt,
+//     this.titleWidget,
+//     this.centerTitle,
+//     this.actionsList,
+//     this.appBarBottomHeight,
+//     this.leadingWidget,
+//     this.leadingWidth,
+//     this.automaticallyImplyLeading = true,
+//     this.bottomWidget,
+//     this.bottomTitleTxt,
+//     this.bottomTitleTxtColor,
+//     this.initialIndex,
+//     this.getIndex,
+//     this.tabBarCubit,
+//     this.fabButtons,
+//     this.drawer,
+//   });
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     final int numberOfTabs = pages.length;
+//
+//     return BlocProvider(
+//       create: (_) => tabBarCubit ?? TabBarCubit()
+//         ..selectTab(initialIndex ?? 0),
+//       child: Builder(
+//         builder: (context) {
+//           final tabCubit = context.read<TabBarCubit>();
+//
+//           return DefaultTabController(
+//             length: numberOfTabs,
+//             initialIndex: context.read<TabBarCubit>().state.index,
+//             child: Builder(
+//               builder: (context) {
+//                 final controller = DefaultTabController.of(context);
+//                 addTabControllerListener(
+//                   controller: controller,
+//                   tabCubit: tabCubit,
+//                   onTabChanged: getIndex,
+//                 );
+//
+//                 return Scaffold(
+//                   drawer: drawer,
+//                   appBar: _buildAppBar(context, controller),
+//                   body: TabBarView(children: pages),
+//                   floatingActionButton: TabFABSwitcher(fabButtons: fabButtons),
+//                 );
+//               },
+//             ),
+//           );
+//         },
+//       ),
+//     );
+//   }
+//
+//   PreferredSizeWidget? _buildAppBar(
+//       BuildContext context,
+//       TabController controller,
+//       ) {
+//     if (titleTxt == null && titleWidget == null && tabBarBuilder == null) {
+//       return null;
+//     }
+//
+//     final theme = Theme.of(context);
+//
+//     return AppBar(
+//       toolbarHeight: appBarHeight,
+//       centerTitle: centerTitle,
+//       title: titleWidget ?? (titleTxt != null ? Text(titleTxt!) : null),
+//       automaticallyImplyLeading: automaticallyImplyLeading,
+//       leading: leadingWidget,
+//       leadingWidth: leadingWidth,
+//       actions: actionsList,
+//       bottom:
+//       (tabBarBuilder == null &&
+//           bottomWidget == null &&
+//           bottomTitleTxt == null)
+//           ? null
+//           : PreferredSize(
+//         preferredSize: Size.fromHeight(
+//           appBarBottomHeight ?? kToolbarHeight + (appBarHeight ?? 0),
+//         ),
+//         child: Column(
+//           children: [
+//             if (bottomWidget != null)
+//               Padding(
+//                 padding: const EdgeInsets.all(16.0),
+//                 child: bottomWidget!,
+//               ),
+//             if (bottomTitleTxt != null)
+//               Padding(
+//                 padding: const EdgeInsets.symmetric(vertical: 16.0),
+//                 child: Text(
+//                   bottomTitleTxt ?? "",
+//                   style: theme.textTheme.titleSmall?.copyWith(
+//                     color: bottomTitleTxtColor ?? Colors.white,
+//                   ),
+//                 ),
+//               ),
+//             if (tabBarBuilder != null) tabBarBuilder!(controller),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 // /// Standard TabBar Screen with optional FABs per tab and fully composable StyledTabBar.
 // class StandardTabBarScreen extends StatelessWidget {
@@ -46,6 +262,7 @@ class StandardTabBarScreen extends BaseTabBarScreen {
 //
 //   // TabBar core
 //   final TabBarVisualStyle visualStyle;
+// final bool? animate;
 //   final int? initialIndex;
 //   final void Function(int)? getIndex;
 //
@@ -95,7 +312,8 @@ class StandardTabBarScreen extends BaseTabBarScreen {
 //     required this.tabItems,
 //     required this.pages,
 //     this.visualStyle = TabBarVisualStyle.filled,
-//     this.initialIndex,
+//  this.animate,
+// this.initialIndex,
 //     this.getIndex,
 //     this.preferredSize,
 //     this.appBarHeight,
@@ -217,6 +435,7 @@ class StandardTabBarScreen extends BaseTabBarScreen {
 //
 //   // TabBar core
 //   final TabBarVisualStyle visualStyle;
+// final bool? animate;
 //   final int? initialIndex;
 //   final void Function(int)? getIndex;
 //
@@ -266,7 +485,8 @@ class StandardTabBarScreen extends BaseTabBarScreen {
 //     required this.tabItems,
 //     required this.pages,
 //     this.visualStyle = TabBarVisualStyle.filled,
-//     this.initialIndex,
+//  this.animate,
+// this.initialIndex,
 //     this.getIndex,
 //     this.preferredSize,
 //     this.appBarHeight,
@@ -396,6 +616,7 @@ class StandardTabBarScreen extends BaseTabBarScreen {
 //
 //   // TabBar core
 //   final TabBarVisualStyle visualStyle;
+// final bool? animate;
 //   final int? initialIndex;
 //   final void Function(int)? getIndex;
 //
@@ -436,7 +657,8 @@ class StandardTabBarScreen extends BaseTabBarScreen {
 //     required this.tabItems,
 //     required this.pages,
 //     this.visualStyle = TabBarVisualStyle.filled,
-//     this.initialIndex,
+//  this.animate,
+// this.initialIndex,
 //     this.getIndex,
 //     this.preferredSize,
 //     this.appBarHeight,

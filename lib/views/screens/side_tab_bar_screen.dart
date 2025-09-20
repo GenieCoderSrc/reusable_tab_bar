@@ -8,6 +8,7 @@ class SideTabBarScreen extends BaseTabBarScreen {
     required super.tabItems,
     required super.pages,
     super.visualStyle,
+    super.animate,
     super.initialIndex,
     super.getIndex,
     super.tabBarCubit,
@@ -27,6 +28,7 @@ class SideTabBarScreen extends BaseTabBarScreen {
     super.elevation,
     super.indicatorColor,
     super.indicator,
+    super.hideTopAppBar = true,
   });
 
   @override
@@ -60,6 +62,7 @@ class SideTabBarScreen extends BaseTabBarScreen {
 //   final List<TabItemModel> tabItems;
 //   final List<Widget> pages;
 //   final TabBarVisualStyle visualStyle;
+// final bool? animate;
 //   final int? initialIndex;
 //   final void Function(int)? getIndex;
 //   final TabBarCubit? tabBarCubit;
@@ -69,7 +72,8 @@ class SideTabBarScreen extends BaseTabBarScreen {
 //     required this.tabItems,
 //     required this.pages,
 //     this.visualStyle = TabBarVisualStyle.filled,
-//     this.initialIndex,
+  //  this.animate,
+    // this.initialIndex,
 //     this.getIndex,
 //     this.tabBarCubit,
 //   });
@@ -120,6 +124,7 @@ class SideTabBarScreen extends BaseTabBarScreen {
 //   final List<TabItemModel> tabItems;
 //   final List<Widget> pages;
 //   final TabBarVisualStyle visualStyle;
+// final bool? animate;
 //   final int? initialIndex;
 //   final void Function(int)? getIndex;
 //
@@ -128,7 +133,8 @@ class SideTabBarScreen extends BaseTabBarScreen {
 //     required this.tabItems,
 //     required this.pages,
 //     this.visualStyle = TabBarVisualStyle.filled,
-//     this.initialIndex,
+  //  this.animate,
+    // this.initialIndex,
 //     this.getIndex,
 //   });
 //
@@ -191,6 +197,7 @@ class SideTabBarScreen extends BaseTabBarScreen {
 //   final List<Widget> views;
 //   final TabController controller;
 //   final TabBarVisualStyle visualStyle;
+// final bool? animate;
 //   final double sideWidth;
 //   final Color? backgroundColor;
 //   final Color? indicatorColor;
