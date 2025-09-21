@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:reusable_tab_bar/data/enums/tab_type.dart';
 import 'package:reusable_tab_bar/data/models/tab_item_model.dart';
 import 'package:reusable_tab_bar/views/widgets/tabs/styles/custom_shape_tab.dart';
-import 'package:reusable_tab_bar/views/widgets/tabs/styles/icon_text_tab.dart';
+import 'package:reusable_tab_bar/views/widgets/tabs/styles/simple_tab.dart';
 import 'package:reusable_tab_bar/views/widgets/tabs/styles/image_tab.dart';
 import 'package:reusable_tab_bar/views/widgets/tabs/styles/lottie_tab.dart';
 
@@ -12,13 +12,13 @@ class TabFactory {
   static Widget create(TabItemModel model) {
     switch (model.type) {
       case TabType.textOnly:
-        return IconTextTab(label: model.label);
+        return SimpleTab(label: model.label);
 
       case TabType.iconOnly:
-        return IconTextTab(icon: model.icon);
+        return SimpleTab(icon: model.icon);
 
       case TabType.iconThenText:
-        return IconTextTab(
+        return SimpleTab(
           icon: model.icon,
           label: model.label,
           iconFirst: true,
@@ -27,7 +27,7 @@ class TabFactory {
         );
 
       case TabType.textThenIcon:
-        return IconTextTab(
+        return SimpleTab(
           icon: model.icon,
           label: model.label,
           iconFirst: false,
@@ -36,7 +36,7 @@ class TabFactory {
         );
 
       case TabType.iconTopText:
-        return IconTextTab(
+        return SimpleTab(
           icon: model.icon,
           label: model.label,
           iconFirst: true,

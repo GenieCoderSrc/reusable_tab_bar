@@ -88,7 +88,7 @@ class HomeScreen extends StatelessWidget {
                     tabItems: tabItems,
                     pages: pages,
                     fabButtons: fabButtons,
-                    sliverType: SliverTabBarType.sticky,
+                    sliverType: SliverType.pinned,
                     tabBarUseCard: true,
                   ),
                 ),

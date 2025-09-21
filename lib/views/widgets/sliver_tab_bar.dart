@@ -8,7 +8,7 @@ class SliverTabBar extends StatelessWidget {
   final List<Widget> tabViews;
   final Widget title;
   final double expandedHeight;
-  final SliverTabBarType type;
+  final SliverType type;
   final bool snap; // Only applies if type == floating
   final Color backgroundColor;
   final Widget? flexibleBackground;
@@ -19,7 +19,7 @@ class SliverTabBar extends StatelessWidget {
     required this.tabViews,
     required this.title,
     this.expandedHeight = 180,
-    this.type = SliverTabBarType.sticky,
+    this.type = SliverType.pinned,
     this.snap = true,
     this.backgroundColor = Colors.blue,
     this.flexibleBackground,
@@ -31,8 +31,8 @@ class SliverTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isFloating = type == SliverTabBarType.floating;
-    final isSticky = type == SliverTabBarType.sticky;
+    final isFloating = type == SliverType.floating;
+    final isSticky = type == SliverType.pinned;
 
     return DefaultTabController(
       length: tabs.length,

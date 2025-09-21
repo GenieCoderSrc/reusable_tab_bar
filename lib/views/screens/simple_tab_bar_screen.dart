@@ -5,12 +5,9 @@ import 'package:reusable_tab_bar/views/widgets/tab_fab_switcher.dart';
 
 import 'default_tab_provider.dart';
 
-
-/// A reusable screen with Bottom TabBar
-/// Tabs are displayed at the bottom, pages above.
-class BottomTabBarScreen extends StatelessWidget {
+class SimpleTabBarScreen extends StatelessWidget {
   final List<Widget> pages;
-  final TabWidgetBuilder bottomTabBarBuilder;
+  final TabAppBarBuilder appBarBuilder;
 
   final int? initialIndex;
   final void Function(int)? onTabChanged;
@@ -18,16 +15,18 @@ class BottomTabBarScreen extends StatelessWidget {
 
   final Widget? drawer;
   final List<Widget>? fabButtons;
+  final Widget? bottomNavigation;
 
-  const BottomTabBarScreen({
+  const SimpleTabBarScreen({
     super.key,
     required this.pages,
-    required this.bottomTabBarBuilder,
+    required this.appBarBuilder,
     this.initialIndex,
     this.onTabChanged,
     this.tabBarCubit,
     this.drawer,
     this.fabButtons,
+    this.bottomNavigation,
   });
 
   @override
@@ -41,8 +40,9 @@ class BottomTabBarScreen extends StatelessWidget {
         return Scaffold(
           drawer: drawer,
           floatingActionButton: TabFABSwitcher(fabButtons: fabButtons),
+          bottomNavigationBar: bottomNavigation,
+          appBar: appBarBuilder(controller),
           body: TabBarView(controller: controller, children: pages),
-          bottomNavigationBar: bottomTabBarBuilder(controller),
         );
       },
     );

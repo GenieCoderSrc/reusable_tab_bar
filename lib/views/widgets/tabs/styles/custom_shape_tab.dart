@@ -12,13 +12,17 @@ class CustomShapeTab extends BaseTab {
   const CustomShapeTab({
     super.key,
     super.label,
+    super.wrapperType,
+    super.customWrapperBuilder,
+    super.padding,
+    super.backgroundColor,
     required this.customShape,
     this.spacing = 4,
     this.vertical = true,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildContent(BuildContext context) {
     final container = Container(
       padding: customShape.padding,
       decoration: BoxDecoration(
@@ -39,18 +43,16 @@ class CustomShapeTab extends BaseTab {
 
     final children = <Widget>[container];
 
-    return Tab(
-      child: vertical
-          ? Column(
-              mainAxisSize: MainAxisSize.min,
-              spacing: spacing,
-              children: children,
-            )
-          : Row(
-              mainAxisSize: MainAxisSize.min,
-              spacing: spacing,
-              children: children,
-            ),
-    );
+    return vertical
+        ? Column(
+            mainAxisSize: MainAxisSize.min,
+            spacing: spacing,
+            children: children,
+          )
+        : Row(
+            mainAxisSize: MainAxisSize.min,
+            spacing: spacing,
+            children: children,
+          );
   }
 }

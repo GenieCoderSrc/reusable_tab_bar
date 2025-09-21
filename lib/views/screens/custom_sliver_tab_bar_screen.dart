@@ -5,12 +5,11 @@ import 'package:reusable_tab_bar/views/widgets/tab_fab_switcher.dart';
 
 import 'default_tab_provider.dart';
 
-
-/// A reusable screen with Bottom TabBar
-/// Tabs are displayed at the bottom, pages above.
-class BottomTabBarScreen extends StatelessWidget {
+/// Sliver TabBar screen using CustomScrollView
+/// Best for full sliver control and complex sliver layouts.
+class CustomSliverTabBarScreen extends StatelessWidget {
   final List<Widget> pages;
-  final TabWidgetBuilder bottomTabBarBuilder;
+  final TabWidgetBuilder sliverAppBar;
 
   final int? initialIndex;
   final void Function(int)? onTabChanged;
@@ -18,17 +17,19 @@ class BottomTabBarScreen extends StatelessWidget {
 
   final Widget? drawer;
   final List<Widget>? fabButtons;
+  final Widget? bottomNavigation;
 
-  const BottomTabBarScreen({
+  CustomSliverTabBarScreen({
     super.key,
     required this.pages,
-    required this.bottomTabBarBuilder,
+    required this.sliverAppBar,
     this.initialIndex,
     this.onTabChanged,
     this.tabBarCubit,
     this.drawer,
     this.fabButtons,
-  });
+    this.bottomNavigation,
+  }) : assert(pages.isNotEmpty, 'pages cannot be empty');
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +42,15 @@ class BottomTabBarScreen extends StatelessWidget {
         return Scaffold(
           drawer: drawer,
           floatingActionButton: TabFABSwitcher(fabButtons: fabButtons),
-          body: TabBarView(controller: controller, children: pages),
-          bottomNavigationBar: bottomTabBarBuilder(controller),
+          bottomNavigationBar: bottomNavigation,
+          body: CustomScrollView(
+            slivers: [
+              sliverAppBar(controller),
+              SliverFillRemaining(
+                child: TabBarView(controller: controller, children: pages),
+              ),
+            ],
+          ),
         );
       },
     );

@@ -12,6 +12,10 @@ class ImageTab extends BaseTab {
   const ImageTab({
     super.key,
     super.label,
+    super.wrapperType,
+    super.customWrapperBuilder,
+    super.padding,
+    super.backgroundColor,
     required this.imageProvider,
     this.width = 24,
     this.height = 24,
@@ -20,24 +24,22 @@ class ImageTab extends BaseTab {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildContent(BuildContext context) {
     final children = <Widget>[
       Image(image: imageProvider, width: width, height: height),
       if (label != null) Text(label!),
     ];
 
-    return Tab(
-      child: vertical
-          ? Column(
-              mainAxisSize: MainAxisSize.min,
-              spacing: spacing,
-              children: children,
-            )
-          : Row(
-              mainAxisSize: MainAxisSize.min,
-              spacing: spacing,
-              children: children,
-            ),
-    );
+    return vertical
+        ? Column(
+            mainAxisSize: MainAxisSize.min,
+            spacing: spacing,
+            children: children,
+          )
+        : Row(
+            mainAxisSize: MainAxisSize.min,
+            spacing: spacing,
+            children: children,
+          );
   }
 }
