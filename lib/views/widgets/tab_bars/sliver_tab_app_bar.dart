@@ -7,7 +7,7 @@ class SliverTabAppBar extends StatelessWidget {
   final TabWidgetBuilder tabBarBuilder;
 
   // ---- AppBar configuration ----
-  final double? appBarHeight;
+  final double? expandedHeight;
   final double? appBarBottomHeight;
   final String? titleTxt;
   final Widget? titleWidget;
@@ -35,7 +35,7 @@ class SliverTabAppBar extends StatelessWidget {
     super.key,
     required this.controller,
     required this.tabBarBuilder,
-    this.appBarHeight,
+    this.expandedHeight,
     this.appBarBottomHeight,
     this.titleTxt,
     this.titleWidget,
@@ -61,7 +61,7 @@ class SliverTabAppBar extends StatelessWidget {
       pinned: pinned,
       floating: floating,
       snap: snap,
-      expandedHeight: appBarHeight ?? kToolbarHeight,
+      expandedHeight: expandedHeight ?? kToolbarHeight,
       centerTitle: centerTitle,
       title: titleWidget ?? (titleTxt != null ? Text(titleTxt!) : null),
       actions: actions,

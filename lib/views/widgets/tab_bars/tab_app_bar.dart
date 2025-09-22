@@ -3,7 +3,7 @@ import 'package:reusable_tab_bar/type_def/type_def.dart';
 
 /// A reusable AppBar widget with optional title, bottom widget, and TabBar.
 class TabAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final TabController? controller;
+  final TabController controller;
   final TabWidgetBuilder? tabBarBuilder;
 
   // AppBar configuration
@@ -30,7 +30,8 @@ class TabAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   const TabAppBar({
     super.key,
-    this.controller,
+    required this.controller,
+    this.tabBarBuilder,
     this.appBarHeight,
     this.appBarBottomHeight,
     this.titleTxt,
@@ -45,7 +46,6 @@ class TabAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.bottomTitleTxt,
     this.bottomTitleStyle,
     this.bottomTitleTxtColor,
-    this.tabBarBuilder,
   });
 
   @override
@@ -62,14 +62,12 @@ class TabAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: leadingWidget,
       leadingWidth: leadingWidth,
       actions: actions,
-      bottom:
-          (tabBarBuilder != null ||
-              bottomWidget != null ||
-              bottomTitleTxt != null)
+      bottom: (bottomWidget != null || bottomTitleTxt != null)
           ? PreferredSize(
               preferredSize: Size.fromHeight(
                 appBarBottomHeight ?? kToolbarHeight + (appBarHeight ?? 0),
               ),
+
               child: SafeArea(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -91,8 +89,7 @@ class TabAppBar extends StatelessWidget implements PreferredSizeWidget {
                               ),
                         ),
                       ),
-                    if (tabBarBuilder != null && controller != null)
-                      tabBarBuilder!(controller!),
+                    if (tabBarBuilder != null) tabBarBuilder!(controller),
                   ],
                 ),
               ),

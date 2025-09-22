@@ -6,9 +6,7 @@ import 'package:reusable_tab_bar/views/widgets/widget_placement_builder/tab_bar_
 
 import 'default_tab_provider.dart';
 
-/// Sliver TabBar screen using CustomScrollView
-/// Best for full sliver control and complex sliver layouts.
-class CustomSliverTabBarScreen extends StatelessWidget {
+class StackPositionedTabBarScreen extends StatelessWidget {
   final List<Widget> pages;
   final TabWidgetBuilder tabBarBuilder;
   final WidgetPlacement tabBarPlacement;
@@ -18,26 +16,33 @@ class CustomSliverTabBarScreen extends StatelessWidget {
   final TabBarCubit? tabBarCubit;
 
   final Widget? drawer;
-  final Widget? sliverAppBar;
-
   final Widget? bottomNavigation;
   final List<Widget>? fabButtons;
   final FloatingActionButtonLocation? floatingActionButtonLocation;
 
-  CustomSliverTabBarScreen({
+  /// Position config for the tab bar inside Stack
+  final double? top;
+  final double? bottom;
+  final double? left;
+  final double? right;
+
+  const StackPositionedTabBarScreen({
     super.key,
     required this.pages,
     required this.tabBarBuilder,
-    this.tabBarPlacement = WidgetPlacement.appBar,
+    this.tabBarPlacement = WidgetPlacement.stack,
     this.initialIndex,
     this.onTabChanged,
     this.tabBarCubit,
     this.drawer,
-    this.sliverAppBar,
-    this.fabButtons,
     this.bottomNavigation,
+    this.fabButtons,
     this.floatingActionButtonLocation,
-  }) : assert(pages.isNotEmpty, 'pages cannot be empty');
+    this.top,
+    this.bottom = 0, // default bottom placement
+    this.left = 0,
+    this.right = 0,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +56,8 @@ class CustomSliverTabBarScreen extends StatelessWidget {
 
         return Scaffold(
           drawer: drawer,
+
+          /// bottom navigation
           bottomNavigationBar: placementBuilder.build(
             controller: controller,
             tabBarPlacement: tabBarPlacement,
@@ -58,6 +65,8 @@ class CustomSliverTabBarScreen extends StatelessWidget {
             currentWidget: WidgetPlacement.bottomBar,
             child: bottomNavigation,
           ),
+
+          /// floating action button(s)
           floatingActionButton: placementBuilder.build(
             controller: controller,
             tabBarPlacement: tabBarPlacement,
@@ -65,20 +74,28 @@ class CustomSliverTabBarScreen extends StatelessWidget {
             currentWidget: WidgetPlacement.floatBtn,
             children: fabButtons,
           ),
-
           floatingActionButtonLocation: floatingActionButtonLocation,
-          body: CustomScrollView(
-            slivers: [
-              placementBuilder.build(
-                    controller: controller,
-                    tabBarPlacement: tabBarPlacement,
-                    tabBarBuilder: tabBarBuilder,
-                    currentWidget: WidgetPlacement.appBar,
-                    child: sliverAppBar,
-                  ) ??
-                  const SliverToBoxAdapter(child: SizedBox.shrink()),
-              SliverFillRemaining(
-                child: TabBarView(controller: controller, children: pages),
+
+          /// body with stack overlay
+          body: Stack(
+            children: [
+              /// main content
+              TabBarView(controller: controller, children: pages),
+
+              /// positioned tab bar overlay (variable position)
+              Positioned(
+                top: top,
+                bottom: bottom,
+                left: left,
+                right: right,
+                child:
+                    placementBuilder.build(
+                      controller: controller,
+                      tabBarPlacement: tabBarPlacement,
+                      tabBarBuilder: tabBarBuilder,
+                      currentWidget: WidgetPlacement.stack,
+                    ) ??
+                    const SizedBox.shrink(),
               ),
             ],
           ),

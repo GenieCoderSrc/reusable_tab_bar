@@ -4,10 +4,9 @@ import 'package:reusable_tab_bar/view_models/tab_bar_cubit.dart';
 
 import 'default_tab_provider.dart';
 
-
-/// A reusable modal tab bar screen
+/// A reusable bottom sheet tab bar screen
 /// Tabs are displayed at the top inside a modal bottom sheet
-class ModalTabBarScreen extends StatelessWidget {
+class BottomSheetTabBarScreen extends StatelessWidget {
   final List<Widget> pages;
   final TabWidgetBuilder tabBarBuilder;
 
@@ -18,7 +17,7 @@ class ModalTabBarScreen extends StatelessWidget {
   final bool isDismissible;
   final bool enableDrag;
 
-  const ModalTabBarScreen({
+  const BottomSheetTabBarScreen({
     super.key,
     required this.pages,
     required this.tabBarBuilder,
