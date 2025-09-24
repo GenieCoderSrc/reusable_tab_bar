@@ -43,7 +43,7 @@ Decoration resolveIndicator({
   required Color indicatorColor,
   required double borderRadius,
 }) {
-  if (indicator != null) return IndicatorFactory.create(indicator);
+  // if (indicator != null) return IndicatorFactory.create(indicator);
   if (tabBarThemeIndicator != null) return tabBarThemeIndicator;
 
   return BoxDecoration(

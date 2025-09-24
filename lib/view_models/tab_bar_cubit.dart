@@ -12,8 +12,3 @@ class TabBarCubit extends Cubit<TabBarState> {
     emit(TabBarState(index: index));
   }
 }
-
-// Future<void>.delayed(const Duration(milliseconds: 500), () {
-//         debugPrint('TabBarCubit | Current Index: $index');
-//         emit(index);
-//       });

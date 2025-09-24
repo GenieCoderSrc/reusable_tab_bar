@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:reusable_tab_bar/data/enums/wrapper_type.dart';
-import 'package:reusable_tab_bar/views/widgets/factories/widget_wrapper_factory.dart';
+import 'package:reusable_tab_bar/views/widgets/widget_wrapper/widget_wrapper_factory.dart';
 
 abstract class BaseTab extends StatelessWidget {
   final String? label;
@@ -41,12 +41,13 @@ abstract class BaseTab extends StatelessWidget {
     }
 
     // 2️⃣ Otherwise use predefined enum-based wrapper.
-    final defaultWrapper = WidgetWrapperFactory.builder(
+    final defaultWrapper = WidgetWrapperFactory.create(
       wrapperType ?? WrapperType.none,
       padding: padding,
       backgroundColor: backgroundColor,
     );
-    return Tab(child: defaultWrapper(content));
+
+    return Tab(child: defaultWrapper.wrap(content));
   }
 
   @override

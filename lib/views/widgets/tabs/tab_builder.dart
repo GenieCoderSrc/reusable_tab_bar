@@ -1,26 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:reusable_tab_bar/data/models/tab_item_model.dart';
-import 'package:reusable_tab_bar/views/widgets/styled_tab_bar/animated_tab_wrapper.dart';
-import 'package:reusable_tab_bar/views/widgets/tabs/tab_factory.dart';
+import 'package:reusable_tab_bar/data/enums/animation_type.dart';
+import 'package:reusable_tab_bar/views/widgets/animations/animated_tab_builder.dart';
 
 class TabBuilder {
-  const TabBuilder._();
+  const TabBuilder._(); // Prevent instantiation
 
-  /// Build tabs from models with optional animation support.
-  static List<Widget> buildAnimatedTabs({
-    required List<TabItemModel> tabItems,
+  static List<Widget> build({
     required TabController controller,
-    bool? animate,
+    required List<Widget> tabs,
+    bool animated = true,
+    AnimationType animationType = AnimationType.scale,
+    double scaleFactor = 1.2,
+    Color? selectedColor,
+    Color? unselectedColor,
+    Duration duration = const Duration(milliseconds: 300),
   }) {
-    return List.generate(tabItems.length, (index) {
-      final model = tabItems[index];
-      final isSelected = controller.index == index;
+    if (!animated || animationType == AnimationType.none) return tabs;
 
-      final tab = TabFactory.create(model);
-
-      return animate ?? false
-          ? AnimatedTabWrapper(selected: isSelected, child: tab)
-          : tab;
-    });
+    return AnimatedTabBuilder.build(
+      controller: controller,
+      tabs: tabs,
+      animationType: animationType,
+      animate: true,
+      scaleFactor: scaleFactor,
+      selectedColor: selectedColor,
+      unselectedColor: unselectedColor,
+      duration: duration,
+    );
   }
 }

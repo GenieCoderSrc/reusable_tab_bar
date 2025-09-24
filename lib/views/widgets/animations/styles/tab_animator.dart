@@ -2,39 +2,74 @@ import 'package:flutter/material.dart';
 
 /// Wraps any tab widget with animated selection effects.
 /// Works with IconTextTab, LottieTab, ImageTab, CustomShapeTab, or custom tabs.
-class AnimatedTabWrapper extends StatelessWidget {
+class TabAnimator extends StatelessWidget {
   final Widget child;
   final bool selected;
+
+  /// Enable/disable animations
+  final bool? animate;
+
+  /// Animation duration
   final Duration duration;
+
+  /// Scale factor when selected
   final double scaleFactor;
+
+  /// Optional colors
   final Color? selectedColor;
   final Color? unselectedColor;
 
-  const AnimatedTabWrapper({
+  /// Optional padding
+  final EdgeInsets? selectedPadding;
+  final EdgeInsets? unselectedPadding;
+
+  /// Optional animation curves
+  final Curve scaleCurve;
+  final Curve opacityCurve;
+  final Curve containerCurve;
+
+  const TabAnimator({
     super.key,
     required this.child,
     required this.selected,
+    this.animate = true,
     this.duration = const Duration(milliseconds: 250),
     this.scaleFactor = 1.1,
     this.selectedColor,
     this.unselectedColor,
+    this.selectedPadding,
+    this.unselectedPadding,
+    this.scaleCurve = Curves.easeInOut,
+    this.opacityCurve = Curves.easeInOut,
+    this.containerCurve = Curves.easeInOut,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
+    final effectivePadding = selected
+        ? (selectedPadding ??
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 4))
+        : (unselectedPadding ??
+              const EdgeInsets.symmetric(horizontal: 8, vertical: 4));
+
+    if (animate == false) {
+      return Padding(padding: effectivePadding, child: child);
+    }
+
     return AnimatedContainer(
       duration: duration,
-      curve: Curves.easeInOut,
-      padding: EdgeInsets.symmetric(horizontal: selected ? 16 : 8, vertical: 4),
+      curve: containerCurve,
+      padding: effectivePadding,
       child: AnimatedScale(
         scale: selected ? scaleFactor : 1.0,
         duration: duration,
-        curve: Curves.easeInOut,
+        curve: scaleCurve,
         child: AnimatedOpacity(
           duration: duration,
           opacity: selected ? 1.0 : 0.7,
+          curve: opacityCurve,
           child: DefaultTextStyle.merge(
             style: TextStyle(
               color: selected

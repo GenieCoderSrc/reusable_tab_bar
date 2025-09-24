@@ -6,6 +6,6 @@ enum TabType {
   iconTopText,
   lottie,
   image,
-  customShape,
+  // customShape,
   custom, // for arbitrary widgets you supply
 }
