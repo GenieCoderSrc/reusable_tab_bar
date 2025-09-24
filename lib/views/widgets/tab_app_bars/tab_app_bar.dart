@@ -62,7 +62,10 @@ class TabAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: leadingWidget,
       leadingWidth: leadingWidth,
       actions: actions,
-      bottom: (bottomWidget != null || bottomTitleTxt != null)
+      bottom:
+          (bottomWidget != null ||
+              bottomTitleTxt != null ||
+              tabBarBuilder != null)
           ? PreferredSize(
               preferredSize: Size.fromHeight(
                 appBarBottomHeight ?? kToolbarHeight + (appBarHeight ?? 0),

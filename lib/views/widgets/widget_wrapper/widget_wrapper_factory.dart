@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:reusable_tab_bar/data/enums/wrapper_type.dart';
+import 'package:reusable_tab_bar/data/models/wrapper_model.dart';
 
 import 'blurred_wrapper.dart';
 import 'card_wrapper.dart';
@@ -13,87 +12,79 @@ import 'outlined_container_wrapper.dart';
 import 'padded_wrapper.dart';
 import 'segmented_wrapper.dart';
 
-/// Helper to build default wrappers based on [WrapperType].
 class WidgetWrapperFactory {
+  const WidgetWrapperFactory._();
+
+  /// Create an [IWrapper] implementation using a single [WrapperModel].
   static IWrapper create(
     WrapperType type, {
-    EdgeInsets padding = const EdgeInsets.all(8),
-    EdgeInsets? margin,
-    Color? backgroundColor,
-    Color? borderColor,
-    double borderRadius = 8,
-    double elevation = 4,
-    double blurX = 8,
-    double blurY = 8,
-    Color? shadowLightColor,
-    Color? shadowDarkColor,
-    Gradient? gradient,
+    WrapperModel model = const WrapperModel(),
   }) {
     switch (type) {
       case WrapperType.none:
         return const NoneWrapper();
 
       case WrapperType.padded:
-        return PaddedWrapper(padding: padding);
+        return PaddedWrapper(padding: model.padding);
 
       case WrapperType.card:
         return CardWrapper(
-          margin: margin,
-          backgroundColor: backgroundColor,
-          borderRadius: borderRadius,
-          elevation: elevation,
-          padding: padding,
+          margin: model.margin,
+          backgroundColor: model.backgroundColor,
+          borderRadius: model.borderRadius,
+          elevation: model.elevation,
+          padding: model.padding,
         );
 
       case WrapperType.outlinedContainer:
         return OutlinedContainerWrapper(
-          margin: margin,
-          padding: padding,
-          borderColor: borderColor,
-          backgroundColor: backgroundColor,
-          borderRadius: borderRadius,
+          margin: model.margin,
+          padding: model.padding,
+          borderColor: model.borderColor,
+          backgroundColor: model.backgroundColor,
+          borderRadius: model.borderRadius,
         );
 
       case WrapperType.blurred:
         return BlurredWrapper(
-          margin: margin,
-          padding: padding,
-          backgroundColor: backgroundColor,
-          borderRadius: borderRadius,
-          blurX: blurX,
-          blurY: blurY,
+          margin: model.margin,
+          padding: model.padding,
+          backgroundColor: model.backgroundColor,
+          borderRadius: model.borderRadius,
+          blurX: model.blurX,
+          blurY: model.blurY,
         );
 
       case WrapperType.neuMorphic:
         return NeuMorphicWrapper(
-          margin: margin,
-          padding: padding,
-          backgroundColor: backgroundColor,
-          borderRadius: borderRadius,
-          shadowLightColor: shadowLightColor,
-          shadowDarkColor: shadowDarkColor,
+          margin: model.margin,
+          padding: model.padding,
+          backgroundColor: model.backgroundColor,
+          borderRadius: model.borderRadius,
+          shadowLightColor: model.shadowLightColor,
+          shadowDarkColor: model.shadowDarkColor,
         );
 
       case WrapperType.gradient:
         return GradientWrapper(
-          margin: margin,
-          padding: padding,
-          borderRadius: borderRadius,
-          gradient: gradient,
+          margin: model.margin,
+          padding: model.padding,
+          borderRadius: model.borderRadius,
+          gradient: model.gradient,
         );
 
       case WrapperType.glassMorphic:
         return GlassMorphicWrapper(
-          margin: margin,
-          padding: padding,
-          borderRadius: borderRadius,
+          margin: model.margin,
+          padding: model.padding,
+          borderRadius: model.borderRadius,
         );
 
       case WrapperType.segmented:
         return SegmentedWrapper(
-          margin: margin,
-          padding: padding,
-          borderRadius: borderRadius,
+          margin: model.margin,
+          padding: model.padding,
+          borderRadius: model.borderRadius,
         );
     }
   }

@@ -7,5 +7,5 @@ enum TabType {
   lottie,
   image,
   // customShape,
-  custom, // for arbitrary widgets you supply
+  // custom, // for arbitrary widgets you supply
 }

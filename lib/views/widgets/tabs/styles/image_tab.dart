@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'base_tab.dart';
 
 class ImageTab extends BaseTab {
-  final ImageProvider imageProvider;
+  final ImageProvider? imageProvider;
   final double width;
-  final double height;
+
+  // final double? height;
+  final String? imagePath;
   final double spacing;
   final bool vertical;
 
@@ -13,12 +15,11 @@ class ImageTab extends BaseTab {
     super.key,
     super.label,
     super.wrapperType,
-    super.customWrapperBuilder,
-    super.padding,
-    super.backgroundColor,
-    required this.imageProvider,
+    super.wrapperModel,
+    this.imageProvider,
+    this.imagePath,
     this.width = 24,
-    this.height = 24,
+    super.height,
     this.spacing = 4,
     this.vertical = true,
   });
@@ -26,7 +27,8 @@ class ImageTab extends BaseTab {
   @override
   Widget buildContent(BuildContext context) {
     final children = <Widget>[
-      Image(image: imageProvider, width: width, height: height),
+      if (imageProvider != null)
+        Image(image: imageProvider!, width: width, height: height ?? 24),
       if (label != null) Text(label!),
     ];
 

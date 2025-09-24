@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reusable_tab_bar/data/tab_controller_listener.dart';
+import 'package:reusable_tab_bar/utils/tab_controller_listener.dart';
 import 'package:reusable_tab_bar/type_def/type_def.dart';
 import 'package:reusable_tab_bar/view_models/tab_bar_cubit.dart';
 

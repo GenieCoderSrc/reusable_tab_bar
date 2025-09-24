@@ -1,53 +1,58 @@
 import 'package:flutter/material.dart';
 import 'package:reusable_tab_bar/data/enums/wrapper_type.dart';
+import 'package:reusable_tab_bar/data/models/wrapper_model.dart';
 import 'package:reusable_tab_bar/views/widgets/widget_wrapper/widget_wrapper_factory.dart';
 
+/// Abstract base for all Tab widgets with optional wrapper styling.
 abstract class BaseTab extends StatelessWidget {
+  /// Optional text label for the tab.
   final String? label;
 
-  /// Choose either a predefined wrapper type or supply a custom builder.
+  /// Choose a predefined wrapper type, e.g. [WrapperType.card].
   final WrapperType? wrapperType;
-  final Widget Function(Widget child)? customWrapperBuilder;
 
-  /// Default padding for the wrapper.
-  final EdgeInsets padding;
-  final EdgeInsets? margin;
+  /// Fully custom styling configuration.
+  final WrapperModel? wrapperModel;
 
-  /// Optional background color for wrapper types that support it.
-  final Color? backgroundColor;
+  /// Custom builder to wrap the child if you don’t want to use [wrapperType].
+  // final Widget Function(Widget child)? customWrapperBuilder;
+
+  /// Optional height of the tab (passed to the [Tab] widget).
+  final double? height;
 
   const BaseTab({
     super.key,
     this.label,
     this.wrapperType,
-    this.customWrapperBuilder,
-    this.padding = const EdgeInsets.all(8),
-    this.margin,
-    this.backgroundColor,
+    this.wrapperModel,
+    // this.customWrapperBuilder,
+    this.height,
   });
 
-  /// Child content to render inside the tab.
+  /// Implement this in subclasses to build the core content of the tab.
   @protected
   Widget buildContent(BuildContext context);
 
-  /// Builds the final Tab widget with either a custom or enum-based wrapper.
+  /// Builds the final Tab with either a custom builder or a factory wrapper.
   @protected
   Widget buildTab(BuildContext context) {
     final content = buildContent(context);
 
-    // 1️⃣ If custom builder is provided, use it.
-    if (customWrapperBuilder != null) {
-      return Tab(child: customWrapperBuilder!(content));
+    // 1️⃣ If a completely custom wrapper is provided, use it.
+    if (wrapperModel?.customWrapperBuilder != null) {
+      return Tab(
+        height: height,
+        child: wrapperModel?.customWrapperBuilder!(content),
+      );
     }
 
-    // 2️⃣ Otherwise use predefined enum-based wrapper.
-    final defaultWrapper = WidgetWrapperFactory.create(
-      wrapperType ?? WrapperType.none,
-      padding: padding,
-      backgroundColor: backgroundColor,
+    // 2️⃣ Otherwise, use the factory with the provided model or defaults.
+    final wrapper = WidgetWrapperFactory.create(
+      wrapperType ?? WrapperType.padded,
+      model: wrapperModel ?? const WrapperModel(),
     );
 
-    return Tab(child: defaultWrapper.wrap(content));
+    return Tab(height: height, child: wrapper.wrap(content));
   }
 
   @override

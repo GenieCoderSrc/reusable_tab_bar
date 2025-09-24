@@ -1,151 +1,93 @@
 import 'package:flutter/material.dart';
-import 'package:reusable_tab_bar/data/enums/tab_type.dart';
-import 'package:reusable_tab_bar/data/models/tab_item_model.dart';
+import 'package:reusable_tab_bar/data/models/tab_item_model/simple_tab_model.dart';
 import 'package:reusable_tab_bar/reusable_tab_bar.dart';
 
-void main() {
-  runApp(const TabBarExampleApp());
-}
+void main() => runApp(const MyApp());
 
-class TabBarExampleApp extends StatelessWidget {
-  const TabBarExampleApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Reusable Tab Bar Demo',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: const HomeScreen(),
+      title: 'Animated Tabs Example',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        useMaterial3: true,
+      ),
+      home: const DemoScreen(),
     );
   }
 }
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class DemoScreen extends StatelessWidget {
+  const DemoScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final tabItems = [
-      TabItemModel(label: 'Home', icon: Icons.home, type: TabType.iconThenText),
-      TabItemModel(
-        label: 'Search',
-        icon: Icons.search,
-        type: TabType.iconThenText,
-      ),
-      TabItemModel(
-        label: 'Profile',
-        icon: Icons.person,
-        type: TabType.iconThenText,
-      ),
-    ];
+    return SimpleTabBarScreen(
+      // Pages displayed in the TabBarView
+      pages: const [
+        Center(child: Text('Dashboard')),
+        Center(child: Text('Messages')),
+        Center(child: Text('Settings')),
+      ],
 
-    final pages = [
-      Center(child: Text('Home Page')),
-      Center(child: Text('Search Page')),
-      Center(child: Text('Profile Page')),
-    ];
+      // 👇 TabAppBar inside tabBarBuilder
+      tabBarBuilder: (controller) {
+        return TabAppBar(
+          controller: controller,
+          titleTxt: 'Animated TabBar Demo',
+          centerTitle: true,
 
-    final fabButtons = [
-      FloatingActionButton(onPressed: () {}, child: const Icon(Icons.add)),
-      FloatingActionButton(onPressed: () {}, child: const Icon(Icons.search)),
-      FloatingActionButton(onPressed: () {}, child: const Icon(Icons.person)),
-    ];
+          // 👇 Add the animated tabs here
+          tabBarBuilder: (controller) {
+            // Build normal tabs first
+            final tabs = TabBuilder.build(
+              controller: controller,
+              tabItems: const [
+                SimpleTabModel(
+                  tabType: TabType.iconThenText,
+                  icon: Icons.dashboard,
+                  label: 'Dashboard',
+                ),
+                SimpleTabModel(
+                  tabType: TabType.iconThenText,
+                  icon: Icons.message,
+                  label: 'Messages',
+                ),
+                SimpleTabModel(
+                  tabType: TabType.iconThenText,
+                  icon: Icons.settings,
+                  label: 'Settings',
+                ),
+              ],
+              animation: const TabAnimationModel(
+                enabled: true,
+                type: AnimationType.scale,
+                scaleFactor: 1.2,
+                selectedColor: Colors.blue,
+                unselectedColor: Colors.grey,
+              ),
+            );
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Reusable Tab Bar Examples')),
-      body: ListView(
-        children: [
-          ListTile(
-            title: const Text('Standard Tab Bar'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => ReusableTabBarScreen(
-                    layout: TabBarLayout.standard,
-                    tabItems: tabItems,
-                    pages: pages,
-                    fabButtons: fabButtons,
-                    tabBarUseCard: true,
-                    tabBarCardColor: Colors.white,
-                    tabBarCardElevation: 4,
-                    tabBarCardShape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
-                ),
-              );
-            },
-          ),
-          ListTile(
-            title: const Text('Sliver Tab Bar'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => ReusableTabBarScreen(
-                    layout: TabBarLayout.sliver,
-                    tabItems: tabItems,
-                    pages: pages,
-                    fabButtons: fabButtons,
-                    sliverType: SliverType.pinned,
-                    tabBarUseCard: true,
-                  ),
-                ),
-              );
-            },
-          ),
-          ListTile(
-            title: const Text('Bottom Tab Bar'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => ReusableTabBarScreen(
-                    layout: TabBarLayout.bottom,
-                    tabItems: tabItems,
-                    pages: pages,
-                    fabButtons: fabButtons,
-                    tabBarUseCard: false,
-                  ),
-                ),
-              );
-            },
-          ),
-          ListTile(
-            title: const Text('Side Tab Bar'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => ReusableTabBarScreen(
-                    layout: TabBarLayout.side,
-                    tabItems: tabItems,
-                    pages: pages,
-                    fabButtons: fabButtons,
-                  ),
-                ),
-              );
-            },
-          ),
-          ListTile(
-            title: const Text('Modal Tab Bar'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => ReusableTabBarScreen(
-                    layout: TabBarLayout.modal,
-                    tabItems: tabItems,
-                    pages: pages,
-                    fabButtons: fabButtons,
-                  ),
-                ),
-              );
-            },
-          ),
-        ],
-      ),
+            return SimpleTabBar(
+              controller: controller,
+              isScrollable: true,
+              indicator: TabIndicatorFactory.build(
+                type: IndicatorType.rounded,
+                color: Colors.blue,
+                borderRadius: 12,
+              ),
+              tabs: tabs,
+            );
+          },
+        );
+      },
+
+      fabButtons: [
+        FloatingActionButton(onPressed: () {}, child: const Icon(Icons.add)),
+      ],
     );
   }
 }
