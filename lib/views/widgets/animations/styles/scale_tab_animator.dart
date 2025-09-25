@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-class ScaleTabAnimator extends StatelessWidget {
-  final Widget child;
-  final bool selected;
+import 'i_tab_animator.dart';
+
+class ScaleTabAnimator extends ITabAnimator {
   final Duration duration;
   final double scaleFactor;
-  final Curve curve;
+  final Curve? curve;
 
   const ScaleTabAnimator({
     super.key,
-    required this.child,
-    required this.selected,
+    required super.child,
+    required super.selected,
+    super.selectedWrapperType,
+    super.selectedWrapperModel,
+    super.unselectedWrapperType,
+    super.unselectedWrapperModel,
     this.duration = const Duration(milliseconds: 250),
     this.scaleFactor = 1.1,
-    this.curve = Curves.easeInOut,
+    this.curve,
   });
 
   @override
@@ -21,8 +26,8 @@ class ScaleTabAnimator extends StatelessWidget {
     return AnimatedScale(
       scale: selected ? scaleFactor : 1.0,
       duration: duration,
-      curve: curve,
-      child: child,
+      curve: curve ?? Curves.easeInOut,
+      child: buildWrapperChild(), // ✅ uses selected/unselected wrapper
     );
   }
 }

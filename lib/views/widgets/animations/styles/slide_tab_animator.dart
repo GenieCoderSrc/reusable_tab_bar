@@ -1,33 +1,35 @@
 import 'package:flutter/material.dart';
-import 'i_tab_animator.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-class SlideTabAnimator extends StatelessWidget {
-  final Widget child;
-  final bool selected;
+import 'i_tab_animator.dart';
+
+class SlideTabAnimator extends ITabAnimator {
   final Duration duration;
   final Offset selectedOffset;
   final Offset unselectedOffset;
-  final Curve curve;
+  final Curve? curve;
 
   const SlideTabAnimator({
     super.key,
-    required this.child,
-    required this.selected,
+    required super.child,
+    required super.selected,
+    super.selectedWrapperType,
+    super.selectedWrapperModel,
+    super.unselectedWrapperType,
+    super.unselectedWrapperModel,
     this.duration = const Duration(milliseconds: 250),
     this.selectedOffset = Offset.zero,
     this.unselectedOffset = const Offset(0, 0.1),
-    this.curve = Curves.easeInOut,
+    this.curve,
   });
 
   @override
   Widget build(BuildContext context) {
     return AnimatedSlide(
       duration: duration,
-      curve: curve,
+      curve: curve ?? Curves.easeInOut,
       offset: selected ? selectedOffset : unselectedOffset,
-      child: child,
+      child: buildWrapperChild(), // ✅ wrapper applied depending on state
     );
   }
 }
-

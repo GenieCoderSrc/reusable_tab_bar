@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'base_tab_bar.dart';
 
-class SimpleTabBar extends BaseTabBar {
-  const SimpleTabBar({
+class SideTabBar extends BaseTabBar {
+  const SideTabBar({
     super.key,
     required super.tabs,
     super.controller,
@@ -24,7 +24,10 @@ class SimpleTabBar extends BaseTabBar {
   @override
   @protected
   Widget buildContent(BuildContext context, Widget tabBar) {
-    // For simple tab bar, just return the wrapped tab bar
-    return tabBar;
+    // Rotate the entire wrapped TabBar for vertical display
+    return RotatedBox(
+      quarterTurns: 1, // rotate 90° clockwise
+      child: tabBar,
+    );
   }
 }

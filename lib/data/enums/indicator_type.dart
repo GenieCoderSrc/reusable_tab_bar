@@ -1,4 +1,5 @@
 enum IndicatorType {
+  none,
   underline,
   gradient,
   rounded,

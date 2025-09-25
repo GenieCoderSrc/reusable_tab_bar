@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:reusable_tab_bar/data/enums/tab_type.dart';
+import 'package:reusable_tab_bar/data/enums/wrapper_type.dart';
 import 'package:reusable_tab_bar/data/models/tab_item_model/image_tab_item_model.dart';
 import 'package:reusable_tab_bar/data/models/tab_item_model/lottie_tab_item_model.dart';
 import 'package:reusable_tab_bar/data/models/tab_item_model/simple_tab_model.dart';
 import 'package:reusable_tab_bar/data/models/tab_item_model/tab_item_model.dart';
+import 'package:reusable_tab_bar/data/models/wrapper_model.dart';
 import 'package:reusable_tab_bar/views/widgets/tabs/styles/image_tab.dart';
 import 'package:reusable_tab_bar/views/widgets/tabs/styles/lottie_tab.dart';
 import 'package:reusable_tab_bar/views/widgets/tabs/styles/simple_tab.dart';
@@ -12,26 +14,38 @@ import 'package:reusable_tab_bar/views/widgets/tabs/styles/simple_tab.dart';
 class TabFactory {
   const TabFactory._(); // prevent instantiation
 
-  static Widget create(TabItemModel model) {
+  static Widget create(
+    TabItemModel model, {
+    final TabType? tabType,
+    final bool? rotate,
+    final int? rotateTurns,
+    final WrapperType? wrapperType,
+    final WrapperModel? wrapperModel,
+  }) {
     if (model is SimpleTabModel) {
       return SimpleTab(
         icon: model.icon,
         label: model.label,
         spacing: model.spacing,
         height:
-            model.height ?? (model.tabType == TabType.iconTopText ? 80 : null),
-        iconFirst: model.tabType != TabType.textThenIcon,
-        vertical: model.tabType == TabType.iconTopText,
-        wrapperType: model.wrapperType,
-        wrapperModel: model.wrapperModel,
+            model.height ??
+            ((model.tabType ?? tabType) == TabType.iconTopText ? 80 : null),
+        iconFirst: (model.tabType ?? tabType) != TabType.textThenIcon,
+        vertical: (model.tabType ?? tabType) == TabType.iconTopText,
+        wrapperType: wrapperType,
+        wrapperModel: wrapperModel,
+        rotate: rotate,
+        rotateTurns: rotateTurns,
       );
     } else if (model is LottieTabItemModel) {
       return LottieTab(
         lottieAsset: model.lottieAsset,
         lottieUrl: model.lottieUrl,
         label: model.label,
-        wrapperType: model.wrapperType,
-        wrapperModel: model.wrapperModel,
+        wrapperType: wrapperType,
+        wrapperModel: wrapperModel,
+        rotate: rotate,
+        rotateTurns: rotateTurns,
       );
     } else if (model is ImageTabItemModel) {
       if (model.image == null && model.imagePath == null) {
@@ -44,8 +58,10 @@ class TabFactory {
         imagePath: model.imagePath,
         label: model.label,
         spacing: model.spacing,
-        wrapperType: model.wrapperType,
-        wrapperModel: model.wrapperModel,
+        wrapperType: wrapperType,
+        wrapperModel: wrapperModel,
+        rotate: rotate,
+        rotateTurns: rotateTurns,
       );
     }
 
@@ -95,7 +111,7 @@ class TabFactory {
 //         );
 //
 //       // case TabType.custom:
-//       //   if (model is! WrapperModel || model.wrapperModel == null) {
+//       //   if (model is! WrapperModel || wrapperModel == null) {
 //       //     throw ArgumentError(
 //       //       'customWidget must be provided for TabType.custom',
 //       //     );

@@ -5,11 +5,5 @@ class ImageTabItemModel extends TabItemModel {
   final String? imagePath;
   final ImageProvider? image;
 
-  const ImageTabItemModel({
-    this.imagePath,
-    this.image,
-    super.wrapperType,
-    super.wrapperModel,
-    super.spacing = 4,
-  });
+  const ImageTabItemModel({this.imagePath, this.image, super.spacing = 4});
 }

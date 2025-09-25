@@ -1,22 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
 import 'i_tab_animator.dart';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:reusable_tab_bar/data/enums/wrapper_type.dart';
+import 'package:reusable_tab_bar/data/models/wrapper_model.dart';
 
-class FadeTabAnimator extends StatelessWidget {
-  final Widget child;
-  final bool selected;
+class FadeTabAnimator extends ITabAnimator {
   final Duration duration;
   final double unselectedOpacity;
-  final Curve curve;
+  final Curve? curve;
 
   const FadeTabAnimator({
     super.key,
-    required this.child,
-    required this.selected,
+    required super.child,
+    required super.selected,
+    super.selectedWrapperType,
+    super.selectedWrapperModel,
+    super.unselectedWrapperType,
+    super.unselectedWrapperModel,
     this.duration = const Duration(milliseconds: 250),
     this.unselectedOpacity = 0.7,
-    this.curve = Curves.easeInOut,
+    this.curve,
   });
 
   @override
@@ -24,8 +30,8 @@ class FadeTabAnimator extends StatelessWidget {
     return AnimatedOpacity(
       duration: duration,
       opacity: selected ? 1.0 : unselectedOpacity,
-      curve: curve,
-      child: child,
+      curve: curve ?? Curves.easeInOut,
+      child: buildWrapperChild(), // ✅ wrapper applied depending on state
     );
   }
 }

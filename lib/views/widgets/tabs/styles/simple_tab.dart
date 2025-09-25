@@ -18,6 +18,8 @@ class SimpleTab extends BaseTab {
     super.wrapperType,
     super.wrapperModel,
     super.height,
+    super.rotate,
+    super.rotateTurns,
     this.icon,
     this.iconFirst = true,
     this.vertical = false,

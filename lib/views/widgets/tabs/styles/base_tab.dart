@@ -20,6 +20,10 @@ abstract class BaseTab extends StatelessWidget {
   /// Optional height of the tab (passed to the [Tab] widget).
   final double? height;
 
+  /// Whether to rotate the tab content 270° (for vertical tabs)
+  final bool? rotate;
+  final int? rotateTurns;
+
   const BaseTab({
     super.key,
     this.label,
@@ -27,6 +31,8 @@ abstract class BaseTab extends StatelessWidget {
     this.wrapperModel,
     // this.customWrapperBuilder,
     this.height,
+    this.rotate,
+    this.rotateTurns,
   });
 
   /// Implement this in subclasses to build the core content of the tab.
@@ -36,7 +42,12 @@ abstract class BaseTab extends StatelessWidget {
   /// Builds the final Tab with either a custom builder or a factory wrapper.
   @protected
   Widget buildTab(BuildContext context) {
-    final content = buildContent(context);
+    Widget content = buildContent(context);
+
+    // Rotate the content if needed
+    if (rotate ?? false || rotateTurns != null) {
+      content = RotatedBox(quarterTurns: rotateTurns ?? 3, child: content);
+    }
 
     // 1️⃣ If a completely custom wrapper is provided, use it.
     if (wrapperModel?.customWrapperBuilder != null) {

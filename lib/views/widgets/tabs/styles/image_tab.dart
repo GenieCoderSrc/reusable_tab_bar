@@ -16,6 +16,8 @@ class ImageTab extends BaseTab {
     super.label,
     super.wrapperType,
     super.wrapperModel,
+    super.rotate,
+    super.rotateTurns,
     this.imageProvider,
     this.imagePath,
     this.width = 24,

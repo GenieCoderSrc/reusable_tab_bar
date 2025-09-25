@@ -16,6 +16,8 @@ class LottieTab extends BaseTab {
     super.wrapperType,
     super.wrapperModel,
     super.height,
+    super.rotate,
+    super.rotateTurns,
     this.lottieAsset,
     this.lottieUrl,
     this.size = 36,

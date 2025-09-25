@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:reusable_tab_bar/reusable_tab_bar.dart';
 import 'package:reusable_tab_bar/type_def/type_def.dart';
-import 'package:reusable_tab_bar/view_models/tab_bar_cubit.dart';
 import 'package:reusable_tab_bar/views/widgets/tab_fab_switcher.dart';
-
-import 'default_tab_provider.dart';
 
 /// A reusable screen with vertical side TabBar
 /// Tabs are displayed on the left, pages on the right.
@@ -44,11 +42,9 @@ class SideTabBarScreen extends StatelessWidget {
           floatingActionButton: TabFABSwitcher(fabButtons: fabButtons),
           bottomNavigationBar: bottomNavigation,
           body: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Side TabBar
-              Column(
-                children: [Expanded(child: sideTabBarBuilder(controller))],
-              ),
+              buildSideTabBar(controller),
               // Pages
               Expanded(
                 child: TabBarView(controller: controller, children: pages),
@@ -56,6 +52,22 @@ class SideTabBarScreen extends StatelessWidget {
             ],
           ),
         );
+      },
+    );
+  }
+
+  Widget buildSideTabBar(TabController controller) {
+    return Builder(
+      builder: (context) {
+        final tabBar = sideTabBarBuilder(controller);
+
+        // If it's already a SideTabBar, use as is
+        if (tabBar is SideTabBar) {
+          return tabBar;
+        }
+
+        // Otherwise, rotate it
+        return RotatedBox(quarterTurns: 1, child: tabBar);
       },
     );
   }

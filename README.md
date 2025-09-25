@@ -1,103 +1,151 @@
-# Reusable Tab Bar
+# reusable_tab_bar
 
-**Reusable Tab Bar** is a production-ready Flutter package that provides highly customizable and flexible tab bar screens with multiple layouts, animation support, and per-tab FABs. It follows **SOLID principles**, **DRY**, and **composition over inheritance**, enabling developers to create consistent, responsive, and animated tab bars in their Flutter apps.
+A Flutter package for building highly customizable, animated, and reusable tab bars. Supports multiple indicator types, animations, and wrapper styles for tab items.
 
 ## Features
 
-* Supports multiple layouts: `standard`, `sliver`, `bottom`, `side`, `modal`
-* Animated tab transitions (scale, underline, text style)
-* Per-tab FAB support
-* Custom tab types: text, icon, icon + text, Lottie, image, custom shapes, arbitrary widgets
-* Fully styled `StyledTabBar` with visual styles (`filled`, `outlined`, `blurred`, `elevated`, etc.)
-* Wrapper support for additional card, padding, alignment, or decorations around tabs
-* Accessibility and semantics support for screen readers
-* Responsive design for phones and tablets
-* Uses Cubit (`TabBarCubit`) for tab index state management
+* Multiple indicator types: underline, gradient, rounded, dot, bubble, rectangle, topLine, customPainter, custom.
+* Flexible animations: fade, scale, slide, bounceSimple, bounceAdvanced.
+* Wrapper support for both selected and unselected states.
+* Supports Lottie, Image, and simple text/icon tabs.
+* Customizable padding, colors, and animation curves.
+* Easy integration with `TabController`.
 
 ## Installation
 
-Add the package to your `pubspec.yaml`:
+Add this to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  reusable_tab_bar:
-    git:
-      url: https://github.com/GenieCoderSrc/reusable_tab_bar
+  reusable_tab_bar: <letest_version>
+```
+
+Then run:
+
+```bash
+flutter pub get
 ```
 
 ## Usage
 
-### Standard Tab Bar
+### Basic Usage
 
 ```dart
-ReusableTabBarScreen(
-  layout: TabBarLayout.standard,
-  tabItems: [
-    TabItemModel(label: 'Home', icon: Icons.home),
-    TabItemModel(label: 'Profile', icon: Icons.person),
-  ],
-  pages: [HomePage(), ProfilePage()],
-  fabButtons: [
-    FloatingActionButton(onPressed: () {}),
-    FloatingActionButton(onPressed: () {}),
-  ],
-  visualStyle: TabBarVisualStyle.filled,
+import 'package:flutter/material.dart';
+import 'package:reusable_tab_bar/reusable_tab_bar.dart';
+
+class MyTabBarScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final TabController tabController = TabController(length: 3, vsync: ScaffoldState());
+
+    final tabs = [
+      Tab(text: 'Home'),
+      Tab(text: 'Search'),
+      Tab(text: 'Profile'),
+    ];
+
+    return Scaffold(
+      appBar: AppBar(
+        bottom: TabBar(
+          controller: tabController,
+          tabs: TabBuilder.build(
+            controller: tabController,
+            customTabs: tabs,
+            animation: TabAnimationModel(
+              animationType: AnimationType.scale,
+            ),
+          ),
+        ),
+      ),
+      body: TabBarView(
+        controller: tabController,
+        children: [
+          Center(child: Text('Home')),
+          Center(child: Text('Search')),
+          Center(child: Text('Profile')),
+        ],
+      ),
+    );
+  }
+}
+```
+
+### Using Indicators
+
+```dart
+TabBar(
+  controller: tabController,
+  indicator: TabIndicatorFactory.build(
+    type: IndicatorType.rounded,
+    color: Colors.blue,
+    borderRadius: 12,
+  ),
+  tabs: tabs,
+)
+```
+
+### Animations
+
+```dart
+final animation = TabAnimationModel(
+  animationType: AnimationType.bounceAdvanced,
+  duration: Duration(milliseconds: 300),
+  scaleFactor: 1.2,
+);
+
+TabBuilder.build(
+  controller: tabController,
+  customTabs: tabs,
+  animation: animation,
 );
 ```
 
-### Sliver Tab Bar
+### Wrappers
+
+You can wrap your tabs with custom styles using `WrapperType` and `WrapperModel`:
 
 ```dart
-ReusableTabBarScreen(
-  layout: TabBarLayout.sliver,
-  sliverType: SliverTabBarType.floating,
-  tabItems: tabItems,
-  pages: pages,
+TabBuilder.build(
+  controller: tabController,
+  tabItems: myTabItems,
+  wrapperType: WrapperType.shadow,
+  wrapperModel: WrapperModel(
+    borderRadius: 8,
+    shadowColor: Colors.black26,
+  ),
+  animation: animation,
 );
 ```
 
-### Bottom / Side / Modal Tabs
+## Enums
 
-All layouts use the same `ReusableTabBarScreen` API. Just change `layout` to the desired `TabBarLayout` value.
+* `IndicatorType`: none, underline, gradient, rounded, dot, bubble, rectangle, topLine, customPainter, custom.
+* `AnimationType`: fade, scale, slide, bounceSimple, bounceAdvanced, all, none.
 
-## Custom Tabs
+## Models
 
-```dart
-TabItemModel(
-  type: TabType.lottie,
-  lottieAsset: 'assets/animations/tab_animation.json',
-  label: 'Animated',
-);
-```
+* `TabAnimationModel`: Configure animations including type, duration, scaleFactor, colors, padding, curves, and wrapper support.
+* `WrapperModel`: Customizes wrapper appearance.
 
-## Tab Animations
+## Animators
 
-Animated tabs scale icons and change text style when selected. This is handled automatically via `AnimatedTabWrapper`.
+* `BounceTabAnimator` - Bouncy scaling animation.
+* `FadeTabAnimator` - Fade in/out animation.
+* `ScaleTabAnimator` - Scale selected tab.
+* `SlideTabAnimator` - Slide tab up/down.
+* `TabAnimator` - General purpose animated tab.
 
-## Wrappers
+## Factories
 
-You can wrap the tab bar with a card or custom decoration:
+* `TabAnimatorFactory` - Returns the correct tab animator based on `TabAnimationModel`.
+* `TabAnimatedBuilder` - Builds a list of animated tabs.
+* `TabIndicatorFactory` - Builds `Decoration` for Tab indicators.
+* `TabBuilder` - Builds tabs with optional animation and wrapper.
+* `TabFactory` - Creates tab widgets from `TabItemModel`.
 
-```dart
-ReusableTabBarScreen(
-  tabBarUseCard: true,
-  tabBarCardColor: Colors.white,
-  tabBarCardElevation: 4,
-  tabBarCardShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-);
-```
+**Note:** All animations respect selected/unselected wrappers and can be combined with custom styles and indicators for a fully flexible tab bar solution.
 
-## State Management
-
-`TabBarCubit` handles the currently selected tab index. You can provide your own Cubit instance if needed:
-
-```dart
-final myCubit = TabBarCubit();
-
-ReusableTabBarScreen(
-  tabBarCubit: myCubit,
-);
-```
 Made with ❤️ using SOLID principles and composable widgets for clean and maintainable UI components.
 
 ## License

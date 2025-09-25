@@ -20,6 +20,8 @@ abstract class BaseTabBar extends StatelessWidget {
   final TabAlignment? tabAlignment;
   final Color? indicatorColor;
   final Decoration? indicator;
+  final double? dividerHeight;
+  final Color? dividerColor;
   final TabBarIndicatorSize? indicatorSize;
   final Color? labelColor;
   final Color? unselectedLabelColor;
@@ -35,6 +37,8 @@ abstract class BaseTabBar extends StatelessWidget {
     this.tabAlignment,
     this.indicatorColor,
     this.indicator,
+    this.dividerHeight,
+    this.dividerColor,
     this.indicatorSize,
     this.labelColor,
     this.unselectedLabelColor,
@@ -66,6 +70,8 @@ abstract class BaseTabBar extends StatelessWidget {
       tabAlignment: tabAlignment,
       indicatorColor: indicatorColor,
       indicator: indicator,
+      dividerHeight: dividerHeight,
+      dividerColor: dividerColor,
       indicatorSize: indicatorSize,
       labelColor: labelColor,
       unselectedLabelColor: unselectedLabelColor,

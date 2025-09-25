@@ -8,7 +8,7 @@ import 'painters/point_tab_indicator.dart';
 class TabIndicatorFactory {
   const TabIndicatorFactory._();
 
-  static Decoration build({
+  static Decoration? build({
     required IndicatorType type,
     Color? color,
     double? height,
@@ -21,6 +21,10 @@ class TabIndicatorFactory {
     TabIndicatorPosition position = TabIndicatorPosition.bottom,
   }) {
     switch (type) {
+      case IndicatorType.none:
+        return UnderlineTabIndicator(
+          borderSide: BorderSide(color: Colors.transparent, width: 0),
+        );
       case IndicatorType.underline:
         return UnderlineTabIndicator(
           borderSide: BorderSide(

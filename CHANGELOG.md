@@ -6,9 +6,17 @@ All notable changes to this project will be documented in this file.
 
 ## 0.0.4
 
-### Sep 22, 2025
+### Sep 25, 2025
 
 ### ✨ Implemented
+
+* Support for multiple indicator types: `none`, `underline`, `gradient`, `rounded`, `dot`, `bubble`, `rectangle`, `topLine`, `customPainter`, `custom`.
+* Tab animation models: `TabAnimationModel` with configurable animation types, scale, colors, padding, curves, and wrappers.
+* Built-in animators: `BounceTabAnimator`, `FadeTabAnimator`, `ScaleTabAnimator`, `SlideTabAnimator`, `TabAnimator`.
+* Factories: `TabAnimatorFactory`, `TabAnimatedBuilder`, `TabIndicatorFactory`, `TabBuilder`, `TabFactory`.
+* Wrapper support via `WidgetWrapperMixin`.
+* Example included demonstrating usage with `TabBar` and `TabBarView`.
+
 
 
 

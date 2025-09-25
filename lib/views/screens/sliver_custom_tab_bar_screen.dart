@@ -8,7 +8,7 @@ import 'default_tab_provider.dart';
 
 /// Sliver TabBar screen using CustomScrollView
 /// Best for full sliver control and complex sliver layouts.
-class CustomSliverTabBarScreen extends StatelessWidget {
+class SliverCustomTabBarScreen extends StatelessWidget {
   final List<Widget> pages;
   final TabWidgetBuilder tabBarBuilder;
   final WidgetPlacement tabBarPlacement;
@@ -24,7 +24,7 @@ class CustomSliverTabBarScreen extends StatelessWidget {
   final List<Widget>? fabButtons;
   final FloatingActionButtonLocation? floatingActionButtonLocation;
 
-  CustomSliverTabBarScreen({
+  SliverCustomTabBarScreen({
     super.key,
     required this.pages,
     required this.tabBarBuilder,

@@ -8,7 +8,7 @@ import 'default_tab_provider.dart';
 
 /// Sliver TabBar screen using NestedScrollView
 /// Best for inner scrollable content with collapsible/pinned app bar.
-class NestedSliverTabBarScreen extends StatelessWidget {
+class SliverNestedTabBarScreen extends StatelessWidget {
   final List<Widget> pages;
   final TabWidgetBuilder tabBarBuilder;
   final WidgetPlacement tabBarPlacement;
@@ -25,7 +25,7 @@ class NestedSliverTabBarScreen extends StatelessWidget {
   final List<Widget>? fabButtons;
   final FloatingActionButtonLocation? floatingActionButtonLocation;
 
-  NestedSliverTabBarScreen({
+  SliverNestedTabBarScreen({
     super.key,
     required this.pages,
     required this.tabBarBuilder,
