@@ -106,7 +106,7 @@ class DemoScreen extends StatelessWidget {
               wrapperModel: WrapperModel(
                 backgroundColor: Colors.white70,
                 margin: EdgeInsets.all(15),
-                elevation: 0
+                elevation: 0,
               ),
               // isScrollable: true,
               // backgroundColor: Colors.deepPurple,

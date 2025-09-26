@@ -25,11 +25,14 @@ class SegmentedWrapper implements IWrapper {
       padding: padding,
       decoration: BoxDecoration(
         color: isSelected
-            ? (selectedColor ?? Colors.blueAccent.withAlpha((0.2 * 255).round()))
+            ? (selectedColor ??
+                  Colors.blueAccent.withAlpha((0.2 * 255).round()))
             : (backgroundColor ?? Colors.transparent),
         borderRadius: BorderRadius.circular(borderRadius),
         border: Border.all(
-          color: isSelected ? (selectedColor ?? Colors.blueAccent) : Colors.grey,
+          color: isSelected
+              ? (selectedColor ?? Colors.blueAccent)
+              : Colors.grey,
           width: 1.5,
         ),
       ),

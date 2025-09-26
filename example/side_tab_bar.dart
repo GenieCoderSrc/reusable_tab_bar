@@ -53,7 +53,6 @@ class DemoSideTabBarScreen extends StatelessWidget {
             SimpleTabModel(label: 'Profile', icon: Icons.person),
             SimpleTabModel(label: 'Settings', icon: Icons.settings),
             SimpleTabModel(label: 'Dashboard', icon: Icons.dashboard),
-
           ],
           animation: TabAnimationModel(
             enabled: true,

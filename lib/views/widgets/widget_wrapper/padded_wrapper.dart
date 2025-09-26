@@ -8,9 +8,6 @@ class PaddedWrapper implements IWrapper {
 
   @override
   Widget wrap(Widget child) {
-    return Padding(
-      padding: padding,
-      child: child,
-    );
+    return Padding(padding: padding, child: child);
   }
 }

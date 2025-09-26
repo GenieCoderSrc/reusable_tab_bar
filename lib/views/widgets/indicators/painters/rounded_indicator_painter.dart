@@ -24,12 +24,15 @@ class RoundedIndicatorPainter extends CustomPainter {
       size.width,
       indicatorHeight,
     );
-    canvas.drawRRect(RRect.fromRectAndRadius(rect, Radius.circular(radius)), paint);
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(rect, Radius.circular(radius)),
+      paint,
+    );
   }
 
   @override
   bool shouldRepaint(covariant RoundedIndicatorPainter oldDelegate) =>
       color != oldDelegate.color ||
-          radius != oldDelegate.radius ||
-          indicatorHeight != oldDelegate.indicatorHeight;
+      radius != oldDelegate.radius ||
+      indicatorHeight != oldDelegate.indicatorHeight;
 }

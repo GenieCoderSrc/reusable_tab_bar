@@ -4,8 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'i_tab_animator.dart';
 
 import 'package:flutter/widgets.dart';
-import 'package:reusable_tab_bar/data/enums/wrapper_type.dart';
-import 'package:reusable_tab_bar/data/models/wrapper_model.dart';
 
 class FadeTabAnimator extends ITabAnimator {
   final Duration duration;
@@ -35,4 +33,3 @@ class FadeTabAnimator extends ITabAnimator {
     );
   }
 }
-

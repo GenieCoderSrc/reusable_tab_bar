@@ -34,7 +34,10 @@ class GlassMorphicWrapper implements IWrapper {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
-            border: Border.all(color: Colors.white.withAlpha((0.2 * 255).round()), width: 1),
+            border: Border.all(
+              color: Colors.white.withAlpha((0.2 * 255).round()),
+              width: 1,
+            ),
           ),
           child: child,
         ),

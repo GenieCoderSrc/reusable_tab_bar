@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:reusable_tab_bar/data/models/indicator_model.dart';
-import 'package:reusable_tab_bar/views/widgets/indicators/indicator_factory.dart';
 
 Color resolveBackgroundColor({
   required Color? backgroundColor,
@@ -49,6 +48,5 @@ Decoration resolveIndicator({
   return BoxDecoration(
     color: indicatorColor,
     borderRadius: BorderRadius.circular(borderRadius),
-
   );
 }

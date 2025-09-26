@@ -368,7 +368,6 @@ class DemoSideTabBarScreen extends StatelessWidget {
   }
 }
 
-
 /// Stack Position TabBar Screen Example
 class DemoStackPositionedTabBarScreen extends StatelessWidget {
   const DemoStackPositionedTabBarScreen({super.key});

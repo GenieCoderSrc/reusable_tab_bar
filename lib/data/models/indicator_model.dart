@@ -12,7 +12,8 @@ class IndicatorModel {
   final Decoration? customDecoration;
 
   /// Builder for a custom painter. Provides the size and textDirection.
-  final CustomPainter Function(Size size, TextDirection? direction)? customPainterBuilder;
+  final CustomPainter Function(Size size, TextDirection? direction)?
+  customPainterBuilder;
 
   const IndicatorModel({
     this.type = IndicatorType.underline,
@@ -26,4 +27,3 @@ class IndicatorModel {
     this.customPainterBuilder,
   });
 }
-
