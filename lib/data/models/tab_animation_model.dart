@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:reusable_tab_bar/data/enums/animation_type.dart';
-import 'package:reusable_tab_bar/data/enums/wrapper_type.dart';
-import 'package:reusable_tab_bar/data/models/wrapper_model.dart';
-
 /// Encapsulates animation-related properties for the tab list.
 import 'package:flutter/widgets.dart';
 import 'package:reusable_tab_bar/data/enums/animation_type.dart';

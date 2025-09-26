@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:reusable_tab_bar/reusable_tab_bar.dart';
-import 'package:reusable_tab_bar/type_def/type_def.dart';
-import 'package:reusable_tab_bar/views/widgets/tab_fab_switcher.dart';
 
 /// A reusable screen with vertical side TabBar
 /// Tabs are displayed on the left, pages on the right.
