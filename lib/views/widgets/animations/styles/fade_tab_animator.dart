@@ -3,8 +3,6 @@ import 'package:flutter/widgets.dart';
 
 import 'i_tab_animator.dart';
 
-import 'package:flutter/widgets.dart';
-
 class FadeTabAnimator extends ITabAnimator {
   final Duration duration;
   final double unselectedOpacity;
