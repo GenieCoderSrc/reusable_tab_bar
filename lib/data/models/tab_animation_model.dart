@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 /// Encapsulates animation-related properties for the tab list.
 import 'package:flutter/widgets.dart';
 import 'package:reusable_tab_bar/data/enums/animation_type.dart';
