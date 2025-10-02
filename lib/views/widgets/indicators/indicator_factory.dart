@@ -1,5 +1,5 @@
 // import 'package:flutter/material.dart';
-// import 'package:reusable_tab_bar/data/enums/indicator_type.dart';
+// import 'package:reusable_tab_bar/data/enums/tab_indicator_type.dart';
 // import 'package:reusable_tab_bar/data/models/indicator_model.dart';
 // import 'package:reusable_tab_bar/views/widgets/indicators/painters/custom_painter_decoration.dart';
 // import 'package:reusable_tab_bar/views/widgets/indicators/styles/indicator_styles.dart';

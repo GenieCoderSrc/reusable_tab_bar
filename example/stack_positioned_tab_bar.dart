@@ -45,7 +45,7 @@ class DemoStackPositionedTabBarScreen extends StatelessWidget {
           ],
           animation: TabAnimationModel(
             enabled: true,
-            animationType: AnimationType.bounceAdvanced,
+            animationType: TabAnimationType.bounceAdvanced,
             scaleFactor: 1.1,
             selectedColor: Colors.white,
             unselectedColor: Colors.black54,
@@ -63,7 +63,6 @@ class DemoStackPositionedTabBarScreen extends StatelessWidget {
           tabs: tabs,
           dividerHeight: 0,
           isScrollable: true,
-          indicator: TabIndicatorFactory.build(type: IndicatorType.none),
           wrapperType: WrapperType.outlinedContainer,
           wrapperModel: WrapperModel(
             borderRadius: 12,

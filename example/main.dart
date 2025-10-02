@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:reusable_tab_bar/data/models/tab_item_model/simple_tab_model.dart';
-import 'package:reusable_tab_bar/data/models/wrapper_model.dart';
 import 'package:reusable_tab_bar/reusable_tab_bar.dart';
-import 'package:reusable_tab_bar/views/screens/stack_positioned_tab_bar_screen.dart';
 
 void main() => runApp(const MyApp());
 
@@ -97,7 +94,7 @@ class DemoSimpleTabBarScreen extends StatelessWidget {
               ],
               animation: TabAnimationModel(
                 enabled: true,
-                animationType: AnimationType.bounceAdvanced,
+                animationType: TabAnimationType.bounceAdvanced,
                 scaleFactor: 1.2,
                 selectedColor: Color(0xff7e29c1),
                 unselectedColor: Colors.blueGrey,
@@ -117,8 +114,13 @@ class DemoSimpleTabBarScreen extends StatelessWidget {
                 elevation: 0,
               ),
               indicator: TabIndicatorFactory.build(
-                type: IndicatorType.none, // Remove indicator
+                IndicatorModel(
+                  type: TabIndicatorType.dot,
+                  position: TabIndicatorPosition.top,
+                  color: Colors.blueGrey,
+                ),
               ),
+
               tabs: tabs,
             );
           },
@@ -173,7 +175,7 @@ class DemoSliverCustomScreen extends StatelessWidget {
               ],
               animation: TabAnimationModel(
                 enabled: true,
-                animationType: AnimationType.fade,
+                animationType: TabAnimationType.fade,
                 selectedColor: Colors.deepPurple,
                 unselectedColor: Colors.grey,
                 selectedWrapperType: WrapperType.card,
@@ -191,7 +193,7 @@ class DemoSliverCustomScreen extends StatelessWidget {
             return SimpleTabBar(
               controller: controller,
               dividerHeight: 0,
-              indicator: TabIndicatorFactory.build(type: IndicatorType.none),
+
               wrapperType: WrapperType.outlinedContainer,
               wrapperModel: WrapperModel(
                 borderRadius: 12,
@@ -240,7 +242,7 @@ class DemoSliverNestedScreen extends StatelessWidget {
               ],
               animation: TabAnimationModel(
                 enabled: true,
-                animationType: AnimationType.fade,
+                animationType: TabAnimationType.fade,
                 selectedColor: Colors.deepPurple,
                 unselectedColor: Colors.grey,
                 selectedWrapperType: WrapperType.card,
@@ -258,7 +260,7 @@ class DemoSliverNestedScreen extends StatelessWidget {
             return SimpleTabBar(
               controller: controller,
               dividerHeight: 0,
-              indicator: TabIndicatorFactory.build(type: IndicatorType.none),
+
               wrapperType: WrapperType.outlinedContainer,
               wrapperModel: WrapperModel(
                 borderRadius: 12,
@@ -310,7 +312,7 @@ class DemoSideTabBarScreen extends StatelessWidget {
           ],
           animation: TabAnimationModel(
             enabled: true,
-            animationType: AnimationType.scale,
+            animationType: TabAnimationType.scale,
             scaleFactor: 1.1,
             selectedColor: Colors.teal,
             unselectedColor: Colors.grey,
@@ -339,10 +341,8 @@ class DemoSideTabBarScreen extends StatelessWidget {
             margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
           ),
+
           // tabAlignment: TabAlignment.start,
-          indicator: TabIndicatorFactory.build(
-            type: IndicatorType.none, // remove indicator
-          ),
         );
       },
 
@@ -392,7 +392,7 @@ class DemoStackPositionedTabBarScreen extends StatelessWidget {
           ],
           animation: TabAnimationModel(
             enabled: true,
-            animationType: AnimationType.bounceAdvanced,
+            animationType: TabAnimationType.bounceAdvanced,
             scaleFactor: 1.1,
             selectedColor: Colors.white,
             unselectedColor: Colors.black54,
@@ -410,7 +410,7 @@ class DemoStackPositionedTabBarScreen extends StatelessWidget {
           tabs: tabs,
           dividerHeight: 0,
           isScrollable: true,
-          indicator: TabIndicatorFactory.build(type: IndicatorType.none),
+
           wrapperType: WrapperType.outlinedContainer,
           wrapperModel: WrapperModel(
             borderRadius: 12,

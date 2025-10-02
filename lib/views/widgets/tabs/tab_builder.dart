@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:reusable_tab_bar/data/enums/animation_type.dart';
+import 'package:reusable_tab_bar/data/enums/tab_animation_type.dart';
 import 'package:reusable_tab_bar/data/enums/tab_type.dart';
 import 'package:reusable_tab_bar/data/enums/wrapper_type.dart';
 import 'package:reusable_tab_bar/data/models/tab_animation_model.dart';
@@ -43,7 +43,7 @@ class TabBuilder {
     final tabs = baseTabs.isNotEmpty ? baseTabs : (customTabs ?? []);
 
     // 3️⃣ Optionally animate
-    if (!animation.enabled || animation.animationType == AnimationType.none) {
+    if (!animation.enabled || animation.animationType == TabAnimationType.none) {
       return tabs;
     }
 

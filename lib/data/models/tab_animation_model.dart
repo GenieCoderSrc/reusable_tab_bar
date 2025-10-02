@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 /// Encapsulates animation-related properties for the tab list.
 import 'package:flutter/widgets.dart';
-import 'package:reusable_tab_bar/data/enums/animation_type.dart';
+import 'package:reusable_tab_bar/data/enums/tab_animation_type.dart';
 import 'package:reusable_tab_bar/data/enums/wrapper_type.dart';
 import 'package:reusable_tab_bar/data/models/wrapper_model.dart';
 
 class TabAnimationModel {
   final bool enabled;
-  final AnimationType animationType;
+  final TabAnimationType animationType;
   final Duration? duration;
   final double? scaleFactor;
   final Color? selectedColor;
@@ -30,7 +30,7 @@ class TabAnimationModel {
 
   const TabAnimationModel({
     this.enabled = true,
-    this.animationType = AnimationType.scale,
+    this.animationType = TabAnimationType.scale,
     this.scaleFactor = 1.2,
     this.duration = const Duration(milliseconds: 250),
     this.selectedColor,

@@ -56,7 +56,7 @@ class DemoSideTabBarScreen extends StatelessWidget {
           ],
           animation: TabAnimationModel(
             enabled: true,
-            animationType: AnimationType.scale,
+            animationType: TabAnimationType.scale,
             scaleFactor: 1.1,
             selectedColor: Colors.teal,
             unselectedColor: Colors.grey,
@@ -86,9 +86,6 @@ class DemoSideTabBarScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
           ),
           // tabAlignment: TabAlignment.start,
-          indicator: TabIndicatorFactory.build(
-            type: IndicatorType.none, // remove indicator
-          ),
         );
       },
 

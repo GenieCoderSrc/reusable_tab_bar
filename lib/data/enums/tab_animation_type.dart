@@ -1,4 +1,5 @@
-enum AnimationType {
+/// Type of tab-switching animation.
+enum TabAnimationType {
   none,
   all,
   scale,

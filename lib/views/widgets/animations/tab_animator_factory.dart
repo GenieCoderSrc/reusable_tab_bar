@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:reusable_tab_bar/data/enums/animation_type.dart';
+import 'package:reusable_tab_bar/data/enums/tab_animation_type.dart';
 import 'package:reusable_tab_bar/data/models/tab_animation_model.dart';
 import 'package:reusable_tab_bar/views/widgets/animations/styles/bounce_tab_animator.dart';
 import 'package:reusable_tab_bar/views/widgets/animations/styles/fade_tab_animator.dart';
@@ -15,7 +15,7 @@ class TabAnimatorFactory {
     required TabAnimationModel animation,
   }) {
     switch (animation.animationType) {
-      case AnimationType.fade:
+      case TabAnimationType.fade:
         return FadeTabAnimator(
           selected: selected,
           child: child,
@@ -27,7 +27,7 @@ class TabAnimatorFactory {
           unselectedWrapperModel: animation.unselectedWrapperModel,
         );
 
-      case AnimationType.slide:
+      case TabAnimationType.slide:
         return SlideTabAnimator(
           selected: selected,
           child: child,
@@ -39,7 +39,7 @@ class TabAnimatorFactory {
           unselectedWrapperModel: animation.unselectedWrapperModel,
         );
 
-      case AnimationType.scale:
+      case TabAnimationType.scale:
         return ScaleTabAnimator(
           selected: selected,
           child: child,
@@ -52,7 +52,7 @@ class TabAnimatorFactory {
           unselectedWrapperModel: animation.unselectedWrapperModel,
         );
 
-      case AnimationType.bounceSimple:
+      case TabAnimationType.bounceSimple:
         return ScaleTabAnimator(
           selected: selected,
           child: child,
@@ -65,7 +65,7 @@ class TabAnimatorFactory {
           unselectedWrapperModel: animation.unselectedWrapperModel,
         );
 
-      case AnimationType.bounceAdvanced:
+      case TabAnimationType.bounceAdvanced:
         return BounceTabAnimator(
           selected: selected,
           child: child,
@@ -78,13 +78,13 @@ class TabAnimatorFactory {
           unselectedWrapperModel: animation.unselectedWrapperModel,
         );
 
-      case AnimationType.all:
+      case TabAnimationType.all:
       default:
         return TabAnimator(
           selected: selected,
           child: child,
           duration: animation.duration ?? const Duration(milliseconds: 250),
-          animate: animation.animationType != AnimationType.none,
+          animate: animation.animationType != TabAnimationType.none,
           scaleFactor: animation.scaleFactor ?? 1.1,
           selectedColor: animation.selectedColor,
           unselectedColor: animation.unselectedColor,

@@ -1,8 +1,8 @@
-export 'data/enums/animation_type.dart';
-export 'data/enums/indicator_type.dart';
-export 'data/enums/sliver_tab_bar_type.dart';
-export 'data/enums/tab_bar_layout.dart';
-export 'data/enums/tab_bar_placement.dart';
+export 'data/enums/tab_animation_type.dart';
+export 'data/enums/tab_indicator_type.dart';
+export 'data/enums/sliver_type.dart';
+export 'data/enums/tab_bar_layout_type.dart';
+export 'data/enums/tab_bar_position_type.dart';
 export 'data/enums/tab_bar_visual_style.dart';
 export 'data/enums/tab_indicator_position.dart';
 export 'data/enums/tab_type.dart';

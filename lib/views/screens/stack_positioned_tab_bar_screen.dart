@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:reusable_tab_bar/data/enums/tab_bar_placement.dart';
 import 'package:reusable_tab_bar/type_def/type_def.dart';
 import 'package:reusable_tab_bar/view_models/tab_bar_cubit.dart';
-import 'package:reusable_tab_bar/views/widgets/widget_placement_builder/tab_bar_placement_builder.dart';
+import 'package:reusable_tab_bar/views/widgets/tab_fab_switcher.dart';
 
 import 'default_tab_provider.dart';
 
 class StackPositionedTabBarScreen extends StatelessWidget {
   final List<Widget> pages;
   final TabWidgetBuilder tabBarBuilder;
-  final WidgetPlacement tabBarPlacement;
 
   final int? initialIndex;
   final void Function(int)? onTabChanged;
@@ -30,7 +28,6 @@ class StackPositionedTabBarScreen extends StatelessWidget {
     super.key,
     required this.pages,
     required this.tabBarBuilder,
-    this.tabBarPlacement = WidgetPlacement.stack,
     this.initialIndex,
     this.onTabChanged,
     this.tabBarCubit,
@@ -52,28 +49,14 @@ class StackPositionedTabBarScreen extends StatelessWidget {
       onTabChanged: onTabChanged,
       tabBarCubit: tabBarCubit,
       builder: (controller) {
-        final placementBuilder = TabBarPlacementBuilder();
-
         return Scaffold(
           drawer: drawer,
 
           /// bottom navigation
-          bottomNavigationBar: placementBuilder.build(
-            controller: controller,
-            tabBarPlacement: tabBarPlacement,
-            tabBarBuilder: tabBarBuilder,
-            currentWidget: WidgetPlacement.bottomBar,
-            child: bottomNavigation,
-          ),
+          bottomNavigationBar: bottomNavigation,
 
           /// floating action button(s)
-          floatingActionButton: placementBuilder.build(
-            controller: controller,
-            tabBarPlacement: tabBarPlacement,
-            tabBarBuilder: tabBarBuilder,
-            currentWidget: WidgetPlacement.floatBtn,
-            children: fabButtons,
-          ),
+          floatingActionButton: TabFABSwitcher(fabButtons: fabButtons),
           floatingActionButtonLocation: floatingActionButtonLocation,
 
           /// body with stack overlay
@@ -88,14 +71,7 @@ class StackPositionedTabBarScreen extends StatelessWidget {
                 bottom: bottom,
                 left: left,
                 right: right,
-                child:
-                    placementBuilder.build(
-                      controller: controller,
-                      tabBarPlacement: tabBarPlacement,
-                      tabBarBuilder: tabBarBuilder,
-                      currentWidget: WidgetPlacement.stack,
-                    ) ??
-                    const SizedBox.shrink(),
+                child: tabBarBuilder(controller),
               ),
             ],
           ),

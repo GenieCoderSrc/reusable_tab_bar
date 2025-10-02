@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:reusable_tab_bar/data/models/tab_item_model/simple_tab_model.dart';
-import 'package:reusable_tab_bar/data/models/wrapper_model.dart';
 import 'package:reusable_tab_bar/reusable_tab_bar.dart';
 
 void main() => runApp(const MyApp());
@@ -48,25 +46,19 @@ class DemoScreen extends StatelessWidget {
             // Build normal tabs first
             final tabs = TabBuilder.build(
               controller: controller,
-              // wrapperType: WrapperType.outlinedContainer,
-              // wrapperModel: WrapperModel(
-              //   gradient: LinearGradient(colors: [Colors.amber, Colors.pink]),
-              //   // customWrapperBuilder: (Widget child) => Card(child: child),
-              // ),
+              wrapperType: WrapperType.outlinedContainer,
+              wrapperModel: WrapperModel(
+                gradient: LinearGradient(colors: [Colors.amber, Colors.pink]),
+                // customWrapperBuilder: (Widget child) => Card(child: child),
+              ),
               tabItems: const [
-                // SimpleTabModel(icon: Icons.dashboard),
-                // SimpleTabModel(icon: Icons.message),
-                // SimpleTabModel(icon: Icons.settings),
-                //   SimpleTabModel(icon: Icons.dashboard, label: 'Dashboard'),
-                // SimpleTabModel(icon: Icons.message, label: 'Messages'),
-                // SimpleTabModel(icon: Icons.settings, label: 'Settings'),
-                SimpleTabModel(label: 'Dashboard'),
-                SimpleTabModel(label: 'Messages'),
-                SimpleTabModel(label: 'Settings'),
+                SimpleTabModel(icon: Icons.dashboard, label: 'Dashboard'),
+                SimpleTabModel(icon: Icons.message, label: 'Messages'),
+                SimpleTabModel(icon: Icons.settings, label: 'Settings'),
               ],
               animation: TabAnimationModel(
                 enabled: true,
-                animationType: AnimationType.bounceAdvanced,
+                animationType: TabAnimationType.bounceAdvanced,
                 scaleFactor: 1.2,
                 // containerCurve: Curves.bounceIn,
                 // containerCurve: Curves.linearToEaseOut,
@@ -82,11 +74,11 @@ class DemoScreen extends StatelessWidget {
                   // borderRadius: 50,
                   elevation: 1,
                 ),
-                // unselectedWrapperType: WrapperType.gradient,
-                // unselectedWrapperModel: WrapperModel(
-                //   gradient: LinearGradient(colors: [Colors.amber, Colors.pink]),
-                //   // customWrapperBuilder: (Widget child) => Card(child: child),
-                // ),
+                unselectedWrapperType: WrapperType.gradient,
+                unselectedWrapperModel: WrapperModel(
+                  gradient: LinearGradient(colors: [Colors.amber, Colors.pink]),
+                  // customWrapperBuilder: (Widget child) => Card(child: child),
+                ),
               ),
             );
 
@@ -102,25 +94,28 @@ class DemoScreen extends StatelessWidget {
             return SimpleTabBar(
               controller: controller,
               dividerHeight: 0,
+              isScrollable: true,
+              // backgroundColor: Colors.deepPurple,
+              // wrapperType: WrapperType.neuMorphic,
               wrapperType: WrapperType.card,
               wrapperModel: WrapperModel(
                 backgroundColor: Colors.white70,
                 margin: EdgeInsets.all(15),
                 elevation: 0,
               ),
-              // isScrollable: true,
-              // backgroundColor: Colors.deepPurple,
-              // wrapperType: WrapperType.neuMorphic,
+
               indicator: TabIndicatorFactory.build(
-                type: IndicatorType.none,
-                // customPainter: RoundedIndicatorPainter(color: Colors.black45),
-                // position: TabIndicatorPosition.top,
-                // gradient: LinearGradient(
-                //   colors: [Colors.pinkAccent, Colors.amber],
-                // ),
-                // color: Colors.transparent,
-                // borderRadius: 40,
-                // height: 10,
+                IndicatorModel(
+                  type: TabIndicatorType.dot,
+                  position: TabIndicatorPosition.top,
+                  color: Colors.blueGrey,
+                  // customPainter: RoundedIndicatorPainter(color: Colors.black45),
+                  // gradient: LinearGradient(
+                  //   colors: [Colors.pinkAccent, Colors.amber],
+                  // ),
+                  // borderRadius: 10,
+                  // height: 5,
+                ),
               ),
               tabs: tabs,
               // tabs: animatedTabs,

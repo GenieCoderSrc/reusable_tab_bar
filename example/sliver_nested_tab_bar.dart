@@ -55,7 +55,7 @@ class DemoSliverNestedScreen extends StatelessWidget {
               ],
               animation: TabAnimationModel(
                 enabled: true,
-                animationType: AnimationType.fade,
+                animationType: TabAnimationType.fade,
                 selectedColor: Colors.deepPurple,
                 unselectedColor: Colors.grey,
                 selectedWrapperType: WrapperType.card,
@@ -72,9 +72,7 @@ class DemoSliverNestedScreen extends StatelessWidget {
               controller: controller,
               dividerHeight: 0,
               // remove divider line
-              indicator: TabIndicatorFactory.build(
-                type: IndicatorType.none, // remove underline indicator
-              ),
+
               wrapperType: WrapperType.outlinedContainer,
               wrapperModel: WrapperModel(
                 borderRadius: 12,

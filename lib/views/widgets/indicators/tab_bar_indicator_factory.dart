@@ -1,107 +1,97 @@
 import 'package:flutter/material.dart';
-import 'package:reusable_tab_bar/data/enums/indicator_type.dart';
-import 'package:reusable_tab_bar/data/enums/tab_indicator_position.dart';
+import 'package:reusable_tab_bar/data/enums/tab_indicator_type.dart';
+import 'package:reusable_tab_bar/data/models/indicator_model.dart';
 
 import 'painters/custom_painter_decoration.dart';
 import 'painters/point_tab_indicator.dart';
 
+/// Factory that builds a Decoration for TabBar indicators based on [IndicatorModel].
 class TabIndicatorFactory {
-  const TabIndicatorFactory._();
+  const TabIndicatorFactory._(); // Prevent instantiation
 
-  static Decoration? build({
-    required IndicatorType type,
-    Color? color,
-    double? height,
-    double? width,
-    double? borderRadius,
-    Gradient? gradient,
-    CustomPainter? customPainter,
-    Decoration? customDecoration,
-    EdgeInsetsGeometry? insets,
-    TabIndicatorPosition position = TabIndicatorPosition.bottom,
-  }) {
-    switch (type) {
-      case IndicatorType.none:
-        return UnderlineTabIndicator(
-          borderSide: BorderSide(color: Colors.transparent, width: 0),
-        );
-      case IndicatorType.underline:
+  static Decoration? build(IndicatorModel model) {
+    switch (model.type) {
+      case TabIndicatorType.none:
+        return null;
+
+      case TabIndicatorType.underline:
         return UnderlineTabIndicator(
           borderSide: BorderSide(
-            color: color ?? Colors.blue,
-            width: height ?? 3.0,
+            color: model.color ?? Colors.blue,
+            width: model.thickness ?? 3.0,
           ),
-          insets: insets ?? EdgeInsets.zero,
+          insets: model.padding ?? EdgeInsets.zero,
         );
 
-      case IndicatorType.gradient:
+      case TabIndicatorType.gradient:
         return BoxDecoration(
           gradient:
-              gradient ??
+              model.gradient ??
               LinearGradient(
                 colors: [
-                  color ?? Colors.blue,
-                  (color ?? Colors.blue).withAlpha((0.7 * 255).round()),
+                  model.color ?? Colors.blue,
+                  (model.color ?? Colors.blue).withAlpha((0.7 * 255).round()),
                 ],
               ),
-          borderRadius: BorderRadius.circular(borderRadius ?? 0),
+          borderRadius: BorderRadius.circular(model.radius ?? 0),
+          shape: model.shape ?? BoxShape.rectangle,
         );
 
-      case IndicatorType.rounded:
+      case TabIndicatorType.rounded:
         return BoxDecoration(
-          color: color ?? Colors.blue,
-          borderRadius: BorderRadius.circular(borderRadius ?? 8),
+          color: model.color ?? Colors.blue,
+          borderRadius: BorderRadius.circular(model.radius ?? 8),
+          shape: model.shape ?? BoxShape.rectangle,
         );
 
-      case IndicatorType.dot:
+      case TabIndicatorType.dot:
         return CustomPainterDecoration(
-          color: color ?? Colors.blue,
-          size: height ?? 6.0,
-          insets: insets,
-          painterBuilder: (size, textDirection) => PointIndicatorPainter(
-            color: color ?? Colors.blue,
-            pointSize: height ?? 6.0,
-            insets: insets ?? EdgeInsets.zero,
-            position: position,
-            textDirection: textDirection,
+          color: model.color ?? Colors.blue,
+          size: model.thickness ?? 6.0,
+          insets: model.padding,
+          painterBuilder: (size, direction) => PointIndicatorPainter(
+            color: model.color ?? Colors.blue,
+            pointSize: model.thickness ?? 6.0,
+            insets: model.padding ?? EdgeInsets.zero,
+            position: model.position,
+            textDirection: direction,
           ),
         );
 
-      case IndicatorType.bubble:
+      case TabIndicatorType.bubble:
         return BoxDecoration(
-          color: color ?? Colors.blue.withAlpha((0.3 * 255).round()),
-          borderRadius: BorderRadius.circular(borderRadius ?? 16),
+          color: (model.color ?? Colors.blue).withAlpha((0.3 * 255).round()),
+          borderRadius: BorderRadius.circular(model.radius ?? 16),
+          shape: model.shape ?? BoxShape.rectangle,
         );
 
-      case IndicatorType.rectangle:
+      case TabIndicatorType.rectangle:
         return BoxDecoration(
-          color: color ?? Colors.blue,
-          borderRadius: BorderRadius.circular(borderRadius ?? 0),
+          color: model.color ?? Colors.blue,
+          borderRadius: BorderRadius.circular(model.radius ?? 0),
+          shape: model.shape ?? BoxShape.rectangle,
         );
 
-      case IndicatorType.topLine:
+      case TabIndicatorType.topLine:
         return UnderlineTabIndicator(
           borderSide: BorderSide(
-            color: color ?? Colors.blue,
-            width: height ?? 3.0,
+            color: model.color ?? Colors.blue,
+            width: model.thickness ?? 3.0,
           ),
-          insets: insets ?? EdgeInsets.zero,
+          insets: model.padding ?? EdgeInsets.zero,
         );
 
-      case IndicatorType.customPainter:
-        if (customPainter != null) {
+      case TabIndicatorType.customPainter:
+        if (model.customPainterBuilder != null) {
           return CustomPainterDecoration(
-            painterBuilder: (size, textDirection) => customPainter,
-            insets: insets,
+            painterBuilder: model.customPainterBuilder!,
+            insets: model.padding,
           );
         }
         return const UnderlineTabIndicator();
 
-      case IndicatorType.custom:
-        if (customDecoration != null) {
-          return customDecoration;
-        }
-        return const UnderlineTabIndicator();
+      case TabIndicatorType.custom:
+        return model.customDecoration ?? const UnderlineTabIndicator();
     }
   }
 }
