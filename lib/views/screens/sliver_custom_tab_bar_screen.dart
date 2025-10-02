@@ -24,6 +24,8 @@ class SliverCustomTabBarScreen extends StatelessWidget {
   final List<Widget>? fabButtons;
   final FloatingActionButtonLocation? floatingActionButtonLocation;
 
+  final double? defaultTabBarHeight;
+
   SliverCustomTabBarScreen({
     super.key,
     required this.pages,
@@ -37,6 +39,7 @@ class SliverCustomTabBarScreen extends StatelessWidget {
     this.fabButtons,
     this.bottomNavigation,
     this.floatingActionButtonLocation,
+    this.defaultTabBarHeight,
   }) : assert(pages.isNotEmpty, 'pages cannot be empty');
 
   @override
@@ -47,7 +50,9 @@ class SliverCustomTabBarScreen extends StatelessWidget {
       onTabChanged: onTabChanged,
       tabBarCubit: tabBarCubit,
       builder: (controller) {
-        final placementBuilder = TabBarPlacementBuilder();
+        final placementBuilder = TabBarPlacementBuilder(
+          defaultTabBarHeight: defaultTabBarHeight,
+        );
 
         return Scaffold(
           drawer: drawer,
@@ -75,6 +80,7 @@ class SliverCustomTabBarScreen extends StatelessWidget {
                     tabBarBuilder: tabBarBuilder,
                     currentPlacement: TabBarPositionType.top,
                     child: sliverAppBar,
+                    // appBar: sliverAppBar,
                   ) ??
                   const SliverToBoxAdapter(child: SizedBox.shrink()),
               SliverFillRemaining(

@@ -24,6 +24,7 @@ class SliverNestedTabBarScreen extends StatelessWidget {
   final Widget? bottomNavigation;
   final List<Widget>? fabButtons;
   final FloatingActionButtonLocation? floatingActionButtonLocation;
+  final double? defaultTabBarHeight;
 
   SliverNestedTabBarScreen({
     super.key,
@@ -39,6 +40,7 @@ class SliverNestedTabBarScreen extends StatelessWidget {
     this.bottomNavigation,
     this.fabButtons,
     this.floatingActionButtonLocation,
+    this.defaultTabBarHeight,
   }) : assert(pages.isNotEmpty, 'pages cannot be empty');
 
   @override
@@ -49,7 +51,7 @@ class SliverNestedTabBarScreen extends StatelessWidget {
       onTabChanged: onTabChanged,
       tabBarCubit: tabBarCubit,
       builder: (controller) {
-        final placementBuilder = TabBarPlacementBuilder();
+        final placementBuilder = TabBarPlacementBuilder(defaultTabBarHeight: defaultTabBarHeight);
 
         return Scaffold(
           drawer: drawer,

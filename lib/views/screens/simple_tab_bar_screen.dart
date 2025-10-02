@@ -21,6 +21,8 @@ class SimpleTabBarScreen extends StatelessWidget {
   final List<Widget>? fabButtons;
   final FloatingActionButtonLocation? floatingActionButtonLocation;
 
+  final double? defaultTabBarHeight;
+
   const SimpleTabBarScreen({
     super.key,
     required this.pages,
@@ -34,6 +36,7 @@ class SimpleTabBarScreen extends StatelessWidget {
     this.bottomNavigation,
     this.fabButtons,
     this.floatingActionButtonLocation,
+    this.defaultTabBarHeight,
   });
 
   @override
@@ -44,7 +47,9 @@ class SimpleTabBarScreen extends StatelessWidget {
       onTabChanged: onTabChanged,
       tabBarCubit: tabBarCubit,
       builder: (controller) {
-        final placementBuilder = TabBarPlacementBuilder();
+        final placementBuilder = TabBarPlacementBuilder(
+          defaultTabBarHeight: defaultTabBarHeight,
+        );
 
         return Scaffold(
           drawer: drawer,
@@ -56,7 +61,7 @@ class SimpleTabBarScreen extends StatelessWidget {
                     tabBarPlacement: tabBarPlacement,
                     tabBarBuilder: tabBarBuilder,
                     currentPlacement: TabBarPositionType.top,
-                    appBar: appBar,
+                    child: appBar,
                   )
                   as PreferredSizeWidget?,
 

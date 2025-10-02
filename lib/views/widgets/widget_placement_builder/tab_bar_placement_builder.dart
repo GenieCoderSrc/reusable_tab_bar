@@ -4,12 +4,16 @@ import 'package:reusable_tab_bar/type_def/type_def.dart';
 import 'package:reusable_tab_bar/views/widgets/tab_fab_switcher.dart';
 
 class TabBarPlacementBuilder {
+  /// Optional default height for non-PreferredSizeWidget top placement
+  final double? defaultTabBarHeight;
+
+  TabBarPlacementBuilder({this.defaultTabBarHeight = kToolbarHeight});
+
   Widget? build({
     required TabController controller,
     required TabWidgetBuilder tabBarBuilder,
     required TabBarPositionType tabBarPlacement,
     required TabBarPositionType currentPlacement,
-    PreferredSizeWidget? appBar,
     Widget? child,
     List<Widget>? children,
   }) {
@@ -28,7 +32,7 @@ class TabBarPlacementBuilder {
 
     switch (tabBarPlacement) {
       case TabBarPositionType.top:
-        return _buildTopPlacement(tabBarWidget, appBar);
+        return _buildTopPlacement(tabBarWidget, child);
 
       case TabBarPositionType.bottom:
         return _buildBottomPlacement(tabBarWidget, child);
@@ -41,21 +45,29 @@ class TabBarPlacementBuilder {
     }
   }
 
-  Widget _buildTopPlacement(Widget tabBarWidget, PreferredSizeWidget? appBar) {
-    if (appBar != null) {
-      return PreferredSize(
-        preferredSize: Size.fromHeight(
-          appBar.preferredSize.height +
-              (tabBarWidget is PreferredSizeWidget
-                  ? tabBarWidget.preferredSize.height
-                  : kToolbarHeight),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [appBar, tabBarWidget],
-        ),
+  Widget _buildTopPlacement(Widget tabBarWidget, Widget? child) {
+    if (child != null) {
+      final Widget tabAppBar = Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [child, tabBarWidget],
       );
+
+      if (child is PreferredSizeWidget) {
+        return PreferredSize(
+          preferredSize: Size.fromHeight(
+            child.preferredSize.height +
+                (tabBarWidget is PreferredSizeWidget
+                    ? tabBarWidget.preferredSize.height
+                    : defaultTabBarHeight ?? kToolbarHeight),
+          ),
+          child: tabAppBar,
+        );
+      }
+
+      // Any Widget (e.g., SliverAppBar)
+      return tabAppBar;
     }
+
     return tabBarWidget;
   }
 
