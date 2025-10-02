@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:reusable_tab_bar/data/enums/tab_bar_position_type.dart';
 import 'package:reusable_tab_bar/type_def/type_def.dart';
+import 'package:reusable_tab_bar/views/widgets/tab_app_bar_switcher.dart';
 import 'package:reusable_tab_bar/views/widgets/tab_fab_switcher.dart';
 
 class TabBarPlacementBuilder {
@@ -19,20 +20,19 @@ class TabBarPlacementBuilder {
   }) {
     // Only apply placement logic if this builder is responsible
     if (tabBarPlacement != currentPlacement) {
-      // Return fallback: FABs or child
-      if (currentPlacement == TabBarPositionType.float) {
-        if (children != null && children.isNotEmpty) {
-          return TabFABSwitcher(fabButtons: children);
-        }
-      }
-      return child;
+      return _buildFallback(child, children);
     }
 
     final tabBarWidget = tabBarBuilder(controller);
 
     switch (tabBarPlacement) {
       case TabBarPositionType.top:
-        return _buildTopPlacement(tabBarWidget, child);
+        return TabAppBarSwitcher(
+          appBar: child,
+          appBars: children,
+          tabBarWidget: tabBarWidget,
+          defaultTabBarHeight: defaultTabBarHeight,
+        );
 
       case TabBarPositionType.bottom:
         return _buildBottomPlacement(tabBarWidget, child);
@@ -43,32 +43,6 @@ class TabBarPlacementBuilder {
       case TabBarPositionType.body:
         return _buildBodyPlacement(tabBarWidget, child);
     }
-  }
-
-  Widget _buildTopPlacement(Widget tabBarWidget, Widget? child) {
-    if (child != null) {
-      final Widget tabAppBar = Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [child, tabBarWidget],
-      );
-
-      if (child is PreferredSizeWidget) {
-        return PreferredSize(
-          preferredSize: Size.fromHeight(
-            child.preferredSize.height +
-                (tabBarWidget is PreferredSizeWidget
-                    ? tabBarWidget.preferredSize.height
-                    : defaultTabBarHeight ?? kToolbarHeight),
-          ),
-          child: tabAppBar,
-        );
-      }
-
-      // Any Widget (e.g., SliverAppBar)
-      return tabAppBar;
-    }
-
-    return tabBarWidget;
   }
 
   Widget _buildBottomPlacement(Widget tabBarWidget, Widget? child) {
@@ -115,6 +89,14 @@ class TabBarPlacementBuilder {
       );
     }
     return tabBarWidget;
+  }
+
+  Widget? _buildFallback(Widget? child, List<Widget>? children) {
+    // Return fallback: FABs or child
+    if (children != null && children.isNotEmpty) {
+      return TabFABSwitcher(fabButtons: children);
+    }
+    return child;
   }
 }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:reusable_tab_bar/data/enums/tab_bar_position_type.dart';
+import 'package:reusable_tab_bar/data/widget_extension.dart';
 import 'package:reusable_tab_bar/type_def/type_def.dart';
 import 'package:reusable_tab_bar/view_models/tab_bar_cubit.dart';
 import 'package:reusable_tab_bar/views/widgets/widget_placement_builder/tab_bar_placement_builder.dart';
@@ -19,6 +20,7 @@ class SimpleTabBarScreen extends StatelessWidget {
   final PreferredSizeWidget? appBar;
   final Widget? bottomNavigation;
   final List<Widget>? fabButtons;
+  final List<PreferredSizeWidget>? appBars;
   final FloatingActionButtonLocation? floatingActionButtonLocation;
 
   final double? defaultTabBarHeight;
@@ -33,6 +35,7 @@ class SimpleTabBarScreen extends StatelessWidget {
     this.tabBarCubit,
     this.drawer,
     this.appBar,
+    this.appBars,
     this.bottomNavigation,
     this.fabButtons,
     this.floatingActionButtonLocation,
@@ -55,15 +58,27 @@ class SimpleTabBarScreen extends StatelessWidget {
           drawer: drawer,
 
           /// app bar
-          appBar:
-              placementBuilder.build(
-                    controller: controller,
-                    tabBarPlacement: tabBarPlacement,
-                    tabBarBuilder: tabBarBuilder,
-                    currentPlacement: TabBarPositionType.top,
-                    child: appBar,
-                  )
-                  as PreferredSizeWidget?,
+          /// app bar - fixed type casting issue
+          appBar: placementBuilder
+              .build(
+                controller: controller,
+                tabBarPlacement: tabBarPlacement,
+                tabBarBuilder: tabBarBuilder,
+                currentPlacement: TabBarPositionType.top,
+                child: appBar,
+                children: appBars,
+              )
+              ?.let((widget) {
+                // Ensure it's a PreferredSizeWidget for Scaffold.appBar
+                if (widget is PreferredSizeWidget) return widget;
+                // Wrap non-PreferredSizeWidget with PreferredSize
+                return PreferredSize(
+                  preferredSize: Size.fromHeight(
+                    defaultTabBarHeight ?? kToolbarHeight,
+                  ),
+                  child: widget,
+                );
+              }),
 
           /// bottom navigation
           bottomNavigationBar: placementBuilder.build(
