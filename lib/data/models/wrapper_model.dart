@@ -1,9 +1,11 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:reusable_tab_bar/data/enums/wrapper_type.dart';
 
 /// Holds style information for a custom-shaped tab.
 /// Optional wrapper styling for the tab itself.
 class WrapperModel extends Equatable {
+  final WrapperType wrapperType;
   final EdgeInsets padding;
   final EdgeInsets? margin;
   final double borderRadius;
@@ -20,6 +22,7 @@ class WrapperModel extends Equatable {
   final Widget Function(Widget child)? customWrapperBuilder;
 
   const WrapperModel({
+    this.wrapperType = WrapperType.padded,
     this.padding = const EdgeInsets.all(8),
     this.margin,
     this.borderRadius = 8.0,
@@ -37,6 +40,7 @@ class WrapperModel extends Equatable {
 
   /// Enables easy state updates
   WrapperModel copyWith({
+    WrapperType? wrapperType,
     EdgeInsets? padding,
     EdgeInsets? margin,
     double? borderRadius,
@@ -51,6 +55,7 @@ class WrapperModel extends Equatable {
     Gradient? gradient,
   }) {
     return WrapperModel(
+      wrapperType: wrapperType ?? this.wrapperType,
       padding: padding ?? this.padding,
       margin: margin ?? this.margin,
       borderRadius: borderRadius ?? this.borderRadius,
@@ -68,6 +73,7 @@ class WrapperModel extends Equatable {
 
   @override
   List<Object?> get props => [
+    wrapperType,
     padding,
     margin,
     borderRadius,

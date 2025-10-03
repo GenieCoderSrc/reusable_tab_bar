@@ -46,8 +46,8 @@ class DemoScreen extends StatelessWidget {
             // Build normal tabs first
             final tabs = TabBuilder.build(
               controller: controller,
-              wrapperType: WrapperType.outlinedContainer,
               wrapperModel: WrapperModel(
+                wrapperType: WrapperType.outlinedContainer,
                 gradient: LinearGradient(colors: [Colors.amber, Colors.pink]),
                 // customWrapperBuilder: (Widget child) => Card(child: child),
               ),
