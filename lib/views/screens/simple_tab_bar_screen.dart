@@ -10,7 +10,7 @@ import 'default_tab_provider.dart';
 class SimpleTabBarScreen extends StatelessWidget {
   final List<Widget> pages;
   final TabWidgetBuilder tabBarBuilder;
-  final TabBarPositionType tabBarPlacement;
+  final TabBarPosition tabBarPosition;
 
   final int? initialIndex;
   final void Function(int)? onTabChanged;
@@ -29,7 +29,7 @@ class SimpleTabBarScreen extends StatelessWidget {
     super.key,
     required this.pages,
     required this.tabBarBuilder,
-    this.tabBarPlacement = TabBarPositionType.top,
+    this.tabBarPosition = TabBarPosition.top,
     this.initialIndex,
     this.onTabChanged,
     this.tabBarCubit,
@@ -62,9 +62,9 @@ class SimpleTabBarScreen extends StatelessWidget {
           appBar: placementBuilder
               .build(
                 controller: controller,
-                tabBarPlacement: tabBarPlacement,
+                tabBarPlacement: tabBarPosition,
                 tabBarBuilder: tabBarBuilder,
-                currentPlacement: TabBarPositionType.top,
+                currentPlacement: TabBarPosition.top,
                 child: appBar,
                 children: appBars,
               )
@@ -83,18 +83,18 @@ class SimpleTabBarScreen extends StatelessWidget {
           /// bottom navigation
           bottomNavigationBar: placementBuilder.build(
             controller: controller,
-            tabBarPlacement: tabBarPlacement,
+            tabBarPlacement: tabBarPosition,
             tabBarBuilder: tabBarBuilder,
-            currentPlacement: TabBarPositionType.bottom,
+            currentPlacement: TabBarPosition.bottom,
             child: bottomNavigation,
           ),
 
           /// floating action button(s)
           floatingActionButton: placementBuilder.build(
             controller: controller,
-            tabBarPlacement: tabBarPlacement,
+            tabBarPlacement: tabBarPosition,
             tabBarBuilder: tabBarBuilder,
-            currentPlacement: TabBarPositionType.float,
+            currentPlacement: TabBarPosition.float,
             children: fabButtons,
           ),
           floatingActionButtonLocation: floatingActionButtonLocation,
@@ -103,8 +103,8 @@ class SimpleTabBarScreen extends StatelessWidget {
           body: placementBuilder.build(
             controller: controller,
             tabBarBuilder: tabBarBuilder,
-            tabBarPlacement: tabBarPlacement,
-            currentPlacement: TabBarPositionType.body,
+            tabBarPlacement: tabBarPosition,
+            currentPlacement: TabBarPosition.body,
             child: TabBarView(controller: controller, children: pages),
           ),
         );

@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'All TabBar Screens Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -57,6 +58,15 @@ class MainMenuScreen extends StatelessWidget {
               MaterialPageRoute(builder: (_) => const DemoSideTabBarScreen()),
             ),
           ),
+          ListTile(
+            title: const Text('Stack Positioned TabBar Screen'),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => const DemoStackPositionedTabBarScreen(),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -71,61 +81,54 @@ class DemoSimpleTabBarScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SimpleTabBarScreen(
+      defaultTabBarHeight: 250,
+
       pages: const [
         Center(child: Text('Dashboard Page')),
         Center(child: Text('Messages Page')),
         Center(child: Text('Settings Page')),
       ],
+
       tabBarBuilder: (controller) {
-        return TabAppBar(
+        final tabs = TabBuilder.build(
           controller: controller,
-          titleTxt: 'Animated TabBar Demo',
-          centerTitle: true,
-          appBarHeight: 150,
-          appBarBottomHeight: 100,
-
-          tabBarBuilder: (controller) {
-            final tabs = TabBuilder.build(
-              controller: controller,
-              tabItems: const [
-                SimpleTabModel(label: 'Dashboard'),
-                SimpleTabModel(label: 'Messages'),
-                SimpleTabModel(label: 'Settings'),
-              ],
-              animation: TabAnimationModel(
-                enabled: true,
-                animationType: TabAnimationType.bounceAdvanced,
-                scaleFactor: 1.2,
-                selectedColor: Color(0xff7e29c1),
-                unselectedColor: Colors.blueGrey,
-                selectedWrapperType: WrapperType.neuMorphic,
-                selectedWrapperModel: WrapperModel(elevation: 1),
-              ),
-            );
-
-            return SimpleTabBar(
-              controller: controller,
-              dividerHeight: 0,
-              // Remove divider
+          tabItems: const [
+            SimpleTabModel(label: 'Dashboard'),
+            SimpleTabModel(label: 'Messages'),
+            SimpleTabModel(label: 'Settings'),
+          ],
+          animation: TabAnimationModel(
+            enabled: true,
+            animationType: TabAnimationType.all,
+            scaleFactor: 1.1,
+            // selectedColor: Colors.white,
+            unselectedColor: Colors.black54,
+            selectedWrapperModel: WrapperModel(
               wrapperType: WrapperType.card,
-              wrapperModel: WrapperModel(
-                backgroundColor: Colors.white70,
-                margin: const EdgeInsets.all(15),
-                elevation: 0,
-              ),
-              indicator: TabIndicatorFactory.build(
-                IndicatorModel(
-                  type: TabIndicatorType.dot,
-                  position: TabIndicatorPosition.top,
-                  color: Colors.blueGrey,
-                ),
-              ),
+              // backgroundColor: Colors.indigo,
+              borderRadius: 30,
+              padding: EdgeInsets.symmetric(horizontal: 100, vertical: 8),
+            ),
+          ),
+        );
 
-              tabs: tabs,
-            );
-          },
+        return SimpleTabBar(
+          controller: controller,
+          dividerHeight: 0,
+          // Remove divider
+          wrapperModel: WrapperModel(
+            wrapperType: WrapperType.card,
+            borderRadius: 30,
+            margin: const EdgeInsets.symmetric(horizontal: 80),
+            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+          ),
+          indicatorColor: Colors.transparent,
+
+          tabs: tabs,
         );
       },
+
+      appBar: AppBar(title: Text("Love")),
       fabButtons: [
         FloatingActionButton(onPressed: () {}, child: const Icon(Icons.add)),
       ],
@@ -292,14 +295,10 @@ class DemoSideTabBarScreen extends StatelessWidget {
 
       // Side tab bar builder
       sideTabBarBuilder: (controller) {
-        // Build tabs with TabBuilder
         final tabs = TabBuilder.build(
           controller: controller,
           tabType: TabType.iconTopText,
           rotate: true,
-          // rotateTurns: 1,
-          // wrapperType: WrapperType.,
-          // wrapperModel: WrapperModel(customWrapperBuilder: (child)=> RotatedBox(quarterTurns: 3, child: child,)),
           tabItems: const [
             SimpleTabModel(
               label: 'Home',
@@ -325,10 +324,6 @@ class DemoSideTabBarScreen extends StatelessWidget {
           ),
         );
 
-        // return TabBar(tabs: tabs, tabAlignment: TabAlignment.fill);
-
-        // Use vertical SimpleTabBar
-        // return SimpleTabBar(
         return SideTabBar(
           controller: controller,
           tabs: tabs,
@@ -392,15 +387,15 @@ class DemoStackPositionedTabBarScreen extends StatelessWidget {
           ],
           animation: TabAnimationModel(
             enabled: true,
-            animationType: TabAnimationType.bounceAdvanced,
+            animationType: TabAnimationType.all,
             scaleFactor: 1.1,
-            selectedColor: Colors.white,
+            // selectedColor: Colors.white,
             unselectedColor: Colors.black54,
-            selectedWrapperType: WrapperType.card,
             selectedWrapperModel: WrapperModel(
-              backgroundColor: Colors.indigo,
-              borderRadius: 12,
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              wrapperType: WrapperType.card,
+              // backgroundColor: Colors.indigo,
+              borderRadius: 30,
+              padding: EdgeInsets.symmetric(horizontal: 26, vertical: 8),
             ),
           ),
         );
@@ -410,10 +405,25 @@ class DemoStackPositionedTabBarScreen extends StatelessWidget {
           tabs: tabs,
           dividerHeight: 0,
           isScrollable: true,
+          indicatorColor: Colors.transparent,
 
-          wrapperType: WrapperType.outlinedContainer,
+          // indicator: TabIndicatorFactory.build(
+          //   IndicatorModel(
+          //     // type: TabIndicatorType.gradient,
+          //     // // position: TabIndicatorPosition.top,
+          //     color: Colors.amber,
+          //     // gradient: LinearGradient(
+          //     //   colors: [Colors.amber, Colors.pinkAccent],
+          //     // ),
+          //     // thickness: 5,
+          //
+          //     radius: 16,
+          //     padding: EdgeInsets.all(6),
+          //   ),
+          // ),
           wrapperModel: WrapperModel(
-            borderRadius: 12,
+            wrapperType: WrapperType.card,
+            borderRadius: 30,
             margin: const EdgeInsets.symmetric(horizontal: 6),
             padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
           ),
@@ -421,9 +431,10 @@ class DemoStackPositionedTabBarScreen extends StatelessWidget {
       },
 
       // 👇 Configure overlay position
-      bottom: 20,
-      left: 200,
-      // right: 10,
+      // top: 5,
+      bottom: 450,
+      left: 700,
+      // right: 100,
 
       // 👇 Optional bottom navigation
       bottomNavigation: BottomAppBar(

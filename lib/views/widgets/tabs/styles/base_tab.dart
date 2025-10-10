@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:reusable_tab_bar/data/enums/wrapper_type.dart';
 import 'package:reusable_tab_bar/data/models/wrapper_model.dart';
 import 'package:reusable_tab_bar/views/widgets/widget_wrapper/widget_wrapper_factory.dart';
 
@@ -7,9 +6,6 @@ import 'package:reusable_tab_bar/views/widgets/widget_wrapper/widget_wrapper_fac
 abstract class BaseTab extends StatelessWidget {
   /// Optional text label for the tab.
   final String? label;
-
-  /// Choose a predefined wrapper type, e.g. [WrapperType.card].
-  final WrapperType? wrapperType;
 
   /// Fully custom styling configuration.
   final WrapperModel? wrapperModel;
@@ -27,7 +23,6 @@ abstract class BaseTab extends StatelessWidget {
   const BaseTab({
     super.key,
     this.label,
-    this.wrapperType,
     this.wrapperModel,
     // this.customWrapperBuilder,
     this.height,
@@ -59,7 +54,6 @@ abstract class BaseTab extends StatelessWidget {
 
     // 2️⃣ Otherwise, use the factory with the provided model or defaults.
     final wrapper = WidgetWrapperFactory.create(
-      wrapperType ?? WrapperType.padded,
       model: wrapperModel ?? const WrapperModel(),
     );
 

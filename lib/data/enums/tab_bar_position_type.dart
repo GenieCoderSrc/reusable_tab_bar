@@ -1,4 +1,4 @@
 /// Layout types for tab bar placement.
-enum TabBarPositionType { top, bottom, float, body }
+enum TabBarPosition { top, bottom, float, body }
 
 

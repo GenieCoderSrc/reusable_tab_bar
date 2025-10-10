@@ -15,7 +15,6 @@ class SimpleTab extends BaseTab {
   const SimpleTab({
     super.key,
     super.label,
-    super.wrapperType,
     super.wrapperModel,
     super.height,
     super.rotate,

@@ -11,7 +11,7 @@ import 'default_tab_provider.dart';
 class SliverNestedTabBarScreen extends StatelessWidget {
   final List<Widget> pages;
   final TabWidgetBuilder tabBarBuilder;
-  final TabBarPositionType tabBarPlacement;
+  final TabBarPosition tabBarPlacement;
 
   final int? initialIndex;
   final void Function(int)? onTabChanged;
@@ -30,7 +30,7 @@ class SliverNestedTabBarScreen extends StatelessWidget {
     super.key,
     required this.pages,
     required this.tabBarBuilder,
-    this.tabBarPlacement = TabBarPositionType.top,
+    this.tabBarPlacement = TabBarPosition.top,
     this.initialIndex,
     this.onTabChanged,
     this.tabBarCubit,
@@ -62,7 +62,7 @@ class SliverNestedTabBarScreen extends StatelessWidget {
             controller: controller,
             tabBarPlacement: tabBarPlacement,
             tabBarBuilder: tabBarBuilder,
-            currentPlacement: TabBarPositionType.bottom,
+            currentPlacement: TabBarPosition.bottom,
             child: bottomNavigation,
           ),
 
@@ -71,7 +71,7 @@ class SliverNestedTabBarScreen extends StatelessWidget {
             controller: controller,
             tabBarPlacement: tabBarPlacement,
             tabBarBuilder: tabBarBuilder,
-            currentPlacement: TabBarPositionType.float,
+            currentPlacement: TabBarPosition.float,
             children: fabButtons,
           ),
           floatingActionButtonLocation: floatingActionButtonLocation,
@@ -83,7 +83,7 @@ class SliverNestedTabBarScreen extends StatelessWidget {
                     controller: controller,
                     tabBarPlacement: tabBarPlacement,
                     tabBarBuilder: tabBarBuilder,
-                    currentPlacement: TabBarPositionType.top,
+                    currentPlacement: TabBarPosition.top,
                     child: sliverAppBar,
                   ) ??
                   const SliverToBoxAdapter(child: SizedBox.shrink()),

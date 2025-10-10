@@ -13,8 +13,8 @@ class TabBarPlacementBuilder {
   Widget? build({
     required TabController controller,
     required TabWidgetBuilder tabBarBuilder,
-    required TabBarPositionType tabBarPlacement,
-    required TabBarPositionType currentPlacement,
+    required TabBarPosition tabBarPlacement,
+    required TabBarPosition currentPlacement,
     Widget? child,
     List<Widget>? children,
   }) {
@@ -26,7 +26,7 @@ class TabBarPlacementBuilder {
     final tabBarWidget = tabBarBuilder(controller);
 
     switch (tabBarPlacement) {
-      case TabBarPositionType.top:
+      case TabBarPosition.top:
         return TabAppBarSwitcher(
           appBar: child,
           appBars: children,
@@ -34,13 +34,13 @@ class TabBarPlacementBuilder {
           defaultTabBarHeight: defaultTabBarHeight,
         );
 
-      case TabBarPositionType.bottom:
+      case TabBarPosition.bottom:
         return _buildBottomPlacement(tabBarWidget, child);
 
-      case TabBarPositionType.float:
+      case TabBarPosition.float:
         return _buildFloatPlacement(tabBarWidget, children, child);
 
-      case TabBarPositionType.body:
+      case TabBarPosition.body:
         return _buildBodyPlacement(tabBarWidget, child);
     }
   }

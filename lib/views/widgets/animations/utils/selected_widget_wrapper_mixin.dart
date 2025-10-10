@@ -8,16 +8,14 @@ mixin WidgetWrapperMixin {
 
   Widget get child;
 
-  WrapperType? get selectedWrapperType;
 
   WrapperModel? get selectedWrapperModel;
 
-  WrapperType? get unselectedWrapperType;
 
   WrapperModel? get unselectedWrapperModel;
 
   Widget buildWrapperChild() {
-    final type = selected ? selectedWrapperType : unselectedWrapperType;
+    final type = selected ? selectedWrapperModel?.wrapperType : unselectedWrapperModel?.wrapperType;
 
     final model = selected ? selectedWrapperModel : unselectedWrapperModel;
 
@@ -26,7 +24,6 @@ mixin WidgetWrapperMixin {
     }
 
     return WidgetWrapperFactory.create(
-      type,
       model: model ?? const WrapperModel(),
     ).wrap(child);
   }

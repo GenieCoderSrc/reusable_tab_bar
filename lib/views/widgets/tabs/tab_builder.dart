@@ -18,7 +18,6 @@ class TabBuilder {
     final TabType? tabType,
     final bool? rotate,
     final int? rotateTurns,
-    final WrapperType? wrapperType,
     final WrapperModel? wrapperModel,
     List<Widget>? customTabs,
     TabAnimationModel animation = const TabAnimationModel(),
@@ -32,7 +31,6 @@ class TabBuilder {
                 tabType: tabType,
                 rotate: rotate,
                 rotateTurns: rotateTurns,
-                wrapperType: wrapperType,
                 wrapperModel: wrapperModel,
               ),
             )

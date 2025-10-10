@@ -25,6 +25,7 @@ class DemoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SimpleTabBarScreen(
+      tabBarPosition: TabBarPosition.body,
       // Pages displayed in the TabBarView
       pages: const [
         Center(child: Text('Dashboard')),
@@ -45,17 +46,21 @@ class DemoScreen extends StatelessWidget {
           tabBarBuilder: (controller) {
             // Build normal tabs first
             final tabs = TabBuilder.build(
-              controller: controller,
-              wrapperModel: WrapperModel(
-                wrapperType: WrapperType.outlinedContainer,
-                gradient: LinearGradient(colors: [Colors.amber, Colors.pink]),
-                // customWrapperBuilder: (Widget child) => Card(child: child),
-              ),
               tabItems: const [
                 SimpleTabModel(icon: Icons.dashboard, label: 'Dashboard'),
                 SimpleTabModel(icon: Icons.message, label: 'Messages'),
                 SimpleTabModel(icon: Icons.settings, label: 'Settings'),
               ],
+              controller: controller,
+              tabType: TabType.iconThenText,
+              rotate: true,
+              rotateTurns: 3,
+              wrapperModel: WrapperModel(
+                wrapperType: WrapperType.outlinedContainer,
+                gradient: LinearGradient(colors: [Colors.amber, Colors.pink]),
+                // customWrapperBuilder: (Widget child) => Card(child: child),
+              ),
+
               animation: TabAnimationModel(
                 enabled: true,
                 animationType: TabAnimationType.bounceAdvanced,
@@ -64,8 +69,8 @@ class DemoScreen extends StatelessWidget {
                 // containerCurve: Curves.linearToEaseOut,
                 selectedColor: Color(0xff7e29c1),
                 unselectedColor: Colors.blueGrey,
-                selectedWrapperType: WrapperType.neuMorphic,
                 selectedWrapperModel: WrapperModel(
+                  wrapperType: WrapperType.neuMorphic,
                   // gradient: LinearGradient(colors: [Colors.amber, Colors.pink]),
                   // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                   // backgroundColor: Colors.blue,
@@ -74,8 +79,8 @@ class DemoScreen extends StatelessWidget {
                   // borderRadius: 50,
                   elevation: 1,
                 ),
-                unselectedWrapperType: WrapperType.gradient,
                 unselectedWrapperModel: WrapperModel(
+                  wrapperType: WrapperType.gradient,
                   gradient: LinearGradient(colors: [Colors.amber, Colors.pink]),
                   // customWrapperBuilder: (Widget child) => Card(child: child),
                 ),
@@ -95,10 +100,11 @@ class DemoScreen extends StatelessWidget {
               controller: controller,
               dividerHeight: 0,
               isScrollable: true,
+              
               // backgroundColor: Colors.deepPurple,
               // wrapperType: WrapperType.neuMorphic,
-              wrapperType: WrapperType.card,
               wrapperModel: WrapperModel(
+              wrapperType: WrapperType.card,
                 backgroundColor: Colors.white70,
                 margin: EdgeInsets.all(15),
                 elevation: 0,

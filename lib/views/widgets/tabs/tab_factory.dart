@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:reusable_tab_bar/data/enums/tab_type.dart';
-import 'package:reusable_tab_bar/data/enums/wrapper_type.dart';
 import 'package:reusable_tab_bar/data/models/tab_item_model/image_tab_item_model.dart';
 import 'package:reusable_tab_bar/data/models/tab_item_model/lottie_tab_item_model.dart';
 import 'package:reusable_tab_bar/data/models/tab_item_model/simple_tab_model.dart';
@@ -19,7 +18,6 @@ class TabFactory {
     final TabType? tabType,
     final bool? rotate,
     final int? rotateTurns,
-    final WrapperType? wrapperType,
     final WrapperModel? wrapperModel,
   }) {
     if (model is SimpleTabModel) {
@@ -32,7 +30,6 @@ class TabFactory {
             ((model.tabType ?? tabType) == TabType.iconTopText ? 80 : null),
         iconFirst: (model.tabType ?? tabType) != TabType.textThenIcon,
         vertical: (model.tabType ?? tabType) == TabType.iconTopText,
-        wrapperType: wrapperType,
         wrapperModel: wrapperModel,
         rotate: rotate,
         rotateTurns: rotateTurns,
@@ -42,7 +39,6 @@ class TabFactory {
         lottieAsset: model.lottieAsset,
         lottieUrl: model.lottieUrl,
         label: model.label,
-        wrapperType: wrapperType,
         wrapperModel: wrapperModel,
         rotate: rotate,
         rotateTurns: rotateTurns,
@@ -58,7 +54,6 @@ class TabFactory {
         imagePath: model.imagePath,
         label: model.label,
         spacing: model.spacing,
-        wrapperType: wrapperType,
         wrapperModel: wrapperModel,
         rotate: rotate,
         rotateTurns: rotateTurns,

@@ -13,7 +13,6 @@ class LottieTab extends BaseTab {
   const LottieTab({
     super.key,
     super.label,
-    super.wrapperType,
     super.wrapperModel,
     super.height,
     super.rotate,

@@ -11,7 +11,7 @@ import 'default_tab_provider.dart';
 class SliverCustomTabBarScreen extends StatelessWidget {
   final List<Widget> pages;
   final TabWidgetBuilder tabBarBuilder;
-  final TabBarPositionType tabBarPlacement;
+  final TabBarPosition tabBarPlacement;
 
   final int? initialIndex;
   final void Function(int)? onTabChanged;
@@ -30,7 +30,7 @@ class SliverCustomTabBarScreen extends StatelessWidget {
     super.key,
     required this.pages,
     required this.tabBarBuilder,
-    this.tabBarPlacement = TabBarPositionType.top,
+    this.tabBarPlacement = TabBarPosition.top,
     this.initialIndex,
     this.onTabChanged,
     this.tabBarCubit,
@@ -60,14 +60,14 @@ class SliverCustomTabBarScreen extends StatelessWidget {
             controller: controller,
             tabBarPlacement: tabBarPlacement,
             tabBarBuilder: tabBarBuilder,
-            currentPlacement: TabBarPositionType.bottom,
+            currentPlacement: TabBarPosition.bottom,
             child: bottomNavigation,
           ),
           floatingActionButton: placementBuilder.build(
             controller: controller,
             tabBarPlacement: tabBarPlacement,
             tabBarBuilder: tabBarBuilder,
-            currentPlacement: TabBarPositionType.float,
+            currentPlacement: TabBarPosition.float,
             children: fabButtons,
           ),
 
@@ -78,7 +78,7 @@ class SliverCustomTabBarScreen extends StatelessWidget {
                     controller: controller,
                     tabBarPlacement: tabBarPlacement,
                     tabBarBuilder: tabBarBuilder,
-                    currentPlacement: TabBarPositionType.top,
+                    currentPlacement: TabBarPosition.top,
                     child: sliverAppBar,
                     // appBar: sliverAppBar,
                   ) ??

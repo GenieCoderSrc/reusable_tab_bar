@@ -86,7 +86,6 @@ abstract class BaseTabBar extends StatelessWidget {
 
     // 2️⃣ Enum-based wrapper with optional model.
     final wrapper = WidgetWrapperFactory.create(
-      wrapperType ?? WrapperType.none,
       model: wrapperModel ?? const WrapperModel(),
     );
 

@@ -16,11 +16,8 @@ class WidgetWrapperFactory {
   const WidgetWrapperFactory._();
 
   /// Create an [IWrapper] implementation using a single [WrapperModel].
-  static IWrapper create(
-    WrapperType type, {
-    WrapperModel model = const WrapperModel(),
-  }) {
-    switch (type) {
+  static IWrapper create({WrapperModel model = const WrapperModel()}) {
+    switch (model.wrapperType) {
       case WrapperType.none:
         return const NoneWrapper();
 

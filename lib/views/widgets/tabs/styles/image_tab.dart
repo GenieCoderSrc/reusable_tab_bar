@@ -4,6 +4,7 @@ import 'base_tab.dart';
 
 class ImageTab extends BaseTab {
   final ImageProvider? imageProvider;
+  final Widget? image;
   final double width;
 
   // final double? height;
@@ -14,10 +15,10 @@ class ImageTab extends BaseTab {
   const ImageTab({
     super.key,
     super.label,
-    super.wrapperType,
     super.wrapperModel,
     super.rotate,
     super.rotateTurns,
+    this.image,
     this.imageProvider,
     this.imagePath,
     this.width = 24,
@@ -31,6 +32,7 @@ class ImageTab extends BaseTab {
     final children = <Widget>[
       if (imageProvider != null)
         Image(image: imageProvider!, width: width, height: height ?? 24),
+      if (image != null) image!,
       if (label != null) Text(label!),
     ];
 

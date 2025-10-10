@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 
 
+## 0.0.5
+
+### Oct 10, 2025
+
+### ✨ Added
+
+* Added `IndicatorModel`,
+
+
 ## 0.0.4
 
 ### Sep 25, 2025
