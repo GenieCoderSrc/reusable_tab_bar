@@ -100,11 +100,11 @@ class DemoScreen extends StatelessWidget {
               controller: controller,
               dividerHeight: 0,
               isScrollable: true,
-              
+
               // backgroundColor: Colors.deepPurple,
               // wrapperType: WrapperType.neuMorphic,
               wrapperModel: WrapperModel(
-              wrapperType: WrapperType.card,
+                wrapperType: WrapperType.card,
                 backgroundColor: Colors.white70,
                 margin: EdgeInsets.all(15),
                 elevation: 0,

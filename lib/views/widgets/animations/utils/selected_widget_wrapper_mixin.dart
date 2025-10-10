@@ -8,14 +8,14 @@ mixin WidgetWrapperMixin {
 
   Widget get child;
 
-
   WrapperModel? get selectedWrapperModel;
-
 
   WrapperModel? get unselectedWrapperModel;
 
   Widget buildWrapperChild() {
-    final type = selected ? selectedWrapperModel?.wrapperType : unselectedWrapperModel?.wrapperType;
+    final type = selected
+        ? selectedWrapperModel?.wrapperType
+        : unselectedWrapperModel?.wrapperType;
 
     final model = selected ? selectedWrapperModel : unselectedWrapperModel;
 

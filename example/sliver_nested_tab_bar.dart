@@ -71,8 +71,8 @@ class DemoSliverNestedScreen extends StatelessWidget {
             return SimpleTabBar(
               controller: controller,
               dividerHeight: 0,
-              // remove divider line
 
+              // remove divider line
               wrapperType: WrapperType.outlinedContainer,
               wrapperModel: WrapperModel(
                 borderRadius: 12,

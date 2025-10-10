@@ -51,7 +51,9 @@ class SliverNestedTabBarScreen extends StatelessWidget {
       onTabChanged: onTabChanged,
       tabBarCubit: tabBarCubit,
       builder: (controller) {
-        final placementBuilder = TabBarPlacementBuilder(defaultTabBarHeight: defaultTabBarHeight);
+        final placementBuilder = TabBarPlacementBuilder(
+          defaultTabBarHeight: defaultTabBarHeight,
+        );
 
         return Scaffold(
           drawer: drawer,

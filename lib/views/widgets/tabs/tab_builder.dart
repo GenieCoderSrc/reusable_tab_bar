@@ -41,7 +41,8 @@ class TabBuilder {
     final tabs = baseTabs.isNotEmpty ? baseTabs : (customTabs ?? []);
 
     // 3️⃣ Optionally animate
-    if (!animation.enabled || animation.animationType == TabAnimationType.none) {
+    if (!animation.enabled ||
+        animation.animationType == TabAnimationType.none) {
       return tabs;
     }
 
