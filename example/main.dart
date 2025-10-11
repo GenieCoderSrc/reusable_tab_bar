@@ -198,7 +198,7 @@ class DemoSliverCustomScreen extends StatelessWidget {
               dividerHeight: 0,
 
               wrapperModel: WrapperModel(
-              wrapperType: WrapperType.outlinedContainer,
+                wrapperType: WrapperType.outlinedContainer,
                 borderRadius: 12,
                 margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                 padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
@@ -265,7 +265,7 @@ class DemoSliverNestedScreen extends StatelessWidget {
               dividerHeight: 0,
 
               wrapperModel: WrapperModel(
-              wrapperType: WrapperType.outlinedContainer,
+                wrapperType: WrapperType.outlinedContainer,
                 borderRadius: 12,
                 margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                 padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
@@ -331,7 +331,7 @@ class DemoSideTabBarScreen extends StatelessWidget {
           isScrollable: true,
           // remove divider
           wrapperModel: WrapperModel(
-          wrapperType: WrapperType.outlinedContainer,
+            wrapperType: WrapperType.outlinedContainer,
             borderRadius: 12,
             margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
