@@ -79,8 +79,8 @@ class DemoSideTabBarScreen extends StatelessWidget {
           dividerHeight: 0,
           isScrollable: true,
           // remove divider
-          wrapperType: WrapperType.outlinedContainer,
           wrapperModel: WrapperModel(
+          wrapperType: WrapperType.outlinedContainer,
             borderRadius: 12,
             margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),

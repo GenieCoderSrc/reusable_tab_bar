@@ -44,19 +44,27 @@ class TabFactory {
         rotateTurns: rotateTurns,
       );
     } else if (model is ImageTabItemModel) {
-      if (model.image == null && model.imagePath == null) {
+      if (model.imageProvider == null &&
+          model.imageSource == null &&
+          model.image == null) {
         throw ArgumentError(
           'Either image or imagePath must be provided for TabType.image',
         );
       }
       return ImageTab(
-        imageProvider: model.image,
-        imagePath: model.imagePath,
+        imageProvider: model.imageProvider,
+        imgSource: model.imageSource,
+        image: model.image,
         label: model.label,
         spacing: model.spacing,
         wrapperModel: wrapperModel,
         rotate: rotate,
         rotateTurns: rotateTurns,
+        height: model.height,
+        width: model.width,
+        vertical: model.vertical,
+        borderRadius: model.borderRadius,
+        fit: model.fit,
       );
     }
 

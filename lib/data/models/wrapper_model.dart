@@ -19,7 +19,7 @@ class WrapperModel extends Equatable {
   final Color? shadowDarkColor;
   final Gradient? gradient;
 
-  final Widget Function(Widget child)? customWrapperBuilder;
+  final Widget Function(BuildContext context, Widget child)? customWrapperBuilder;
 
   const WrapperModel({
     this.wrapperType = WrapperType.padded,

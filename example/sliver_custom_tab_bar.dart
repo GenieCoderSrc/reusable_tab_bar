@@ -73,8 +73,8 @@ class DemoSliverScreen extends StatelessWidget {
               controller: controller,
               dividerHeight: 0,
               // remove divider line
-              wrapperType: WrapperType.outlinedContainer,
               wrapperModel: WrapperModel(
+              wrapperType: WrapperType.outlinedContainer,
                 borderRadius: 12,
                 margin: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                 padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),

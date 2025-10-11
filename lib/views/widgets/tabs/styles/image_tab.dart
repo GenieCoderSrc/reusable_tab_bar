@@ -1,51 +1,84 @@
 import 'package:flutter/material.dart';
+import 'package:reusable_tab_bar/views/widgets/image_view/image_view.dart';
 
 import 'base_tab.dart';
 
 class ImageTab extends BaseTab {
-  final ImageProvider? imageProvider;
   final Widget? image;
-  final double width;
+  final String? imgSource;
+  final ImageProvider? imageProvider;
 
-  // final double? height;
-  final String? imagePath;
+  final double? width;
+  final bool? vertical;
   final double spacing;
-  final bool vertical;
+  final BorderRadius? borderRadius;
+  final BoxFit? fit;
 
   const ImageTab({
     super.key,
-    super.label,
+    this.image,
+    this.imgSource,
+    this.imageProvider,
     super.wrapperModel,
+    super.label,
     super.rotate,
     super.rotateTurns,
-    this.image,
-    this.imageProvider,
-    this.imagePath,
-    this.width = 24,
     super.height,
+    this.width,
     this.spacing = 4,
-    this.vertical = true,
+    this.vertical,
+    this.borderRadius,
+    this.fit,
   });
 
   @override
   Widget buildContent(BuildContext context) {
-    final children = <Widget>[
+    final List<Widget> children = <Widget>[
       if (imageProvider != null)
-        Image(image: imageProvider!, width: width, height: height ?? 24),
+        Image(
+          image: imageProvider!,
+          width: width ?? 24,
+          height: height ?? 24,
+          fit: fit,
+        ),
+      if (imgSource != null)
+        ImageView(
+          imgSource: imgSource!,
+          width: width ?? 24,
+          height: height ?? 24,
+          borderRadius: borderRadius,
+          fit: fit,
+        ),
       if (image != null) image!,
-      if (label != null) Text(label!),
+      if (label != null)
+        Text(
+          label!,
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.center,
+        ),
     ];
 
-    return vertical
+    final Widget tab = (vertical ?? true)
         ? Column(
             mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             spacing: spacing,
             children: children,
           )
         : Row(
             mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             spacing: spacing,
             children: children,
           );
+
+    return ConstrainedBox(
+      constraints: BoxConstraints(maxHeight: height ?? 48),
+      child: rotate ?? false
+          ? RotatedBox(quarterTurns: rotateTurns ?? 3, child: tab)
+          : tab,
+    );
   }
 }

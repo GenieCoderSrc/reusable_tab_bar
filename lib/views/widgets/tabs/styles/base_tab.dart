@@ -48,7 +48,7 @@ abstract class BaseTab extends StatelessWidget {
     if (wrapperModel?.customWrapperBuilder != null) {
       return Tab(
         height: height,
-        child: wrapperModel?.customWrapperBuilder!(content),
+        child: wrapperModel?.customWrapperBuilder!(context, content),
       );
     }
 

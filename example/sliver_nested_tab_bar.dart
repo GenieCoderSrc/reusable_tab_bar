@@ -73,8 +73,8 @@ class DemoSliverNestedScreen extends StatelessWidget {
               dividerHeight: 0,
 
               // remove divider line
-              wrapperType: WrapperType.outlinedContainer,
               wrapperModel: WrapperModel(
+              wrapperType: WrapperType.outlinedContainer,
                 borderRadius: 12,
                 margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                 padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),

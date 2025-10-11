@@ -73,7 +73,7 @@ class TabAppBarSwitcher extends StatelessWidget {
 
   double _resolveHeight(Widget? widget) {
     if (widget == null) return 0;
-    if (widget is PreferredSizeWidget) return widget.preferredSize.height;
+    if (widget is PreferredSizeWidget) return widget.preferredSize.height ;
     return defaultTabBarHeight ?? kToolbarHeight;
   }
 

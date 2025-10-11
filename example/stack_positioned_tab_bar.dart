@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:reusable_tab_bar/data/models/tab_item_model/simple_tab_model.dart';
-import 'package:reusable_tab_bar/data/models/wrapper_model.dart';
 import 'package:reusable_tab_bar/reusable_tab_bar.dart';
-import 'package:reusable_tab_bar/views/screens/stack_positioned_tab_bar_screen.dart';
 
 void main() => runApp(const MyApp());
 
@@ -63,8 +60,8 @@ class DemoStackPositionedTabBarScreen extends StatelessWidget {
           tabs: tabs,
           dividerHeight: 0,
           isScrollable: true,
-          wrapperType: WrapperType.outlinedContainer,
           wrapperModel: WrapperModel(
+            wrapperType: WrapperType.outlinedContainer,
             borderRadius: 12,
             margin: const EdgeInsets.symmetric(horizontal: 6),
             padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),

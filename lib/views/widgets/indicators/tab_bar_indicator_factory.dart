@@ -42,6 +42,7 @@ class TabIndicatorFactory {
           color: model.color ?? Colors.blue,
           borderRadius: BorderRadius.circular(model.radius ?? 8),
           shape: model.shape ?? BoxShape.rectangle,
+
         );
 
       case TabIndicatorType.dot:
