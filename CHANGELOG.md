@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.0.7
+
+### Sep 27, 2026
+
+### ✨ Updated
+
+* Updated equatable 3.0.0.
+* Updated lottie 3.6.1.
+
 ## 0.0.6
 
 ### Oct 11, 2025
