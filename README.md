@@ -16,6 +16,8 @@ A Flutter package for building highly customizable, animated, and reusable tab b
 Add this to your `pubspec.yaml`:
 
 ```yaml
+resolution: workspace
+
 dependencies:
   reusable_tab_bar: <letest_version>
 ```
