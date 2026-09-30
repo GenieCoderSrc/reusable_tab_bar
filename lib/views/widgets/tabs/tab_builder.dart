@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:reusable_tab_bar/data/enums/tab_animation_type.dart';
 import 'package:reusable_tab_bar/data/enums/tab_type.dart';
-import 'package:reusable_tab_bar/data/enums/wrapper_type.dart';
 import 'package:reusable_tab_bar/data/models/tab_animation_model.dart';
 import 'package:reusable_tab_bar/data/models/tab_item_model/tab_item_model.dart';
 import 'package:reusable_tab_bar/data/models/wrapper_model.dart';
