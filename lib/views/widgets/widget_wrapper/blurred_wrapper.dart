@@ -30,8 +30,7 @@ class BlurredWrapper implements IWrapper {
         child: Container(
           margin: margin,
           padding: padding,
-          color:
-              backgroundColor?.withAlpha((0.3 * 255).round()) ??
+          color: backgroundColor?.withAlpha((0.3 * 255).round()) ??
               Colors.white.withAlpha((0.2 * 255).round()),
           child: child,
         ),

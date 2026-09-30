@@ -55,22 +55,19 @@ class TabAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       toolbarHeight: appBarHeight,
       centerTitle: centerTitle,
-      title:
-          titleWidget ??
+      title: titleWidget ??
           (titleTxt != null ? Text(titleTxt!, style: titleStyle) : null),
       automaticallyImplyLeading: automaticallyImplyLeading,
       leading: leadingWidget,
       leadingWidth: leadingWidth,
       actions: actions,
-      bottom:
-          (bottomWidget != null ||
+      bottom: (bottomWidget != null ||
               bottomTitleTxt != null ||
               tabBarBuilder != null)
           ? PreferredSize(
               preferredSize: Size.fromHeight(
                 appBarBottomHeight ?? kToolbarHeight + (appBarHeight ?? 0),
               ),
-
               child: SafeArea(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -85,8 +82,7 @@ class TabAppBar extends StatelessWidget implements PreferredSizeWidget {
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
                         child: Text(
                           bottomTitleTxt ?? "",
-                          style:
-                              bottomTitleStyle ??
+                          style: bottomTitleStyle ??
                               theme.textTheme.titleSmall?.copyWith(
                                 color: bottomTitleTxtColor ?? Colors.white,
                               ),
@@ -103,6 +99,6 @@ class TabAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize => Size.fromHeight(
-    appBarHeight ?? kToolbarHeight + (appBarBottomHeight ?? 0),
-  );
+        appBarHeight ?? kToolbarHeight + (appBarBottomHeight ?? 0),
+      );
 }

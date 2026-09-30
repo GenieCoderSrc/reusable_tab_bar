@@ -61,24 +61,24 @@ class SimpleTabBarScreen extends StatelessWidget {
           /// app bar - fixed type casting issue
           appBar: placementBuilder
               .build(
-                controller: controller,
-                tabBarPlacement: tabBarPosition,
-                tabBarBuilder: tabBarBuilder,
-                currentPlacement: TabBarPosition.top,
-                child: appBar,
-                children: appBars,
-              )
+            controller: controller,
+            tabBarPlacement: tabBarPosition,
+            tabBarBuilder: tabBarBuilder,
+            currentPlacement: TabBarPosition.top,
+            child: appBar,
+            children: appBars,
+          )
               ?.let((widget) {
-                // Ensure it's a PreferredSizeWidget for Scaffold.appBar
-                if (widget is PreferredSizeWidget) return widget;
-                // Wrap non-PreferredSizeWidget with PreferredSize
-                return PreferredSize(
-                  preferredSize: Size.fromHeight(
-                    defaultTabBarHeight ?? kToolbarHeight,
-                  ),
-                  child: widget,
-                );
-              }),
+            // Ensure it's a PreferredSizeWidget for Scaffold.appBar
+            if (widget is PreferredSizeWidget) return widget;
+            // Wrap non-PreferredSizeWidget with PreferredSize
+            return PreferredSize(
+              preferredSize: Size.fromHeight(
+                defaultTabBarHeight ?? kToolbarHeight,
+              ),
+              child: widget,
+            );
+          }),
 
           /// bottom navigation
           bottomNavigationBar: placementBuilder.build(

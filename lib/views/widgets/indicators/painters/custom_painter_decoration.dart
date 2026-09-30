@@ -7,7 +7,7 @@ class CustomPainterDecoration extends Decoration {
   final double? size;
   final EdgeInsetsGeometry? insets;
   final CustomPainter Function(Size size, TextDirection? textDirection)
-  painterBuilder;
+      painterBuilder;
 
   const CustomPainterDecoration({
     this.color,
@@ -55,7 +55,7 @@ class CustomPainterDecoration extends Decoration {
 
 class _CustomPainterBoxPainter extends BoxPainter {
   final CustomPainter Function(Size size, TextDirection? textDirection)
-  painterBuilder;
+      painterBuilder;
 
   _CustomPainterBoxPainter(this.painterBuilder);
 

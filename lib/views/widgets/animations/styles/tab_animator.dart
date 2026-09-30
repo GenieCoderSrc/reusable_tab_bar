@@ -51,9 +51,9 @@ class TabAnimator extends ITabAnimator {
 
     final effectivePadding = selected
         ? (selectedPadding ??
-              const EdgeInsets.symmetric(horizontal: 16, vertical: 4))
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 4))
         : (unselectedPadding ??
-              const EdgeInsets.symmetric(horizontal: 8, vertical: 4));
+            const EdgeInsets.symmetric(horizontal: 8, vertical: 4));
 
     if (animate == false) {
       return Padding(

@@ -125,7 +125,6 @@ class AppTabBar extends StatelessWidget {
                       labelColor: selectedLabelColor,
                       unselectedLabelColor: unselectedLabelColor,
                       indicatorWeight: indicatorWeight ?? 2.0,
-
                       tabs: tabHeaders,
                     ),
                     // SingleChildScrollView(

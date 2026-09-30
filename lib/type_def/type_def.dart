@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 /// Builds an AppBar for a tab screen
-typedef TabAppBarBuilder =
-    PreferredSizeWidget? Function(TabController controller);
+typedef TabAppBarBuilder = PreferredSizeWidget? Function(
+    TabController controller);
 
 /// Builds a widget using only TabController
 typedef TabWidgetBuilder = Widget Function(TabController controller);

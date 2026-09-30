@@ -32,7 +32,6 @@ class DemoSliverNestedScreen extends StatelessWidget {
         Center(child: Text('Profile Content')),
         Center(child: Text('Settings Content')),
       ],
-
       tabBarBuilder: (controller) {
         return SliverTabAppBar(
           expandedHeight: 220,
@@ -43,7 +42,6 @@ class DemoSliverNestedScreen extends StatelessWidget {
           centerTitle: true,
           appBarBottomHeight: 72,
           controller: controller,
-
           tabBarBuilder: (controller) {
             // Build animated tabs using TabBuilder
             final tabs = TabBuilder.build(
@@ -84,7 +82,6 @@ class DemoSliverNestedScreen extends StatelessWidget {
           },
         );
       },
-
       bottomNavigation: BottomAppBar(
         child: Padding(
           padding: const EdgeInsets.all(12.0),
@@ -95,7 +92,6 @@ class DemoSliverNestedScreen extends StatelessWidget {
           ),
         ),
       ),
-
       fabButtons: [
         FloatingActionButton(
           onPressed: () {},

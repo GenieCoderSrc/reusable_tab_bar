@@ -97,13 +97,13 @@ abstract class BaseTabBar extends StatelessWidget {
   Widget buildWrappedTabBar(BuildContext context) {
     final spacedTabs = (tabSpacing != null && tabSpacing! > 0)
         ? tabs
-              .map(
-                (tab) => Padding(
-                  padding: EdgeInsets.symmetric(horizontal: tabSpacing! / 2),
-                  child: tab,
-                ),
-              )
-              .toList()
+            .map(
+              (tab) => Padding(
+                padding: EdgeInsets.symmetric(horizontal: tabSpacing! / 2),
+                child: tab,
+              ),
+            )
+            .toList()
         : tabs;
 
     final rawTabBar = TabBar(

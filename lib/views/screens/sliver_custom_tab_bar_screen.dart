@@ -70,7 +70,6 @@ class SliverCustomTabBarScreen extends StatelessWidget {
             currentPlacement: TabBarPosition.float,
             children: fabButtons,
           ),
-
           floatingActionButtonLocation: floatingActionButtonLocation,
           body: CustomScrollView(
             slivers: [

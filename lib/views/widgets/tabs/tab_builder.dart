@@ -23,8 +23,7 @@ class TabBuilder {
     TabAnimationModel animation = const TabAnimationModel(),
   }) {
     // 1️⃣ Create base tabs from TabItemModel via TabFactory
-    final baseTabs =
-        tabItems
+    final baseTabs = tabItems
             ?.map(
               (tabItems) => TabFactory.create(
                 tabItems,

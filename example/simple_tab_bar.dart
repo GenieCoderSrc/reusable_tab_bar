@@ -60,7 +60,6 @@ class DemoScreen extends StatelessWidget {
                 gradient: LinearGradient(colors: [Colors.amber, Colors.pink]),
                 // customWrapperBuilder: (Widget child) => Card(child: child),
               ),
-
               animation: TabAnimationModel(
                 enabled: true,
                 animationType: TabAnimationType.bounceAdvanced,

@@ -82,13 +82,11 @@ class DemoSimpleTabBarScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SimpleTabBarScreen(
       defaultTabBarHeight: 250,
-
       pages: const [
         Center(child: Text('Dashboard Page')),
         Center(child: Text('Messages Page')),
         Center(child: Text('Settings Page')),
       ],
-
       tabBarBuilder: (controller) {
         final tabs = TabBuilder.build(
           controller: controller,
@@ -127,7 +125,6 @@ class DemoSimpleTabBarScreen extends StatelessWidget {
           tabs: tabs,
         );
       },
-
       appBar: AppBar(title: Text("Love")),
       fabButtons: [
         FloatingActionButton(onPressed: () {}, child: const Icon(Icons.add)),
@@ -196,7 +193,6 @@ class DemoSliverCustomScreen extends StatelessWidget {
             return SimpleTabBar(
               controller: controller,
               dividerHeight: 0,
-
               wrapperModel: WrapperModel(
                 wrapperType: WrapperType.outlinedContainer,
                 borderRadius: 12,
@@ -263,7 +259,6 @@ class DemoSliverNestedScreen extends StatelessWidget {
             return SimpleTabBar(
               controller: controller,
               dividerHeight: 0,
-
               wrapperModel: WrapperModel(
                 wrapperType: WrapperType.outlinedContainer,
                 borderRadius: 12,

@@ -23,8 +23,7 @@ class GradientWrapper implements IWrapper {
       margin: margin,
       padding: padding,
       decoration: BoxDecoration(
-        gradient:
-            gradient ??
+        gradient: gradient ??
             LinearGradient(
               colors: gradientColors ?? const [Colors.blue, Colors.purple],
               begin: Alignment.topLeft,

@@ -20,7 +20,7 @@ class WrapperModel extends Equatable {
   final Gradient? gradient;
 
   final Widget Function(BuildContext context, Widget child)?
-  customWrapperBuilder;
+      customWrapperBuilder;
 
   const WrapperModel({
     this.wrapperType = WrapperType.padded,
@@ -74,20 +74,20 @@ class WrapperModel extends Equatable {
 
   @override
   List<Object?> get props => [
-    wrapperType,
-    padding,
-    margin,
-    borderRadius,
-    backgroundColor,
-    borderColor,
-    borderWidth,
-    elevation,
-    blurX,
-    blurY,
-    shadowLightColor,
-    shadowDarkColor,
-    gradient,
-  ];
+        wrapperType,
+        padding,
+        margin,
+        borderRadius,
+        backgroundColor,
+        borderColor,
+        borderWidth,
+        elevation,
+        blurX,
+        blurY,
+        shadowLightColor,
+        shadowDarkColor,
+        gradient,
+      ];
 }
 
 // class WrapperModel {

@@ -25,8 +25,7 @@ class TabFactory {
         icon: model.icon,
         label: model.label,
         spacing: model.spacing,
-        height:
-            model.height ??
+        height: model.height ??
             ((model.tabType ?? tabType) == TabType.iconTopText ? 80 : null),
         iconFirst: (model.tabType ?? tabType) != TabType.textThenIcon,
         vertical: (model.tabType ?? tabType) == TabType.iconTopText,

@@ -17,7 +17,7 @@ class IndicatorModel {
 
   /// Builder for a custom painter. Provides the size and textDirection.
   final CustomPainter Function(Size size, TextDirection? direction)?
-  customPainterBuilder;
+      customPainterBuilder;
 
   const IndicatorModel({
     this.type = TabIndicatorType.underline,

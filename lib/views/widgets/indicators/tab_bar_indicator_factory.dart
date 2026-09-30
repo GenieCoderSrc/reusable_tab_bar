@@ -25,8 +25,7 @@ class TabIndicatorFactory {
 
       case TabIndicatorType.gradient:
         return BoxDecoration(
-          gradient:
-              model.gradient ??
+          gradient: model.gradient ??
               LinearGradient(
                 colors: [
                   model.color ?? Colors.blue,
