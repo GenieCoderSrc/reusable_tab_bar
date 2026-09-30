@@ -18,31 +18,30 @@ class TabAnimatorFactory {
       case TabAnimationType.fade:
         return FadeTabAnimator(
           selected: selected,
-          child: child,
           duration: animation.duration ?? const Duration(milliseconds: 250),
           curve: animation.opacityCurve ?? animation.curve ?? Curves.easeInOut,
           selectedWrapperType: animation.selectedWrapperType,
           selectedWrapperModel: animation.selectedWrapperModel,
           unselectedWrapperType: animation.unselectedWrapperType,
           unselectedWrapperModel: animation.unselectedWrapperModel,
+          child: child,
         );
 
       case TabAnimationType.slide:
         return SlideTabAnimator(
           selected: selected,
-          child: child,
           curve: animation.containerCurve ?? animation.curve,
           duration: animation.duration ?? const Duration(milliseconds: 250),
           selectedWrapperType: animation.selectedWrapperType,
           selectedWrapperModel: animation.selectedWrapperModel,
           unselectedWrapperType: animation.unselectedWrapperType,
           unselectedWrapperModel: animation.unselectedWrapperModel,
+          child: child,
         );
 
       case TabAnimationType.scale:
         return ScaleTabAnimator(
           selected: selected,
-          child: child,
           duration: animation.duration ?? const Duration(milliseconds: 250),
           scaleFactor: animation.scaleFactor ?? 1.1,
           curve: animation.scaleCurve ?? animation.curve ?? Curves.easeInOut,
@@ -50,12 +49,12 @@ class TabAnimatorFactory {
           selectedWrapperModel: animation.selectedWrapperModel,
           unselectedWrapperType: animation.unselectedWrapperType,
           unselectedWrapperModel: animation.unselectedWrapperModel,
+          child: child,
         );
 
       case TabAnimationType.bounceSimple:
         return ScaleTabAnimator(
           selected: selected,
-          child: child,
           curve: animation.curve ?? Curves.elasticOut,
           scaleFactor: 1.2,
           duration: animation.duration ?? const Duration(milliseconds: 300),
@@ -63,12 +62,12 @@ class TabAnimatorFactory {
           selectedWrapperModel: animation.selectedWrapperModel,
           unselectedWrapperType: animation.unselectedWrapperType,
           unselectedWrapperModel: animation.unselectedWrapperModel,
+          child: child,
         );
 
       case TabAnimationType.bounceAdvanced:
         return BounceTabAnimator(
           selected: selected,
-          child: child,
           duration: animation.duration ?? const Duration(milliseconds: 300),
           curve: animation.curve,
           scaleFactor: animation.scaleFactor ?? 1.2,
@@ -76,13 +75,13 @@ class TabAnimatorFactory {
           selectedWrapperModel: animation.selectedWrapperModel,
           unselectedWrapperType: animation.unselectedWrapperType,
           unselectedWrapperModel: animation.unselectedWrapperModel,
+          child: child,
         );
 
       case TabAnimationType.all:
       default:
         return TabAnimator(
           selected: selected,
-          child: child,
           duration: animation.duration ?? const Duration(milliseconds: 250),
           animate: animation.animationType != TabAnimationType.none,
           scaleFactor: animation.scaleFactor ?? 1.1,
@@ -100,6 +99,7 @@ class TabAnimatorFactory {
           selectedWrapperModel: animation.selectedWrapperModel,
           unselectedWrapperType: animation.unselectedWrapperType,
           unselectedWrapperModel: animation.unselectedWrapperModel,
+          child: child,
         );
     }
   }

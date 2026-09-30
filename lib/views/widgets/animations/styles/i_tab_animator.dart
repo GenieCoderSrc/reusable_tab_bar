@@ -10,12 +10,10 @@ abstract class ITabAnimator extends StatelessWidget with WidgetWrapperMixin {
   @override
   final Widget child;
 
-  @override
   final WrapperType? selectedWrapperType;
   @override
   final WrapperModel? selectedWrapperModel;
 
-  @override
   final WrapperType? unselectedWrapperType;
   @override
   final WrapperModel? unselectedWrapperModel;

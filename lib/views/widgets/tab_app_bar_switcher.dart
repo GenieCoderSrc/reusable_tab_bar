@@ -28,8 +28,9 @@ class TabAppBarSwitcher extends StatelessWidget {
         buildWhen: (prev, curr) => prev.index != curr.index,
         builder: (context, tabState) {
           final index = tabState.index;
-          if (index >= appBars!.length)
+          if (index >= appBars!.length) {
             return _wrapWithPreferredSize(tabBarWidget);
+          }
 
           final activeAppBar = appBars![index];
           return _buildTabAppBar(appBar: activeAppBar);
