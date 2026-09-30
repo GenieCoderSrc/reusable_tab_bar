@@ -10,12 +10,11 @@ class BounceTabAnimator extends StatefulWidget with WidgetWrapperMixin {
   @override
   final bool selected;
 
-  @override
   final WrapperType? selectedWrapperType;
+
   @override
   final WrapperModel? selectedWrapperModel;
 
-  @override
   final WrapperType? unselectedWrapperType;
   @override
   final WrapperModel? unselectedWrapperModel;

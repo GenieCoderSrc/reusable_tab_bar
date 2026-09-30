@@ -9,13 +9,16 @@ class TabFABSwitcher extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (fabButtons == null || fabButtons!.isEmpty)
+    if (fabButtons == null || fabButtons!.isEmpty) {
       return const SizedBox.shrink();
+    }
 
     return BlocBuilder<TabBarCubit, TabBarState>(
       builder: (context, tabState) {
-        if (tabState.index >= fabButtons!.length)
+        if (tabState.index >= fabButtons!.length) {
           return const SizedBox.shrink();
+        }
+
         return fabButtons![tabState.index];
       },
     );

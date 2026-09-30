@@ -8,8 +8,8 @@ All notable changes to this project will be documented in this file.
 
 ### ✨ Updated
 
-* Updated equatable 3.0.0.
-* Updated lottie 3.6.1.
+* Updated `equatable to 3.0.0`.
+* Updated `lottie to 3.6.1`.
 
 ## 0.0.6
 
